@@ -24,6 +24,7 @@ function GameShop() {
             {results && results.map((item) => (
               <GameCard
                 key={item.id}
+                id={item.id}
                 title={item.name}
                 img={item.background_image}
                 genres={item.genres.map(genre => genre.name).join(', ')}

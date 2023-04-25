@@ -1,16 +1,15 @@
-import GameShop from "../components/GameShop";
-import MyGames from "../components/MyGames";
-import MyFavourites from "../components/MyFavourites";
+import GameShop from '../components/GameShop';
+import MyGames from '../components/MyGames';
+import MyFavourites from '../components/MyFavourites';
 
-
-// Dashboard (forside), som har tre seksjoner; Gameshop, My Games og My Favourites 
-
-export default function Dashboard() {
+function Dashboard() {
   return (
     <>
-    <GameShop/>
-    <MyGames/>
-    <MyFavourites/>
+      <GameShop />
+      <MyGames />
+      <MyFavourites />
     </>
   );
 }
+
+export default Dashboard;

@@ -13,7 +13,6 @@ function GameShop() {
       const data = await response.json();
       const sortedGames = data.results.sort((a, b) => new Date(b.released) - new Date(a.released)).slice(0, 3);
       setResults(sortedGames);
-      console.log(sortedGames);
   };
 
   useEffect(() => {
@@ -27,6 +26,7 @@ function GameShop() {
         {results && results.map((item)=> (
           <GameCard
             key={item.id}
+            id={item.id}
             title={item.name}
             img={item.background_image}
             genres={item.genres.map(genre => genre.name).join(', ')}
