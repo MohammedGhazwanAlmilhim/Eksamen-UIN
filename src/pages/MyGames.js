@@ -7,7 +7,7 @@ function MyGames() {
   const [results, setResults] = useState([]);
 
   const getGames = async () => {
-    const response = await fetch(`https://rawg.io/api/games?key=${API_KEY}&lang=en&genres=4&page_size=4`);
+    const response = await fetch(`https://rawg.io/api/games?key=${API_KEY}&lang=en&genres=4&page_size=20`);
     const data = await response.json();
     setResults(data.results);
   };
@@ -19,16 +19,16 @@ function MyGames() {
   return (
     <main>
       <h1>My Games - Libary</h1>
-        <section className="game-libary">
-        {results && results.map((item) => (
-          <GameCard
-            key={item.id}
-            title={item.name}
-            img={item.background_image}
-            genres={item.genres.map(genre => genre.name).join(', ')}
-          />
-        ))}
-        </section>
+          <section className="game-libary">
+            {results && results.map((item) => (
+              <GameCard
+                id={item.id}
+                title={item.name}
+                img={item.background_image}
+                genres={item.genres.map(genre => genre.name).join(', ')}
+              />
+            ))}
+          </section>
     </main>
   );
 }

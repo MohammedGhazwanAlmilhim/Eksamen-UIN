@@ -11,10 +11,14 @@ export default function Signin() {
       if (emailValue === "") {
         alert("Vennligst fyll ut e-postadresse");
         emailInput.focus();
-      } else if (!emailPattern.test(emailValue)) {
+      } 
+
+      else if (!emailPattern.test(emailValue)) {
         alert("Vennligst fyll ut en gyldig e-postadresse");
         emailInput.focus();
-      } else {
+      } 
+      
+      else {
         // valid email, navigate to dashboard
         window.location.href = "/dashboard";
       }

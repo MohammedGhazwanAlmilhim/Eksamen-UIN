@@ -4,9 +4,18 @@
 
 //Tips: lag en ny property i objektene i games-arrayen kalt "slug" med en pen variant av tittelen du kan bruke som parameter i URL/Routing for å peke til ett spill. 
 
-//Når linken åpnes, brukes GamePage for å vise et enkelt spill (må hentes fra arrayen) med all informasjon knyttet til dette spillet fra games-arrayen i games.js.
+//Når linken åpnes, brukes GamePage for å vise et enkelt spill med all informasjon knyttet til dette spillet:
 
-//Vi anbefaler å bruke ruten /game/gametitle-as-slug for ett enkelt spill
+// Rating
+// Oppsummering/plot
+// Stikkord (tags)
+// Utviklere (developers)
+// Utgiver (publisher)
+// Utgivelsesår (release)
+// Plattformer (platforms)
+// Kjøpsmuligheter (stores)
+
+//Vi anbefaler å bruke ruten /game:slug for ett enkelt spill
 
 
 import { useParams } from "react-router-dom";

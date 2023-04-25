@@ -16,7 +16,7 @@ function MyFavourites() {
       <div className="my-favourites">
         {filteredGames.map(item => (
           <GameCard
-            id={item.id}
+            key={item.id}
             title={item.title}
             img={item.img}
             genres={item.genres.join(', ')}
