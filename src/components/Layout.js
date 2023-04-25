@@ -9,7 +9,7 @@ export default function Layout(){
                 <img src="../assets/logo.png" alt="Logo"/>
             </Link>
             <ul>
-                <li><Link to="/shop">Shop</Link></li>
+                <li><Link to="/gameshop">Shop</Link></li>
                 <li><Link to="/mygames">My Games</Link></li>
                 <li><Link to="/favourites">Favourites</Link></li>
             </ul>
