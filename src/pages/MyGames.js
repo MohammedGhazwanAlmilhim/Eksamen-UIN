@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import GameCard from './GameCard';
+import GameCard from '../components/GameCard';
 
 const API_KEY = '9ef4069dd9d14052ac1ae49bd4da623b';
 
@@ -22,7 +22,7 @@ function MyGames() {
           <section className="game-libary">
             {results && results.map((item) => (
               <GameCard
-                id={item.id}
+                key={item.id}
                 title={item.name}
                 img={item.background_image}
                 genres={item.genres.map(genre => genre.name).join(', ')}

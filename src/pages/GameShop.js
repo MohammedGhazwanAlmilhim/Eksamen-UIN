@@ -23,7 +23,7 @@ function GameShop() {
           <section className="game-libary">
             {results && results.map((item) => (
               <GameCard
-                id={item.id}
+                key={item.id}
                 title={item.name}
                 img={item.background_image}
                 genres={item.genres.map(genre => genre.name).join(', ')}

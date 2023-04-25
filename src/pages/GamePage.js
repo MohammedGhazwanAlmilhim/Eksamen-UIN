@@ -17,27 +17,36 @@
 
 //Vi anbefaler å bruke ruten /game:slug for ett enkelt spill
 
+// På visning av ett spill (, ha en knapp "Legg til favoritter".
+// Klikk på knappen "Legg til favoritter" skal lagre spillet i en array i en state kalt favourites.
 
-import { useParams } from "react-router-dom";
-import { mygames } from '../resources/games.js';
-import GameCard from "../components/GameCard";
 
-export default function GamePage() {
-  const { id } = useParams();
-  const game = mygames.find((game) => game.id === parseInt(id));
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import GameProfile from '../components/GameProfile';
 
-  return (
-    <>
-      {game ? (
-        <GameCard
-          title={game.title}
-          img={game.img}
-          genres={game.genres}
-          key={game.id}
-        />
-      ) : (
-        <p>Game not found!</p>
-      )}
-    </>
-  );
-}
+
+  const GamePage = () => {
+    const { id } = useParams();
+    
+    const [game, setGame] = useState('');
+
+  
+    const API_KEY = '9ef4069dd9d14052ac1ae49bd4da623b';
+
+    useEffect(() => {
+      const getMovies = async () => {
+        const response = await fetch(`https://api.rawg.io/api/games/${id}?key=${API_KEY}&lang=en`);
+        const data = await response.json();
+        console.log(data);
+        setGame(data);
+      };
+      
+      getMovies();
+    }, [id]);
+  
+    return <GameProfile game={game}/>;
+  };
+
+
+export default GamePage;

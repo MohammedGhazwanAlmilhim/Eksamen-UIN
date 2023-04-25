@@ -13,6 +13,7 @@ function GameShop() {
       const data = await response.json();
       const sortedGames = data.results.sort((a, b) => new Date(b.released) - new Date(a.released)).slice(0, 3);
       setResults(sortedGames);
+      console.log(sortedGames);
   };
 
   useEffect(() => {
