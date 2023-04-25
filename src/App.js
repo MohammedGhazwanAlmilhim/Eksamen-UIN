@@ -15,13 +15,12 @@ import './css/main.css';
 //"/gameshop"
 //"/mygames"
 //"/favourites"
-
+//"<Route path="/" element={<Signin/>} />"
 function App() {
     return (
         <Routes>
             <Route element={<Layout />}>
-                <Route path="/" element={<Signin/>} />
-                <Route path='/dashboard' element={<Dashboard />} />
+                <Route path='/' element={<Dashboard />} />
                 <Route path='/game/:id' element={<GamePage/>} />
                 <Route path='/gameshop' element={<GameShop />} />
                 <Route path='/mygames' element={<MyGames />} />
