@@ -21,7 +21,6 @@ const getGenreNames = (genreIds) => {
   return genreNames.join(', ');
 };
 
-
   return (
     <main>
       <h1>My Games - Libary</h1>
