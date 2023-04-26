@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getActionGames } from '../lib/services/service';
+import { getActionGames } from '../lib/services/gameService';
 import GameCard from './GameCard';
 
 function MyGames() {

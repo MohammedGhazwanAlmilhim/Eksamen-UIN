@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getNewestGames } from '../lib/services/service';
+import { getNewestGames } from '../lib/services/gameService';
 import GameCard from './GameCard';
 
 //For GameShop seksjonen, hent ut de tre nyeste spillene for visning i dashboard. 
