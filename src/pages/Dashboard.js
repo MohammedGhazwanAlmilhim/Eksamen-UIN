@@ -1,6 +1,7 @@
 import GameShop from '../components/GameShop';
 import MyGames from '../components/MyGames';
 import MyFavourites from '../components/MyFavourites';
+import GameList from '../components/GameList';
 
 function Dashboard() {
   return (
@@ -8,6 +9,8 @@ function Dashboard() {
       <GameShop />
       <MyGames />
       <MyFavourites />
+      <GameList />
+
     </>
   );
 }
