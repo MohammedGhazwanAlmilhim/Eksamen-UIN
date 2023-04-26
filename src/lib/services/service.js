@@ -9,15 +9,7 @@ export const getNewestGames = async () => {
 
 //This is for MyGames Section
 export const getActionGames = async () => {
-  const query = `*[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released desc) [0..3] {
-    _id,
-    title,
-    released,
-    sjangere[]->{
-      _id,
-      navn
-    }
-  }`;
+  const query = `*[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] [0..3]`;
   const response = await client.fetch(query);
   return response;
 };
