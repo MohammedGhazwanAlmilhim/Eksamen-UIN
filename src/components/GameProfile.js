@@ -1,7 +1,4 @@
-function GameProfile({ game, addFavourite}) {
-    const handleAddFavourite = () => {
-        addFavourite((prevFavourites) => [...prevFavourites, game]);
-      };
+function GameProfile({game}) {
     return (
       <div>
         {game ? (
@@ -34,7 +31,7 @@ function GameProfile({ game, addFavourite}) {
                 <span key={store.store.id}>{store.store.name} </span>
               ))}
             </p>
-            <button onClick={handleAddFavourite}>Add to Favourites</button>
+            <button>Add to Favourites</button>
           </section>
         ) : (
           <p>Game not found!</p>

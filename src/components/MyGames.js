@@ -1,26 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { getAllGenres, getActionGames } from '../lib/services/service';
+import { getActionGames } from '../lib/services/service';
 import GameCard from './GameCard';
 
 function MyGames() {
 const [games, setGames] = useState([]);
-const [genres, setGenres] = useState([]);
 
 useEffect(() => {
-  Promise.all([getActionGames(), getAllGenres()]).then(([games, genres]) => {
+  Promise.all([getActionGames()]).then(([games]) => {
     setGames(games);
-    setGenres(genres);
   });
   
 }, []);
-
-const getGenreNames = (genreIds) => {
-  const genreNames = genreIds.map((genreId) => {
-    const genre = genres.find((genre) => genre._id === genreId._ref);
-    return genre ? genre.navn : '';
-  });
-  return genreNames.join(', ');
-};
 
   return (
     <main>
@@ -32,7 +22,7 @@ const getGenreNames = (genreIds) => {
             id={item.apiid}
             title={item.title}
             img={item.bilde}
-            genres={getGenreNames(item.sjangere)}
+            genres={item.sjangere.map(sjanger => sjanger.navn).join(', ')}
             />
         ))}
         </section>

@@ -20,11 +20,11 @@ function GameShop() {
       <div className="latest-games">
         {games.map((item)=> (
           <GameCard
-            key={item._id}
+            key={item.apiid}
             id={item.apiid}
             title={item.title}
             img={item.bilde}
-            genres={item.sjangere.navn}
+            genres={item.sjangere.map(sjanger => sjanger.navn).join(', ')}
           />
         ))}
       </div>
