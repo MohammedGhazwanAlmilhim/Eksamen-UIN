@@ -1,33 +1,39 @@
 import React, { useState, useEffect } from 'react';
+import { getAllGenres, getActionGames } from '../lib/services/service';
 import GameCard from './GameCard';
 
-const API_KEY = '9ef4069dd9d14052ac1ae49bd4da623b';
-
 function MyGames() {
-  const [results, setResults] = useState([]);
+const [games, setGames] = useState([]);
+const [genres, setGenres] = useState([]);
 
-  const getGames = async () => {
-    const response = await fetch(`https://rawg.io/api/games?key=${API_KEY}&lang=en&genres=4&page_size=4`);
-    const data = await response.json();
-    setResults(data.results);
-  };
-
-  useEffect(() => {
-    getGames();
+useEffect(() => {
+  Promise.all([getActionGames(), getAllGenres()]).then(([games, genres]) => {
+    setGames(games);
+    setGenres(genres);
+  });
 }, []);
+
+const getGenreNames = (genreIds) => {
+  const genreNames = genreIds.map((genreId) => {
+    const genre = genres.find((genre) => genre._id === genreId._ref);
+    return genre ? genre.navn : '';
+  });
+  return genreNames.join(', ');
+};
+
 
   return (
     <main>
       <h1>My Games - Libary</h1>
         <section className="game-libary">
-        {results && results.map((item) => (
+        {games.map((item) => (
           <GameCard
-            key={item.id}
-            id={item.id}
-            title={item.name}
-            img={item.background_image}
-            genres={item.genres.map(genre => genre.name).join(', ')}
-          />
+            key={item._id}
+            id={item.apiid}
+            title={item.title}
+            img={item.bilde}
+            genres={getGenreNames(item.sjangere)}
+            />
         ))}
         </section>
     </main>

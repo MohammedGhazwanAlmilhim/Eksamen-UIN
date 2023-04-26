@@ -1,35 +1,39 @@
 import React, { useState, useEffect } from 'react';
+import { getNewestGames, getAllGenres } from '../lib/services/service';
 import GameCard from './GameCard';
 
 //For GameShop seksjonen, hent ut de tre nyeste spillene for visning i dashboard. 
 
-const API_KEY = '9ef4069dd9d14052ac1ae49bd4da623b';
-
 function GameShop() {
-  const [results, setResults] = useState([])
-
-  const getGames = async () => {
-      const response = await fetch(`https://rawg.io/api/games?key=${API_KEY}&lang=en`);
-      const data = await response.json();
-      const sortedGames = data.results.sort((a, b) => new Date(b.released) - new Date(a.released)).slice(0, 3);
-      setResults(sortedGames);
-  };
+  const [games, setGames] = useState([]);
+  const [genres, setGenres] = useState([]);
 
   useEffect(() => {
-    getGames();
-}, []);
+    Promise.all([getNewestGames(), getAllGenres()]).then(([games, genres]) => {
+      setGames(games);
+      setGenres(genres);
+    });
+  }, []);
+
+  const getGenreNames = (genreIds) => {
+    const genreNames = genreIds.map((genreId) => {
+      const genre = genres.find((genre) => genre._id === genreId._ref);
+      return genre ? genre.navn : '';
+    });
+    return genreNames.join(', ');
+  };
 
   return (
     <header>
       <h1>Gameshop</h1>
       <div className="latest-games">
-        {results && results.map((item)=> (
+        {games.map((item)=> (
           <GameCard
-            key={item.id}
-            id={item.id}
-            title={item.name}
-            img={item.background_image}
-            genres={item.genres.map(genre => genre.name).join(', ')}
+            key={item._id}
+            id={item.apiid}
+            title={item.title}
+            img={item.bilde}
+            genres={getGenreNames(item.sjangere)}
           />
         ))}
       </div>
