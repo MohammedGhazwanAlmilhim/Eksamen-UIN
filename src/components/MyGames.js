@@ -11,6 +11,7 @@ useEffect(() => {
     setGames(games);
     setGenres(genres);
   });
+  
 }, []);
 
 const getGenreNames = (genreIds) => {
