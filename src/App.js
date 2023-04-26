@@ -22,13 +22,12 @@ import './css/main.css';
 
 
 function App() {
-
     const savedUser =() =>{
         const saved = localStorage.getItem("Bruker")
         const initialValue = JSON.parse(saved)
         return initialValue || "";
       }
-      const [logginn, setLogginn] = useState({username: "", password:""})
+      const [logginn, setLogginn] = useState({})
       const [exists, setExists] = useState()
       //State for å holde på registrert bruker
       const [user, setUser] = useState(savedUser)
@@ -38,7 +37,6 @@ function App() {
         localStorage.setItem("Bruker", JSON.stringify(user))
       },[user])
     
-      console.log(localStorage)
 
     return (
         <Routes>

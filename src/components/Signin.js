@@ -1,4 +1,4 @@
-import { getUserByEmail } from '../lib/services/userService';
+import { getUserByEmail, createUser } from '../lib/services/userService';
 
 export default function Signin({setLogginn, logginn, exists, setExists}){
     const handleSubmit = (e) =>{
@@ -10,7 +10,6 @@ export default function Signin({setLogginn, logginn, exists, setExists}){
         setLogginn((prev) => ({...prev,[inputName]: inputValue}))
     }
     console.log(logginn)
-    
     const handleClick = async () => {
         const fetchedUser = await getUserByEmail(logginn.email);
         if (fetchedUser) {
@@ -18,7 +17,15 @@ export default function Signin({setLogginn, logginn, exists, setExists}){
           //navigate to dashboard
           window.location.href = "/dashboard";
         } else {
-          setExists(false);
+          const newUser = await createUser(logginn.email);
+          if (newUser) {
+            setExists(false);
+            alert("A new user has been created.");
+            //navigate to dashboard
+            window.location.href = "/dashboard";
+          } else {
+            alert("Failed to create a new user.");
+          }
         }
       };
       
