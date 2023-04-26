@@ -14,7 +14,7 @@ useEffect(() => {
 
   return (
     <main>
-      <h1>My Games - Libary</h1>
+      <h1>My Games - Libary - må telle spill her og i fav seksjon</h1>
         <section className="game-libary">
         {games.map((item) => (
           <GameCard

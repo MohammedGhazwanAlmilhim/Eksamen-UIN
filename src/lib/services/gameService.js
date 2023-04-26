@@ -38,7 +38,7 @@ export const getTenLatestGames = async () => {
 
 //This is for MyGames Section
 export const getFourActionGames = async () => {
-  const query = `*[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] [0..3]{
+  const query = `*[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released asc) [0..3]{
     _id,
     apiid,
     title,
@@ -54,7 +54,7 @@ export const getFourActionGames = async () => {
 };
 
 export const getTweentyActionGames = async () => {
-  const query = `*[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] [0..19]{
+  const query = `*[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released asc) [0..19]{
     _id,
     apiid,
     title,
