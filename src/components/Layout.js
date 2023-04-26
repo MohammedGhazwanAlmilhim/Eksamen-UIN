@@ -5,7 +5,7 @@ export default function Layout(){
     return (
         <div id="container">
             <nav>
-            <Link to="/">
+            <Link to="/dashboard">
                 <img src="../assets/logo.png" alt="Logo"/>
             </Link>
             <ul>

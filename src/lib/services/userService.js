@@ -8,14 +8,8 @@ export const getUserByEmail = async (email) => {
   };
 
 //lage bruker
-export const createUser = async (userId, newEmail) => {
-    const patch = {
-      set: { email: newEmail },
-    };
-    try {
-      await client.patch(userId).set(patch).commit();
-    } catch (error) {
-      throw new Error(error);
-    }
-  };
-  
+export const createUser = async (email) =>{
+    await client.create({_type: 'user', email: email})
+}
+
+

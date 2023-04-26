@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { getActionGames } from '../lib/services/gameService';
+import { getFourActionGames } from '../lib/services/gameService';
 import GameCard from './GameCard';
 
 function MyGames() {
 const [games, setGames] = useState([]);
 
 useEffect(() => {
-  Promise.all([getActionGames()]).then(([games]) => {
+  Promise.all([getFourActionGames()]).then(([games]) => {
     setGames(games);
   });
   

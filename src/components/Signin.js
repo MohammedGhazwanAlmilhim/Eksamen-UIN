@@ -9,7 +9,7 @@ export default function Signin({setLogginn, logginn, exists, setExists}){
         const inputValue = e.target.value
         setLogginn((prev) => ({...prev,[inputName]: inputValue}))
     }
-    console.log(logginn)
+    
     const handleClick = async () => {
         const fetchedUser = await getUserByEmail(logginn.email);
         if (fetchedUser) {
@@ -29,7 +29,6 @@ export default function Signin({setLogginn, logginn, exists, setExists}){
         }
       };
       
-    console.log(exists)
     return(
         <main>
       <section id="signin">
