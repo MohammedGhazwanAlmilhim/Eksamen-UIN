@@ -1,27 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { getNewestGames, getAllGenres } from '../lib/services/service';
+import { getNewestGames } from '../lib/services/service';
 import GameCard from './GameCard';
 
 //For GameShop seksjonen, hent ut de tre nyeste spillene for visning i dashboard. 
 
 function GameShop() {
   const [games, setGames] = useState([]);
-  const [genres, setGenres] = useState([]);
 
   useEffect(() => {
-    Promise.all([getNewestGames(), getAllGenres()]).then(([games, genres]) => {
+    Promise.all([getNewestGames()]).then(([games]) => {
+      console.log(games);
       setGames(games);
-      setGenres(genres);
     });
   }, []);
-
-  const getGenreNames = (genreIds) => {
-    const genreNames = genreIds.map((genreId) => {
-      const genre = genres.find((genre) => genre._id === genreId._ref);
-      return genre ? genre.navn : '';
-    });
-    return genreNames.join(', ');
-  };
 
   return (
     <header>
@@ -33,7 +24,7 @@ function GameShop() {
             id={item.apiid}
             title={item.title}
             img={item.bilde}
-            genres={getGenreNames(item.sjangere)}
+            genres={item.sjangere.navn}
           />
         ))}
       </div>

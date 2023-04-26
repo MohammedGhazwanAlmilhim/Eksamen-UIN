@@ -2,7 +2,7 @@ import client from "../sanityClient";
 
 //This is for GameShop Section
 export const getNewestGames = async () => {
-  const query = `*[_type == "game"] | order(released desc) [0..2]`;
+  const query = `*[_type == "game" && references(*[_type == "genre"]._id)] | order(released desc) [0..2]`;
   const response = await client.fetch(query);
   return response;
 };
