@@ -32,13 +32,13 @@ export default function Signin({setLogginn, logginn, exists, setExists}){
     return(
         <main>
       <section id="signin">
-        <h2>Logg inn</h2>
-        <p>Obs: Du må bruke eposten din for å få tilgang.</p>
+        <h2>Sign In</h2>
+        <p>Note: You must use your email to gain access.</p>
         <section>
           <form onSubmit={handleSubmit}>
             <label htmlFor="email">E-post</label>
             <input id="email" name="email" type="email" placeholder="brukernavn@hiof.no" onChange={handleChange}/>
-            <button id="signin" onClick={handleClick}>Logg inn</button>
+            <button id="signin" onClick={handleClick}>Sign In</button>
           </form>
         </section>
       </section>

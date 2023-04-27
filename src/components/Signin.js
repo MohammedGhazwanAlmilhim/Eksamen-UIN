@@ -2,12 +2,12 @@ import { newUser } from '../lib/services/userService';
 import { useState } from 'react';
 
 const SignIn = () => {
-  const [formData, setFormData] = useState({email: ""});
+  const [formData, setFormData] = useState({ email: "" });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
-    const {email } = formData;
+
+    const { email } = formData;
 
     try {
       await newUser(email);
@@ -17,25 +17,25 @@ const SignIn = () => {
       alert("An error occurred while creating user.");
     }
   };
-  
+
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-  
+
   return (
-            <main>
-            <section id="signin">
-              <h2>Logg inn</h2>
-              <p>Obs: Du må bruke eposten din for å få tilgang.</p>
-              <section>
-                <form onSubmit={handleSubmit}>
-                  <label htmlFor="email">E-post</label>
-                  <input id="email" name="email" type="email" value={formData.email} placeholder="brukernavn@hiof.no" onChange={handleChange}/>
-                  <button id="signin" type='submit'>Logg inn</button>
-                </form>
-              </section>
-            </section>
-            </main>
+    <main>
+      <section id="signin">
+        <h2>Sign In</h2>
+        <p>Note: You must use your email to gain access.</p>
+        <section>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="email">E-mail:</label>
+            <input id="email" name="email" type="email" value={formData.email} placeholder="username@hiof.no" onChange={handleChange} />
+            <button id="signin" type='submit'>Sign In</button>
+          </form>
+        </section>
+      </section>
+    </main>
   );
 };
 
