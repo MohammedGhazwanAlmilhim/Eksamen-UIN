@@ -9,7 +9,6 @@ function GameShop() {
 
   useEffect(() => {
     Promise.all([getNewestGames()]).then(([games]) => {
-      console.log(games);
       setGames(games);
     });
   }, []);

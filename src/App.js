@@ -3,7 +3,7 @@ import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import GameShop from './pages/GameShop';
 import MyGames from './pages/MyGames';
-import MyFavorites from './components/MyFavourites';
+import MyFavorites from './pages/MyFavourites';
 import GamePage from './pages/GamePage';
 import Signin from './components/Signin';
 import './css/main.css';

@@ -2,36 +2,33 @@ import React, { useState, useEffect } from 'react';
 import { getMyFavourites } from '../lib/services/userService';
 import GameCard from './GameCard';
 
-function MyGames() {
+function MyFavourites() {
   const [games, setGames] = useState([]);
-
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    getMyFavourites().then((response) => {
+    Promise.all([getMyFavourites()]).then(([response]) => {
       setGames(response.games);
+      setCount(response.count);
     });
   }, []);
 
   return (
     <aside>
-      <h2>My Favourites </h2>
+      <h2>My Favourites - {count}</h2>
       <div className="my-favourites">
-        {games && games.length > 0 ? (
-          games.map((item) => (
-            <GameCard
-              key={item._id}
-              id={item.apiid}
-              title={item.title}
-              img={item.bilde}
-            
-            />
-          ))
-        ) : (
-          <p>You have no favourites yet!</p>
-        )}
+      {games.map((item)=> (
+          <GameCard
+            key={item.apiid}
+            id={item.apiid}
+            title={item.title}
+            img={item.bilde}
+            genres={item.sjangere.map(sjanger => sjanger.navn).join(', ')}
+          />
+        ))}
       </div>
     </aside>
   );
 }
 
-export default MyGames;
+export default MyFavourites;

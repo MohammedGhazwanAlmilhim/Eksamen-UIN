@@ -6,7 +6,6 @@ export const getNewestGames = async () => {
     _id,
     apiid,
     title,
-    description,
     bilde ,
     sjangere[]->{
       _id,
@@ -23,7 +22,6 @@ export const getTenLatestGames = async () => {
     _id,
     apiid,
     title,
-    description,
     bilde ,
     sjangere[]->{
       _id,
@@ -43,7 +41,6 @@ export const getFourActionGames = async () => {
       _id,
       apiid,
       title,
-      description,
       bilde ,
       sjangere[]->{
         _id,
@@ -62,7 +59,6 @@ export const getTweentyActionGames = async () => {
     _id,
     apiid,
     title,
-    description,
     bilde ,
     sjangere[]->{
       _id,
