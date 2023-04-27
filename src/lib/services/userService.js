@@ -18,3 +18,23 @@ export const newUser = async (email) => {
   await client.create(user);
 };
 
+export const getMyFavourites = async () => {
+  const query = `
+  {
+    "games": *[_type == "user" && username == "mohammga"][0].favoriteGames[]-> {
+      _id,
+      apiid,
+      title,
+      description,
+      img,
+      sjangere[]->{
+        _id,
+        navn
+      }
+    },
+    "count": count(*[_type == "game" && references(*[_type == "genre"]._id)])
+  }
+  `;
+  const response = await client.fetch(query);
+  return response;
+};

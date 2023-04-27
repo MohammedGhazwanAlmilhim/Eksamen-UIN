@@ -17,9 +17,9 @@ export const getNewestGames = async () => {
   return response;
 };
 
-//Hent ut de 10 nyeste spillene for visning på gameshop siden 
+//Hent ut de 20 nyeste spillene for visning på gameshop siden 
 export const getTenLatestGames = async () => {
-  const query = `*[_type == "game" && references(*[_type == "genre"]._id)] | order(released desc) [0..9]{
+  const query = `*[_type == "game" && references(*[_type == "genre"]._id)] | order(released desc){
     _id,
     apiid,
     title,
@@ -38,23 +38,27 @@ export const getTenLatestGames = async () => {
 
 //This is for MyGames Section
 export const getFourActionGames = async () => {
-  const query = `*[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released asc) [0..3]{
-    _id,
-    apiid,
-    title,
-    description,
-    bilde ,
-    sjangere[]->{
+  const query = `{
+    "games": *[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released desc) [0..3]{
       _id,
-      navn
-    }
+      apiid,
+      title,
+      description,
+      bilde ,
+      sjangere[]->{
+        _id,
+        navn
+      }
+    },
+    "count": count(*[_type == "game" && references(*[_type == "genre"]._id)])
   }`;
   const response = await client.fetch(query);
   return response;
 };
 
+
 export const getTweentyActionGames = async () => {
-  const query = `*[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released asc) [0..19]{
+  const query = `*[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released desc){
     _id,
     apiid,
     title,
@@ -66,6 +70,7 @@ export const getTweentyActionGames = async () => {
     }
   }`;
   const response = await client.fetch(query);
+  console.log(response);
   return response;
 };
 

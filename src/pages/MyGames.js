@@ -15,7 +15,7 @@ useEffect(() => {
 
   return (
     <main>
-      <h1>My Games - Libary hent 20 spill fra action - legg til mere action spill det er 16 nå</h1>
+      <h1>My Games - Libary</h1>
           <section className="game-libary">
             {games.map((item) => (
               <GameCard

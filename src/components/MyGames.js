@@ -3,18 +3,19 @@ import { getFourActionGames } from '../lib/services/gameService';
 import GameCard from './GameCard';
 
 function MyGames() {
-const [games, setGames] = useState([]);
+  const [games, setGames] = useState([]);
+  const [count, setCount] = useState(0);
 
-useEffect(() => {
-  Promise.all([getFourActionGames()]).then(([games]) => {
-    setGames(games);
-  });
-  
-}, []);
+  useEffect(() => {
+    Promise.all([getFourActionGames()]).then(([response]) => {
+      setGames(response.games);
+      setCount(response.count);
+    });
+  }, []);
 
   return (
     <main>
-      <h1>My Games - Libary - må telle spill her og i fav seksjon</h1>
+      <h1>My Games Library - {count} games</h1>
         <section className="game-libary">
         {games.map((item) => (
           <GameCard
