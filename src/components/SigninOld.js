@@ -1,6 +1,6 @@
 import { getUserByEmail, createUser } from '../lib/services/userService';
 
-export default function Signin({setLogginn, logginn, exists, setExists}){
+export default function SigninOld({setLogginn, logginn, exists, setExists}){
     const handleSubmit = (e) =>{
         e.preventDefault() 
     }

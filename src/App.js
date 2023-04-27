@@ -5,9 +5,7 @@ import GameShop from './pages/GameShop';
 import MyGames from './pages/MyGames';
 import MyFavorites from './components/MyFavourites';
 import GamePage from './pages/GamePage';
-import SignIn from './components/SignIn';
-
-
+import Signin from './components/Signin';
 import './css/main.css';
 
 //Disse komponentene skal linkes til ved hjelp av Routing fra menyen i toppen av applikasjonen, 
@@ -24,7 +22,7 @@ function App() {
     return (
         <Routes>
             <Route element={<Layout />}>
-                <Route path='/' element={<SignIn/>}/>
+                <Route path='/' element={<Signin/>}/>
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/game/:id' element={<GamePage/>} />
                 <Route path='/gameshop' element={<GameShop />} />
@@ -35,5 +33,4 @@ function App() {
     )
 
     }
-
 export default App;
