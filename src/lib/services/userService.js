@@ -21,20 +21,16 @@ export const newUser = async (email) => {
 export const getMyFavourites = async () => {
   const query = `
   {
-    "games": *[_type == "user" && username == "mohammga"][0].favoriteGames[]-> {
+    "games": *[_type == "user" && username == "mohammga"][1].favoriteGames[]-> {
       _id,
       apiid,
       title,
       description,
       img,
-      sjangere[]->{
-        _id,
-        navn
-      }
-    },
-    "count": count(*[_type == "game" && references(*[_type == "genre"]._id)])
+    }
   }
   `;
   const response = await client.fetch(query);
+  console.log(response);
   return response;
 };

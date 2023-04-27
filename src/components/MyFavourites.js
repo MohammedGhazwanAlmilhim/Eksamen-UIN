@@ -4,18 +4,17 @@ import GameCard from './GameCard';
 
 function MyGames() {
   const [games, setGames] = useState([]);
-  const [count, setCount] = useState(0);
+
 
   useEffect(() => {
     getMyFavourites().then((response) => {
       setGames(response.games);
-      setCount(response.count);
     });
   }, []);
 
   return (
     <aside>
-      <h2>My Favourites - {count} </h2>
+      <h2>My Favourites </h2>
       <div className="my-favourites">
         {games && games.length > 0 ? (
           games.map((item) => (
@@ -24,7 +23,7 @@ function MyGames() {
               id={item.apiid}
               title={item.title}
               img={item.bilde}
-              
+            
             />
           ))
         ) : (
