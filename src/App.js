@@ -5,8 +5,7 @@ import GameShop from './pages/GameShop';
 import MyGames from './pages/MyGames';
 import MyFavorites from './components/MyFavourites';
 import GamePage from './pages/GamePage';
-import Signin from './components/Signin';
-import { useEffect, useState } from 'react';
+import SignUp from './components/SignUp';
 
 
 import './css/main.css';
@@ -22,26 +21,10 @@ import './css/main.css';
 
 
 function App() {
-    const savedUser =() =>{
-        const saved = localStorage.getItem("Bruker")
-        const initialValue = JSON.parse(saved)
-        return initialValue || "";
-      }
-      const [logginn, setLogginn] = useState({})
-      const [exists, setExists] = useState()
-      //State for å holde på registrert bruker
-      const [user, setUser] = useState(savedUser)
-    
-    
-      useEffect(()=>{
-        localStorage.setItem("Bruker", JSON.stringify(user))
-      },[user])
-    
-
     return (
         <Routes>
             <Route element={<Layout />}>
-                <Route path='/' element={<Signin setLogginn={setLogginn} logginn={logginn} exists={exists} setExists={setExists}/>}/>
+                <Route path='/' element={<SignUp/>}/>
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/game/:id' element={<GamePage/>} />
                 <Route path='/gameshop' element={<GameShop />} />

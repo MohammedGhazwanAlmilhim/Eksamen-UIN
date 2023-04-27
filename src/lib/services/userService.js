@@ -13,3 +13,8 @@ export const createUser = async (email) =>{
 }
 
 
+export const newUser = async (username, email) => {
+  const user = { _type: 'user', username, email };
+  await client.create(user);
+};
+
