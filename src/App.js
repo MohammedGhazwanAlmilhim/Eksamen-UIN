@@ -5,7 +5,7 @@ import GameShop from './pages/GameShop';
 import MyGames from './pages/MyGames';
 import MyFavorites from './components/MyFavourites';
 import GamePage from './pages/GamePage';
-import SignUp from './components/SignUp';
+import SignIn from './components/SignIn';
 
 
 import './css/main.css';
@@ -24,7 +24,7 @@ function App() {
     return (
         <Routes>
             <Route element={<Layout />}>
-                <Route path='/' element={<SignUp/>}/>
+                <Route path='/' element={<SignIn/>}/>
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/game/:id' element={<GamePage/>} />
                 <Route path='/gameshop' element={<GameShop />} />
