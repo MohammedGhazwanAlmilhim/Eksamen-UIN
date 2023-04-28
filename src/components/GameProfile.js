@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { addFavoriteGame, getUserWithGame } from '../lib/services/userService';
+import ReactWordcloud from 'react-wordcloud';
 
 function GameProfile({ game }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -25,8 +26,6 @@ function GameProfile({ game }) {
   };
   
 
-  
-
   return (
     <div>
       {game ? (
@@ -44,6 +43,9 @@ function GameProfile({ game }) {
             ))}
           </p>
           <br></br>
+          <ReactWordcloud
+            words={game.tags.map((tag) => ({ text: tag.name, value: tag.games_count }))}
+          />
           <p>Developers: {game.developers.map((dev) => dev.name).join(', ')}</p>
           <p>Publisher: {game.publishers.map((pub) => pub.name).join(', ')}</p>
           <p>Release Year: {game.released.substring(0, 4)}</p>
