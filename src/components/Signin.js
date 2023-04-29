@@ -66,19 +66,12 @@ return user.length !== 0 ? (
         <main>
         <section id="signin">
           <h2>Sign In</h2>
-          <p>Note: You must use your email to gain access.</p>
           <section>
             <form onSubmit={init}>
               <label htmlFor="email">E-mail:</label>
-              <input id="email" name="email" type="email" placeholder="brukernavn@hiof.no" value={formData.email} onChange={handleFormData} />
-              <button id="signin" onClick={() => {formSubmit(formData.name, formData.email)}}>Logg inn</button>
-              {
-                  formData.email === '' ||
-                  formData.email.indexOf('@hiof') === -1 ||
-                  formData.email.indexOf('.') === -1 ? (
-                  <p>Fyll ut alle felter med *</p>
-                  ) : null
-              }
+              <input id="email" name="email" type="email" placeholder="username@gamhub.com" value={formData.email} onChange={handleFormData} />
+              <button id="signin" onClick={() => {formSubmit(formData.name, formData.email)}}>Sign In</button>
+
             </form>
           </section>
         </section>

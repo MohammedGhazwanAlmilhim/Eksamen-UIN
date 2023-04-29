@@ -31,11 +31,11 @@ export default function Header({ user, logOut }) {
             {user.length > 0 ? (
               `${user}`
             ) : (
-              <Link to="/">Logg inn</Link>
+              <Link to="/">Sign In</Link>
             )}{" "}
             {user.length > 0 ? (
               <button className="logout" type="button" onClick={logOut}>
-                Logg ut
+                Sign Out
               </button>
             ) : null}
           </li>
