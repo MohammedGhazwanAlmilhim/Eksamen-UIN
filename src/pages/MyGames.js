@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getTweentyActionGames } from '../lib/services/gameService';
-import GameCard from '../components/GameCard';
+import GameCard from '../components/GameCard2';
 
 
 function MyGames() {

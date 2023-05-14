@@ -6,7 +6,7 @@ function GameCard({ id, title, img, genres }) {
   const altText = `Image of the ${title} game.`;
 
   return (
-    <Link to={`/game/${id}`}>
+    <Link to={`/game/${id}`} className="card">
       <article className="card">
         <figure>
           <img src={imgUrl} alt={altText} />

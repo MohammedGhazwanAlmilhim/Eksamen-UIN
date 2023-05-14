@@ -7,7 +7,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { getUserFavourites } from '../lib/services/userService';
-import GameCard from '../components/GameCard';
+import GameCard from '../components/GameCard2';
 
 function MyFavourites() {
   const [games, setGames] = useState([]);

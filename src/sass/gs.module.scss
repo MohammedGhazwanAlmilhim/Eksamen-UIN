@@ -13,12 +13,12 @@ body{
 
 #container{
   display: grid;
-  grid-template-areas: "nav nav nav"
-                      "header header header"
-                      "main main aside"
-                      "footer footer footer";
+  grid-template-areas: "nav"
+                      "header"
+                      "main"
+                      "footer";
   grid-template-rows: 76px auto auto 76px;
-  grid-template-columns: 1fr 1fr 450px;
+  grid-template-columns: 1fr;
   min-height: 100vh;
 }
 
