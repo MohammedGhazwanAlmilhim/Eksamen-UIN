@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { getNewestGames } from "../lib/services/gameService";
 import GameCard from "./GameCard";
 
@@ -15,10 +16,10 @@ function GameShop() {
 
   return (
     <header>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <h1 style={{ marginRight: "10px" }}>Gameshop</h1>
-        <button>Visit Gameshop</button>
-      </div>
+      <section id="indicator">
+        <h1>Gameshop</h1>
+        <Link to="/gameshop">Visit Gameshop</Link>
+      </section>
       <div className="latest-games">
         {games.map((item) => (
           <GameCard

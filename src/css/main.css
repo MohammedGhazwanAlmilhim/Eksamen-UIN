@@ -72,6 +72,24 @@ header {
   padding: 25px 50px 50px 50px;
   grid-area: header;
 }
+header #indicator {
+  display: flex;
+  align-items: center;
+}
+header #indicator h1 {
+  margin-right: 20px;
+}
+header #indicator a {
+  display: inline-block;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 7px 10px;
+  width: fit-content;
+  text-align: center;
+  color: #141618;
+  text-decoration: none;
+  margin-top: auto;
+}
 header .latest-games {
   margin-top: 25px;
   gap: 25px;

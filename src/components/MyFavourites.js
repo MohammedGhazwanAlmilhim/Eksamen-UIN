@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getUserFavourites } from '../lib/services/userService';
-import GameCard from './GameCard';
+import GameCard from './GameCard2';
 
 function MyFavourites() {
   const [games, setGames] = useState([]);

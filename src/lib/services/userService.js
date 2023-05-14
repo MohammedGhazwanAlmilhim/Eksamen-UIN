@@ -24,8 +24,8 @@ export const createUser = async (name, email) =>{
 
 //Denne funksjonen brukes til å hente alle spill som ligger i favorittlisten i DB
 //viser spillene i MyFavourites Komponenten
-export async function getMyFavourites(email) {
-    const query = `*[_type == "user" && email == '${email}']{
+export async function getUserFavourites(name, email) {
+    const data = await client.fetch(`*[_type == "user" && name == '${name} && email == '${email}']{
       name,
       email,
       "favoriteGames": favoriteGames[]->{
@@ -40,22 +40,17 @@ export async function getMyFavourites(email) {
         released
       },
       "count": count(favoriteGames)
-    }`;
+    }`);
   
-    const result = await client.fetch(query);
-    const games = result[0].favoriteGames;
-    const count = result[0].count;
-  
-    console.log(games);
-  
+    const games = data[0].favoriteGames;
+    const count = data[0].count;
     return { games, count };
-    
   }
 
 
 //Denne funksjonen brukes til å legge spill på favoritt listen til brukeren
 //brukes i GameProfile Komponenten
-export const addFavoriteGame = async (email, gameApiId) => {
+export const addUserFavourites = async (email, gameApiId) => {
     try {
       const game = await client.fetch(`*[_type == "game" && apiid == ${gameApiId}][0]`);
       const user = await client.fetch(`*[_type == "user" && email == "${email}"][0]`);

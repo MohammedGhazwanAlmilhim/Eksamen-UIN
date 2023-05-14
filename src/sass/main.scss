@@ -85,6 +85,27 @@ nav {
     padding: 25px 50px 50px 50px;
     grid-area: header;
 
+    #indicator{
+      display: flex;
+      align-items: center;
+
+      h1{
+        margin-right: 20px;
+      }
+
+      a{
+        display: inline-block;
+        background-color: $accent-color;
+        border-radius: 10px;
+        padding: 7px 10px;
+        width: fit-content;
+        text-align: center;
+        color: $secondary-color;
+        text-decoration: none;
+        margin-top: auto;
+      }
+    }
+
   
     .latest-games {
       margin-top: 25px;

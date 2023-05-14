@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getFourActionGames } from '../lib/services/gameService';
-import GameCard from './GameCard';
+import GameCard from './GameCard2';
 
 function MyGames() {
   const [games, setGames] = useState([]);
