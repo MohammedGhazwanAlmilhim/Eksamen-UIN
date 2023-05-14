@@ -15,6 +15,7 @@ export const checkUser = async (name, email) => {
 }
 
 export const createUser = async (name, email) =>{
+    console.log("name: " + name + " email:" + email)
     try{
         await client.create({_type: 'user', name, email})
     }

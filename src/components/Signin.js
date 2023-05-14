@@ -21,7 +21,8 @@ const handleFormData = (event) =>{
 const init = (event) => {
     event.preventDefault()
   }
-const formSubmit = async (name, email) => {
+const formSubmit = async (email) => {
+        const name = email.split('@')[0].replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
         if (
           email === '' ||
           email.indexOf('@') === -1 ||
@@ -70,7 +71,7 @@ return user.length !== 0 ? (
             <form onSubmit={init}>
               <label htmlFor="email">E-mail:</label>
               <input id="email" name="email" type="email" placeholder="username@gamhub.com" value={formData.email} onChange={handleFormData} />
-              <button id="signin" onClick={() => {formSubmit(formData.name, formData.email)}}>Sign In</button>
+              <button id="signin" onClick={() => {formSubmit(formData.email)}}>Sign In</button>
 
             </form>
           </section>
