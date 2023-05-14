@@ -22,7 +22,7 @@ function MyFavourites() {
         }
       })
       .catch(error => {
-        console.error('Error retrieving favourites:', error);
+        console.error('Kan ikke hente favorittspill:', error);
       });
   }, []);
   return (

@@ -1,4 +1,4 @@
-import {createUser, checkUser } from "../lib/services/userService2"
+import {createUser, checkUser } from "../lib/services/userService"
 import {useState} from 'react'
 //import { useLocalStorage } from "../functions/LocalStorage"
 
