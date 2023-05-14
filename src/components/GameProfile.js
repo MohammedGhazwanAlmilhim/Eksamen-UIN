@@ -6,22 +6,32 @@ function GameProfile({ game }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleAddFavorite = async () => {
+    console.log("1")
     const storageValue = localStorage.getItem('GamehubUser');
+    console.log("2")
     const arrayValue = JSON.parse(storageValue);
+    console.log("3")
     const email = arrayValue[1];
+    console.log("4")
   
     // Get the user from the database
     const user = await getUserWithGame(email);
+    console.log("5")
   
     // Check if the user has any favorite games
     const isFavorite = user.favoriteGames && user.favoriteGames.some(favGame => favGame._ref === game.id);
+    console.log("6")
   
     // Add the game to the user's favorites list if it's not already there
     if (!isFavorite) {
+      console.log("7")
       await addFavoriteGame(email, game.id);
+      console.log("8")
       setIsFavorite(true);
+      console.log("9")
     } else {
       setIsFavorite(false);
+      console.log("10")
     }
   };
   

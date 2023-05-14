@@ -26,6 +26,7 @@ export const createUser = async (name, email) =>{
 //Denne funksjonen brukes til å hente alle spill som ligger i favorittlisten i DB
 //viser spillene i MyFavourites Komponenten
 export async function getMyFavourites(email) {
+  console.log(email)
     const query = `*[_type == "user" && email == '${email}']{
       name,
       email,
@@ -42,11 +43,17 @@ export async function getMyFavourites(email) {
       },
       "count": count(favoriteGames)
     }`;
+    console.log(query)
   
     const result = await client.fetch(query);
+    
+    console.log(result)
     const games = result[0].favoriteGames;
     const count = result[0].count;
   
+    console.log(games)
+    console.log(count)
+
     console.log(games);
   
     return { games, count };
@@ -56,23 +63,30 @@ export async function getMyFavourites(email) {
 //Denne funksjonen brukes til å legge spill på favoritt listen til brukeren
 //brukes i GameProfile Komponenten
 export const addFavoriteGame = async (email, gameApiId) => {
-    try {
-      const game = await client.fetch(`*[_type == "game" && apiid == ${gameApiId}][0]`);
-      const user = await client.fetch(`*[_type == "user" && email == "${email}"][0]`);
-  
-      const favoriteGames = user.favoriteGames || [];
-      const gameRef = {_type: 'reference', _ref: game._id, _key: game._id};
-  
-      const updatedUser = await client
-        .patch(user._id)
-        .set({favoriteGames: [...favoriteGames, gameRef]})
-        .commit();
-      console.log(updatedUser);
-      return updatedUser;
-    } catch (error) {
-      console.error('Error adding favorite game:', error.message);
+  try {
+    const game = await client.fetch(`*[_type == "game" && apiid == ${gameApiId}][0]`);
+    const user = await client.fetch(`*[_type == "user" && email == "${email}"][0]`);
+
+    let favoriteGames = user.favoriteGames;
+    if (!Array.isArray(favoriteGames)) {
+      favoriteGames = [];
     }
-  };
+
+    const gameRef = {_type: 'reference', _ref: game._id, _key: game._id};
+
+    const updatedUser = await client
+      .patch(user._id)
+      .set({favoriteGames: [...favoriteGames, gameRef]})
+      .commit();
+
+    console.log(updatedUser);
+    return updatedUser;
+  } catch (error) {
+    console.error('Error adding favorite game:', error.message);
+  }
+};
+
+
   
   
   

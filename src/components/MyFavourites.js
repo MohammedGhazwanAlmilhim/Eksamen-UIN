@@ -13,7 +13,7 @@ function MyFavourites() {
   
     getMyFavourites(email)
       .then(response => {
-        if (Array.isArray(response.games)) {
+        if (Array.isArray(response.games) && response !== null) {
           setGames(response.games);
           setCount(response.count);
         } else {
