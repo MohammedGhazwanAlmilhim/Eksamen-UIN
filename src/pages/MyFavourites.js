@@ -4,3 +4,38 @@
 //På visning av ett spill (, ha en knapp "Legg til favoritter".
 //Klikk på knappen "Legg til favoritter" skal lagre spillet i en array i en state kalt favourites.
 //MyFavourites skal hente/vise spill fra favourites-staten.
+
+import React, { useState, useEffect } from 'react';
+import { getMyFavourites } from '../lib/services/userService';
+import GameCard from '../components/GameCard';
+
+function MyFavourites() {
+  const [games, setGames] = useState([]);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    Promise.all([getMyFavourites()]).then(([response]) => {
+      setGames(response.games);
+      setCount(response.count);
+    });
+  }, []);
+
+  return (
+    <main>
+      <h1>My Favourites - {count}</h1>
+      <section className="game-libary">
+      {games.map((item)=> (
+          <GameCard
+            key={item.apiid}
+            id={item.apiid}
+            title={item.title}
+            img={item.bilde}
+            genres={item.sjangere.map(sjanger => sjanger.navn).join(', ')}
+          />
+        ))}
+      </section>
+    </main>
+  );
+}
+
+export default MyFavourites;
