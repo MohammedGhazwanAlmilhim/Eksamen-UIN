@@ -281,35 +281,35 @@ nav {
       min-height: 400px;
       width: calc(32% + 1px);
       box-shadow: 0 8px 32px 0 rgba(2, 2, 2, 0.37);
-  
+    
       figure {
         width: 100%;
         height: 200px;
         margin: 0;
-  
+    
         img {
           object-fit: cover;
           width: 100%;
           height: 100%;
         }
       }
-  
+    
       .card-content {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         width: 50%;
         padding: 60px 30px;
-  
+    
         h1 {
           font-size: 24px;
         }
-  
+    
         h3 {
           font-size: 18px;
           font-weight: 400;
         }
-  
+    
         a {
           display: inline-block;
           background-color: $accent-color;
@@ -322,7 +322,10 @@ nav {
           margin-top: auto;
         }
       }
+    
+
     }
+    
     
     .game-libary{
       margin-top: 25px;
@@ -343,3 +346,53 @@ nav {
     background-color: $secondary-color;
     color: white;
 }
+
+
+
+@media only screen and (max-width: 768px) {
+
+  #container {
+    display: grid;
+    grid-template-areas: "nav nav"
+                        "header header"
+                        "main main"
+                        "aside aside"
+                        "footer footer";
+    grid-template-rows: 76px auto auto auto 76px;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+  }
+
+  nav ul, nav section{
+    display: none;
+  }
+
+  .latest-games {
+    flex-direction: column !important;
+
+    .card{
+      width: 100% !important;
+    }
+  }
+
+  .game-libary{
+    flex-direction: column;
+
+    .card{
+      width: 100%;
+    }
+  }
+
+
+  .my-favourites{
+    flex-direction: column;
+
+    .card{
+      width: 100%;
+    }
+  }
+
+
+
+}
+
