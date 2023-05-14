@@ -24,23 +24,38 @@ export const createUser = async (name, email) =>{
 
 //Denne funksjonen brukes til å hente alle spill som ligger i favorittlisten i DB
 //viser spillene i MyFavourites Komponenten
-export async function getUserFavourites(name, email) {
-    const data = await client.fetch(`
-      *[_type == "user" && name == $name && email == $email]{
-        name, email, favoriteGames[]->{title, slug, apiid, timerspilt, sjangere[]->{navn}, bilde, released},"count": count(favoriteGames)}`, 
-        {name, email}
-    );
-
-    const games = data[0].favoriteGames;
-    const counter = data[0].count;
-
-    return {games, counter};
+export async function getMyFavourites(email) {
+    const query = `*[_type == "user" && email == '${email}']{
+      name,
+      email,
+      "favoriteGames": favoriteGames[]->{
+        title,
+        slug,
+        apiid,
+        timerspilt,
+        sjangere[]->{
+          navn
+        },
+        bilde,
+        released
+      },
+      "count": count(favoriteGames)
+    }`;
+  
+    const result = await client.fetch(query);
+    const games = result[0].favoriteGames;
+    const count = result[0].count;
+  
+    console.log(games);
+  
+    return { games, count };
+    
   }
 
 
 //Denne funksjonen brukes til å legge spill på favoritt listen til brukeren
 //brukes i GameProfile Komponenten
-export const addUserFavourites = async (email, gameApiId) => {
+export const addFavoriteGame = async (email, gameApiId) => {
     try {
       const game = await client.fetch(`*[_type == "game" && apiid == ${gameApiId}][0]`);
       const user = await client.fetch(`*[_type == "user" && email == "${email}"][0]`);
@@ -52,15 +67,17 @@ export const addUserFavourites = async (email, gameApiId) => {
         .patch(user._id)
         .set({favoriteGames: [...favoriteGames, gameRef]})
         .commit();
-
+      console.log(updatedUser);
+      return updatedUser;
     } catch (error) {
-      throw new Error(error);
+      console.error('Error adding favorite game:', error.message);
     }
   };
-
-
-   //?
-   export const getUserWithGame = async (email) => {
+  
+  
+  
+  //?
+  export const getUserWithGame = async (email) => {
     const query = `*[ _type == "user" && email == "${email}" ][0]{
       ...,
       favoriteGames[]->{ _id, _ref }
