@@ -71,7 +71,7 @@ return user.length !== 0 ? (
           <section>
             <form onSubmit={init}>
               <label htmlFor="email">E-mail:</label>
-              <input id="email" name="email" type="email" placeholder="username@gamhub.com" value={formData.email} onChange={handleFormData} />
+              <input id="email" name="email" type="email" placeholder="username@gamehub.com" value={formData.email} onChange={handleFormData} />
               <button id="signin" onClick={() => {formSubmit(formData.email)}}>Sign In</button>
 
             </form>

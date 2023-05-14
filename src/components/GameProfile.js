@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addFavoriteGame, getUserWithGame } from '../lib/services/userService';
+import { addUserFavourites, getUserWithGame } from '../lib/services/userService';
 import ReactWordcloud from 'react-wordcloud';
 
 function GameProfile({ game }) {
@@ -18,7 +18,7 @@ function GameProfile({ game }) {
   
     // Add the game to the user's favorites list if it's not already there
     if (!isFavorite) {
-      await addFavoriteGame(email, game.id);
+      await addUserFavourites(email, game.id);
       setIsFavorite(true);
     } else {
       setIsFavorite(false);

@@ -5,7 +5,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #181d25;
+  background-color: #101112;
   color: #fff;
 }
 
@@ -20,7 +20,7 @@ body {
 nav {
   display: flex;
   align-items: center;
-  background-color: #1f242e;
+  background-color: #141618;
   color: white;
   height: 76px;
   padding: 0 50px;
@@ -68,7 +68,7 @@ nav section figure img {
 }
 
 header {
-  background-color: #1f242e;
+  background-color: #141618;
   padding: 25px 50px 50px 50px;
   grid-area: header;
 }
@@ -104,12 +104,12 @@ header .latest-games .card .card-content {
 }
 header .latest-games .card .card-content a {
   display: inline-block;
-  background-color: #09ffb5;
+  background-color: #ffffff;
   border-radius: 10px;
   padding: 7px 10px;
   width: 70px;
   text-align: center;
-  color: #1f242e;
+  color: #141618;
   text-decoration: none;
   margin-top: auto;
 }
@@ -129,12 +129,12 @@ header .indicator h1 {
 }
 header .indicator a {
   display: inline-block;
-  background-color: #09ffb5;
+  background-color: #ffffff;
   border-radius: 10px;
   padding: 7px 10px;
   width: 70px;
   text-align: center;
-  color: #1f242e;
+  color: #141618;
   text-decoration: none;
   margin-top: auto;
 }
@@ -158,14 +158,14 @@ header .indicator a {
   border-radius: 10px;
   border: none;
   width: 100%;
-  background-color: #1f242e;
+  background-color: #141618;
   color: #fff;
 }
 #signin section form button {
   display: inline-block;
   width: fit-content;
-  background-color: rgba(9, 255, 181, 0.9333333333);
-  color: #1f242e;
+  background-color: #ffffff;
+  color: #141618;
   font-weight: 500;
   padding: 10px;
   border: none;
@@ -176,7 +176,7 @@ header .indicator a {
 aside {
   grid-area: aside;
   padding: 50px;
-  border-left: 2px solid #1f242e;
+  border-left: 2px solid #141618;
 }
 aside .card {
   display: flex;
@@ -211,12 +211,12 @@ aside .card .card-content h3 {
 }
 aside .card .card-content a {
   display: inline-block;
-  background-color: #09ffb5;
+  background-color: #ffffff;
   border-radius: 10px;
   padding: 7px 10px;
   width: 70px;
   text-align: center;
-  color: #1f242e;
+  color: #141618;
   text-decoration: none;
   margin-top: auto;
 }
@@ -265,12 +265,12 @@ main .card .card-content h3 {
 }
 main .card .card-content a {
   display: inline-block;
-  background-color: #09ffb5;
+  background-color: #ffffff;
   border-radius: 10px;
   padding: 7px 10px;
   width: 70px;
   text-align: center;
-  color: #1f242e;
+  color: #141618;
   text-decoration: none;
   margin-top: auto;
 }
@@ -287,7 +287,7 @@ footer {
   justify-content: center;
   align-items: center;
   grid-area: footer;
-  background-color: #1f242e;
+  background-color: #141618;
   color: white;
 }
 

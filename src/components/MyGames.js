@@ -15,7 +15,7 @@ function MyGames() {
 
   return (
     <main>
-      <h1>My Games Library - {count} games</h1>
+      <h2>My Games Library - {count} games</h2>
         <section className="game-libary">
         {games.map((item) => (
           <GameCard

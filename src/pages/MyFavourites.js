@@ -6,7 +6,7 @@
 //MyFavourites skal hente/vise spill fra favourites-staten.
 
 import React, { useState, useEffect } from 'react';
-import { getMyFavourites } from '../lib/services/userService';
+import { getUserFavourites } from '../lib/services/userService';
 import GameCard from '../components/GameCard';
 
 function MyFavourites() {
@@ -14,7 +14,7 @@ function MyFavourites() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    Promise.all([getMyFavourites()]).then(([response]) => {
+    Promise.all([getUserFavourites()]).then(([response]) => {
       setGames(response.games);
       setCount(response.count);
     });
