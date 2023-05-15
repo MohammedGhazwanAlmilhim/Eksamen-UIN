@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { getFourActionGames } from '../lib/services/gameService';
 import GameCard from './GameCard';
 
@@ -7,15 +8,15 @@ function MyGames() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    Promise.all([getFourActionGames()]).then(([response]) => {
-      setGames(response.games);
-      setCount(response.count);
+    Promise.all([getFourActionGames()]).then(([data]) => {
+      setGames(data.games);
+      setCount(data.count);
     });
   }, []);
 
   return (
     <main>
-      <h1>My Games Library - {count} games</h1>
+      <h2>My Games-Libary ({count} games)</h2>
         <section className="game-libary">
         {games.map((item) => (
           <GameCard
@@ -23,10 +24,15 @@ function MyGames() {
             id={item.apiid}
             title={item.title}
             img={item.bilde}
+            playtime={item.timerspilt}
             genres={item.sjangere.map(sjanger => sjanger.navn).join(', ')}
+            cardLink={true}
             />
         ))}
         </section>
+        <section className="indicator">
+        <Link to="/mygames">Go to libary</Link>
+      </section>
     </main>
   );
 }

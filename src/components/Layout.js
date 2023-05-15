@@ -1,15 +1,23 @@
-import {Link, Outlet} from "react-router-dom";
-import React from "react" 
+import React from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import Nav from './Nav';
 
+export default function Layout({ user, logOut }) {
+  const isLoggedIn = user.length > 0;
+  const location = useLocation();
+  
+  const isDashboard = location.pathname === '/dashboard';
+  const containerClass = isDashboard ? 'container' : 'container-full';
 
-//Layout for alle sidene
-export default function Layout(){
-    return (
-        <div id="container">
-            <Outlet/>
+  return (
+    <div id={containerClass}>
+      <Nav user={user} logOut={logOut} />
+      <Outlet />
+      {isLoggedIn && (
         <footer>
-        <p>Laget av GameHub</p>
+          <p>Credit to rawg.io</p>
         </footer>
-        </div>
-    );
+      )}
+    </div>
+  );
 }

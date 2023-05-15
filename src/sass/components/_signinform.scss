@@ -1,0 +1,39 @@
+#signin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  section {
+    width: 35%;
+
+    form {
+      width: 100%;
+
+      input[type="email"] {
+        margin-top: 20px;
+        font-size: 18px;
+        padding: 15px;
+        border-radius: 10px;
+        border: none;
+        width: 100%;
+        background-color: $secondary-color;
+        color: $tertiary-color;
+      }
+
+
+      button {
+        display: inline-block;
+        width: fit-content;
+        background-color: $accent-color;
+        color: $secondary-color;
+        font-weight: 500;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        margin-top: 20px;
+      }
+    }
+
+  }
+}

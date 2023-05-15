@@ -1,36 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import { getMyFavourites } from '../lib/services/userService';
+import { Link } from 'react-router-dom';
+import { getUserFavourites } from '../lib/services/userService';
 import GameCard from './GameCard';
 
 function MyFavourites() {
   const [games, setGames] = useState([]);
-  const [count, setCount] = useState(0);
+  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
     const storageValue = localStorage.getItem('GamehubUser');
     const arrayValue = JSON.parse(storageValue);
+    const name = arrayValue[0];
     const email = arrayValue[1];
   
-    getMyFavourites(email)
+    getUserFavourites(name, email)
       .then(response => {
-        if (Array.isArray(response.games)) {
+        if (Array.isArray(response.games) && response !== null) {
           setGames(response.games);
-          setCount(response.count);
+          setCounter(response.count);
         } else {
           setGames([]);
-          setCount(0);
+          setCounter(0);
         }
       })
       .catch(error => {
-        console.error('Error retrieving favourites:', error);
+        console.error('Kan ikke hente favorittspill:', error);
       });
   }, []);
   return (
     <aside>
-      <h2>My Favourites - {count}</h2>
-      <div className="my-favourites">
+      <h2>My Favourites ({counter} games)</h2>
+      <section className="my-favourites">
         {games.length === 0 ? (
-          <p>Ingen spill å vise</p>
+          <p>There is no games added to favourites!</p>
         ) : (
           games.map((item) => (
             <GameCard
@@ -38,11 +40,15 @@ function MyFavourites() {
               id={item.apiid}
               title={item.title}
               img={item.bilde}
-              genres={item.sjangere.map(sjanger => sjanger.navn).join(', ')}
+              playtime={item.timerspilt}
+              cardLink={true}
             />
           ))
         )}
-      </div>
+      </section>
+      <section className="indicator">
+        <Link to="/favourites">Go to favourites</Link>
+      </section>
     </aside>
   );
 }

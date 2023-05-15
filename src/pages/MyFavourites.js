@@ -6,33 +6,51 @@
 //MyFavourites skal hente/vise spill fra favourites-staten.
 
 import React, { useState, useEffect } from 'react';
-import { getMyFavourites } from '../lib/services/userService';
+import { getUserFavourites } from '../lib/services/userService';
 import GameCard from '../components/GameCard';
 
 function MyFavourites() {
   const [games, setGames] = useState([]);
-  const [count, setCount] = useState(0);
+  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
-    Promise.all([getMyFavourites()]).then(([response]) => {
-      setGames(response.games);
-      setCount(response.count);
-    });
+    const storageValue = localStorage.getItem('GamehubUser');
+    const arrayValue = JSON.parse(storageValue);
+    const name = arrayValue[0];
+    const email = arrayValue[1];
+  
+    getUserFavourites(name, email)
+      .then(response => {
+        if (Array.isArray(response.games) && response !== null) {
+          setGames(response.games);
+          setCounter(response.count);
+        } else {
+          setGames([]);
+          setCounter(0);
+        }
+      })
+      .catch(error => {
+        console.error('Kan ikke hente favorittspill:', error);
+      });
   }, []);
-
   return (
     <main>
-      <h1>My Favourites - {count}</h1>
+      <h1>My Favourites ({counter} games)</h1>
       <section className="game-libary">
-      {games.map((item)=> (
-          <GameCard
-            key={item.apiid}
-            id={item.apiid}
-            title={item.title}
-            img={item.bilde}
-            genres={item.sjangere.map(sjanger => sjanger.navn).join(', ')}
-          />
-        ))}
+        {games.length === 0 ? (
+          <p>There is no games added to favourites!</p>
+        ) : (
+          games.map((item) => (
+            <GameCard
+              key={item.apiid}
+              id={item.apiid}
+              title={item.title}
+              img={item.bilde}
+              playtime={item.timerspilt}
+              cardLink={true}
+            />
+          ))
+        )}
       </section>
     </main>
   );

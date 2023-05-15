@@ -5,7 +5,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #181d25;
+  background-color: #101112;
   color: #fff;
 }
 
@@ -17,126 +17,397 @@ body {
   min-height: 100vh;
 }
 
-nav {
+#container-full {
+  display: grid;
+  grid-template-areas: "nav" "main" "footer";
+  grid-template-rows: 76px auto 76px;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+}
+
+main {
+  grid-area: main;
+  padding: 50px;
+  height: fit-content;
+}
+main .indicator {
   display: flex;
   align-items: center;
-  background-color: #1f242e;
-  color: white;
-  height: 76px;
-  padding: 0 50px;
-  width: calc(100% - 100px);
-  grid-area: nav;
 }
-nav a {
+main .indicator a {
+  display: inline-block;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 7px 10px;
+  width: fit-content;
+  text-align: center;
+  color: #141618;
   text-decoration: none;
-  margin-right: auto;
-}
-nav a img {
-  width: 250px;
-}
-nav ul {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-nav ul li {
-  list-style: none;
-  margin: 0 30px;
-}
-nav ul li a {
-  text-decoration: none;
-  color: white;
-}
-nav section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 100px;
-}
-nav section figure {
-  background-color: red;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 25px;
-}
-nav section figure img {
-  object-fit: cover;
-  border-radius: 50%;
-  height: 100%;
-  width: 100%;
+  margin-top: 20px;
 }
 
 header {
-  background-color: #1f242e;
+  background-color: #141618;
   padding: 25px 50px 50px 50px;
   grid-area: header;
 }
-header .latest-games {
+header .indicator {
+  display: flex;
+  align-items: center;
+}
+header .indicator h1 {
+  margin-right: 20px;
+}
+header .indicator a {
+  display: inline-block;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 7px 10px;
+  width: fit-content;
+  text-align: center;
+  color: #141618;
+  text-decoration: none;
+  margin-top: auto;
+}
+
+aside {
+  grid-area: aside;
+  padding: 50px;
+  border-left: 2px solid #141618;
+}
+aside .indicator {
+  display: flex;
+  align-items: center;
+}
+aside .indicator a {
+  display: inline-block;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 7px 10px;
+  width: fit-content;
+  text-align: center;
+  color: #141618;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-area: footer;
+  background-color: #141618;
+  color: white;
+}
+
+@media only screen and (max-width: 768px) {
+  #container {
+    display: grid;
+    grid-template-areas: "nav nav" "header header" "main main" "aside aside" "footer footer";
+    grid-template-rows: 76px auto auto auto 76px;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+  }
+  .latest-games {
+    flex-direction: column !important;
+  }
+  .latest-games .card {
+    width: 100% !important;
+  }
+  .game-libary {
+    flex-direction: column;
+  }
+  .game-libary .card {
+    width: 100%;
+  }
+  .my-favourites {
+    flex-direction: column;
+  }
+  .my-favourites .card {
+    width: 100%;
+  }
+}
+.my-favourites {
   margin-top: 25px;
   gap: 25px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
-header .latest-games .card {
+.my-favourites .card-link {
   display: flex;
-  flex-direction: row;
-  height: 300px;
-  width: 33%;
+  flex-direction: column;
+  min-height: 400px;
+  width: 100%;
+  text-decoration: none;
+  color: #ffffff;
+  border-radius: 20px;
+}
+.my-favourites .card-link article {
+  width: 100%;
+  height: 100%;
   box-shadow: 0 8px 32px 0 rgba(2, 2, 2, 0.37);
 }
-header .latest-games .card figure {
-  width: 50%;
-  height: 100%;
+.my-favourites .card-link figure {
+  width: 100%;
+  height: 200px;
   margin: 0;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
 }
-header .latest-games .card figure img {
+.my-favourites .card-link figure img {
   object-fit: cover;
   width: 100%;
   height: 100%;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
 }
-header .latest-games .card .card-content {
+.my-favourites .card-link .card-content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 50%;
   padding: 60px 30px;
 }
-header .latest-games .card .card-content a {
-  display: inline-block;
-  background-color: #09ffb5;
-  border-radius: 10px;
-  padding: 7px 10px;
-  width: 70px;
-  text-align: center;
-  color: #1f242e;
-  text-decoration: none;
-  margin-top: auto;
-}
-header .latest-games .card .card-content h1 {
+.my-favourites .card-link .card-content h1 {
   font-size: 24px;
 }
-header .latest-games .card .card-content h3 {
+.my-favourites .card-link .card-content h3 {
   font-size: 18px;
   font-weight: 400;
 }
-header .indicator {
-  display: flex;
-  margin: 25px 50px;
-}
-header .indicator h1 {
-  font-size: 30px;
-}
-header .indicator a {
+.my-favourites .card-link .card-content a {
   display: inline-block;
-  background-color: #09ffb5;
+  background-color: #ffffff;
   border-radius: 10px;
   padding: 7px 10px;
   width: 70px;
   text-align: center;
-  color: #1f242e;
+  color: #141618;
   text-decoration: none;
   margin-top: auto;
+}
+
+.game-libary {
+  margin-top: 25px;
+  gap: 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.game-libary .card-link {
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+  width: calc(32% + 1px);
+  text-decoration: none;
+  color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(2, 2, 2, 0.37);
+}
+.game-libary .card-link article {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+.game-libary .card-link figure {
+  width: 100%;
+  height: 200px;
+  margin: 0;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.game-libary .card-link figure img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.game-libary .card-link .card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  padding: 60px 30px;
+}
+.game-libary .card-link .card-content h1 {
+  font-size: 24px;
+}
+.game-libary .card-link .card-content h3 {
+  font-size: 18px;
+  font-weight: 400;
+}
+.game-libary .card-link .card-content a {
+  display: inline-block;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 7px 10px;
+  width: 70px;
+  text-align: center;
+  color: #141618;
+  text-decoration: none;
+  margin-top: auto;
+}
+
+.latest-games {
+  margin-top: 25px;
+  gap: 25px;
+  display: flex;
+  flex-direction: row;
+}
+.latest-games .card {
+  display: flex;
+  flex-direction: row;
+  height: 300px;
+  width: 33%;
+  box-shadow: 0 8px 32px 0 rgba(2, 2, 2, 0.37);
+  border-radius: 20px;
+}
+.latest-games .card figure {
+  width: 50%;
+  height: 100%;
+  margin: 0;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.latest-games .card figure img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.latest-games .card .card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  padding: 60px 30px;
+}
+.latest-games .card .card-content a {
+  display: inline-block;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 7px 10px;
+  width: 70px;
+  text-align: center;
+  color: #141618;
+  text-decoration: none;
+  margin-top: auto;
+}
+.latest-games .card .card-content h1 {
+  font-size: 24px;
+}
+.latest-games .card .card-content h3 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.gameshop-page {
+  margin-top: 25px;
+  gap: 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.gameshop-page .card {
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+  width: calc(32% + 1px);
+  text-decoration: none;
+  color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(2, 2, 2, 0.37);
+}
+.gameshop-page .card figure {
+  width: 100%;
+  height: 200px;
+  margin: 0;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.gameshop-page .card figure img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.gameshop-page .card .card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  padding: 60px 30px;
+}
+.gameshop-page .card .card-content h1 {
+  font-size: 24px;
+}
+.gameshop-page .card .card-content h3 {
+  font-size: 18px;
+  font-weight: 400;
+}
+.gameshop-page .card .card-content a {
+  display: inline-block;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 7px 10px;
+  width: 70px;
+  text-align: center;
+  color: #141618;
+  text-decoration: none;
+  margin-top: auto;
+}
+
+.game-profile-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.game-profile-container .game-profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: inherit;
+  height: inherit;
+}
+.game-profile-container .game-profile figure {
+  width: 48%;
+  height: 100%;
+  border-radius: 20px;
+  margin: 0;
+}
+.game-profile-container .game-profile figure img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+.game-profile-container .game-profile section {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+  height: 100%;
+}
+.game-profile-container .game-profile section .indicator {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+.game-profile-container .game-profile section .indicator section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: fit-content;
+}
+.game-profile-container .game-profile section .indicator section span {
+  margin-right: 20px;
+  background-color: #141618;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 #signin {
@@ -158,14 +429,14 @@ header .indicator a {
   border-radius: 10px;
   border: none;
   width: 100%;
-  background-color: #1f242e;
+  background-color: #141618;
   color: #fff;
 }
 #signin section form button {
   display: inline-block;
   width: fit-content;
-  background-color: rgba(9, 255, 181, 0.9333333333);
-  color: #1f242e;
+  background-color: #ffffff;
+  color: #141618;
   font-weight: 500;
   padding: 10px;
   border: none;
@@ -173,152 +444,115 @@ header .indicator a {
   margin-top: 20px;
 }
 
-aside {
-  grid-area: aside;
-  padding: 50px;
-  border-left: 2px solid #1f242e;
-}
-aside .card {
+nav {
   display: flex;
-  flex-direction: column;
-  min-height: 300px;
-  width: 100%;
-  box-shadow: 0 8px 32px 0 rgba(2, 2, 2, 0.37);
+  align-items: center;
+  background-color: #141618;
+  color: white;
+  height: 76px;
+  padding: 0 50px;
+  width: calc(100% - 100px);
+  grid-area: nav;
 }
-aside .card figure {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-}
-aside .card figure img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-aside .card .card-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 50%;
-  padding: 60px 30px;
-}
-aside .card .card-content h1 {
-  font-size: 24px;
-}
-aside .card .card-content h3 {
-  font-size: 18px;
-  font-weight: 400;
-}
-aside .card .card-content a {
-  display: inline-block;
-  background-color: #09ffb5;
-  border-radius: 10px;
-  padding: 7px 10px;
-  width: 70px;
-  text-align: center;
-  color: #1f242e;
+nav a {
   text-decoration: none;
-  margin-top: auto;
+  margin-right: auto;
 }
-aside .my-favourites {
-  margin-top: 25px;
-  gap: 25px;
+nav a img {
+  width: 250px;
+}
+nav ul {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-
-main {
-  grid-area: main;
-  padding: 50px;
-  height: fit-content;
+nav ul li {
+  list-style: none;
+  margin: 0 20px;
 }
-main .card {
-  display: flex;
-  flex-direction: column;
-  min-height: 400px;
-  width: calc(32% + 1px);
-  box-shadow: 0 8px 32px 0 rgba(2, 2, 2, 0.37);
-}
-main .card figure {
-  width: 100%;
-  height: 200px;
-  margin: 0;
-}
-main .card figure img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-main .card .card-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 50%;
-  padding: 60px 30px;
-}
-main .card .card-content h1 {
-  font-size: 24px;
-}
-main .card .card-content h3 {
-  font-size: 18px;
-  font-weight: 400;
-}
-main .card .card-content a {
-  display: inline-block;
-  background-color: #09ffb5;
-  border-radius: 10px;
-  padding: 7px 10px;
-  width: 70px;
-  text-align: center;
-  color: #1f242e;
+nav ul li a {
   text-decoration: none;
-  margin-top: auto;
+  color: rgb(240, 240, 240);
 }
-main .game-libary {
-  margin-top: 25px;
-  gap: 25px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-footer {
+nav section {
   display: flex;
   justify-content: center;
   align-items: center;
-  grid-area: footer;
-  background-color: #1f242e;
-  color: white;
+  text-align: center;
+  margin-left: 50px;
+}
+nav section p {
+  font-weight: 500;
+}
+nav section .logout {
+  margin-left: 25px;
+}
+nav .hamburger {
+  display: none;
+  cursor: pointer;
+  width: 40px;
+  margin: 0 0 0 30px;
+}
+nav .bar {
+  display: block;
+  width: 100%;
+  height: 3px;
+  margin: 7px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #ffffff;
+}
+nav .hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+nav .hamburger.active .bar:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+nav .hamburger.active .bar:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
 }
 
 @media only screen and (max-width: 768px) {
-  #container {
-    display: grid;
-    grid-template-areas: "nav nav" "header header" "main main" "aside aside" "footer footer";
-    grid-template-rows: 76px auto auto auto 76px;
-    grid-template-columns: 1fr 1fr;
-    min-height: 100vh;
-  }
-  nav ul, nav section {
+  nav ul,
+  nav section {
     display: none;
   }
-  .latest-games {
+  .hamburger {
+    display: block !important;
+  }
+  nav ul.active {
+    display: flex !important;
+    position: fixed;
+    top: 76px;
+    left: 0;
+    display: none;
     flex-direction: column !important;
-  }
-  .latest-games .card {
-    width: 100% !important;
-  }
-  .game-libary {
-    flex-direction: column;
-  }
-  .game-libary .card {
+    background-color: #101112;
     width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0 !important;
+    text-align: center;
+    transition: 0.3s;
   }
-  .my-favourites {
-    flex-direction: column;
+  nav ul li {
+    margin: 40px 0 !important;
   }
-  .my-favourites .card {
-    width: 100%;
+  nav ul li a {
+    font-size: 24px;
+  }
+  nav section.active {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #141618;
+    width: calc(100% - 90px);
+    padding: 20px;
+    margin: 0 25px;
+    border-radius: 20px;
   }
 }
 
