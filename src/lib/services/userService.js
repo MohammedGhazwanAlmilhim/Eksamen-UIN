@@ -111,6 +111,30 @@ export const addUserFavourites = async (email, gameApiId) => {
   }
 };
 
+
+// funksjon som kan brukes til å fjerne et favorittspill fra brukerens favorittliste:
+export const removeUserFavorite = async (email, gameApiId) => {
+  try {
+    const game = await client.fetch(`*[_type == "game" && apiid == ${gameApiId}][0]`);
+    const user = await client.fetch(`*[_type == "user" && email == "${email}"][0]`);
+
+    const favoriteGames = user.favoriteGames || [];
+    const updatedFavoriteGames = favoriteGames.filter((favGame) => favGame._ref !== game._id);
+
+    const updatedUser = await client
+      .patch(user._id)
+      .set({ favoriteGames: updatedFavoriteGames })
+      .commit();
+    
+    console.log(updatedUser);
+    return updatedUser;
+  } catch (error) {
+    console.error('Error removing favorite game:', error.message);
+    return null;
+  }
+};
+
+
   
   
   

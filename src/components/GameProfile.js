@@ -9,21 +9,30 @@ function GameProfile({ game }) {
     const storageValue = localStorage.getItem('GamehubUser');
     const arrayValue = JSON.parse(storageValue);
     const email = arrayValue[1];
-
+  
     // Get the user from the database
     const user = await getUserWithGame(email);
   
     // Check if the user has any favorite games
-    const isFavorite = user.favoriteGames && user.favoriteGames.some(favGame => favGame._ref === game.id);
+   const hasFavoriteGames = user && user.favoriteGames && user.favoriteGames.length > 0;
 
-    // Add the game to the user's favorites list if it's not already there
-    if (!isFavorite) {
+  
+    // Add the game to the user's favorites list if it's not already there,
+    // or create a new user entry if the user doesn't have any favorite games yet
+    if (hasFavoriteGames) {
+      const isFavorite = user.favoriteGames.some(favGame => favGame._ref === game.id);
+      if (!isFavorite) {
+        await addUserFavourites(email, game.id);
+        setIsFavorite(true);
+      } else {
+        setIsFavorite(false);
+      }
+    } else {
       await addUserFavourites(email, game.id);
       setIsFavorite(true);
-    } else {
-      setIsFavorite(false);
     }
   };
+  
   
 
   return (
