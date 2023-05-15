@@ -31,10 +31,9 @@ body {
 #container-full {
   display: grid;
   grid-template-areas: "nav"
-    "header"
     "main"
     "footer";
-  grid-template-rows: 76px auto auto 76px;
+  grid-template-rows: 76px auto 76px;
   grid-template-columns: 1fr;
   min-height: 100vh;
 }
@@ -164,13 +163,10 @@ footer {
 
 }
 
-//Layouts
-@import '../sass/layouts/nav.scss';
-
-
-
 //Components
 @import '../sass/components/myfavourites';
 @import '../sass/components/mygames';
 @import '../sass/components/gameshop';
+@import '../sass/components/gamepage';
 @import '../sass/components/signinform';
+@import '../sass/components/nav';

@@ -6,18 +6,20 @@ import GameCard from '../components/GameCard';
 
 function GameShop() {
 const [games, setGames] = useState([]);
+const [count, setCount] = useState(0);
 
 useEffect(() => {
-  Promise.all([getTenLatestGames()]).then(([games]) => {
-    setGames(games);
+  Promise.all([getTenLatestGames()]).then(([data]) => {
+    setGames(data.games);
+    setCount(data.count);
   });
   
 }, []);
 
   return (
         <main>
-          <h1>Gameshop</h1>
-          <section className="game-libary">
+          <h1>Gameshop ({count} games)</h1>
+          <section className="gameshop-page ">
             {games.map((item) => (
               <GameCard
                 key={item._id}

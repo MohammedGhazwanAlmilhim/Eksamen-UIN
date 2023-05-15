@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getUserFavourites } from '../lib/services/userService';
-import GameCard from './GameCard2';
+import GameCard from './GameCard';
 
 function MyFavourites() {
   const [games, setGames] = useState([]);
@@ -32,7 +32,7 @@ function MyFavourites() {
       <h2>My Favourites ({counter} games)</h2>
       <section className="my-favourites">
         {games.length === 0 ? (
-          <p>Ingen spill å vise</p>
+          <p>There is no games added to favourites!</p>
         ) : (
           games.map((item) => (
             <GameCard
@@ -40,7 +40,8 @@ function MyFavourites() {
               id={item.apiid}
               title={item.title}
               img={item.bilde}
-              genres={item.sjangere.map(sjanger => sjanger.navn).join(', ')}
+              playtime={item.timerspilt}
+              cardLink={true}
             />
           ))
         )}

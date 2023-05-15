@@ -9,8 +9,8 @@ function GameShop() {
   const [games, setGames] = useState([]);
 
   useEffect(() => {
-    Promise.all([getNewestGames()]).then(([games]) => {
-      setGames(games);
+    Promise.all([getNewestGames()]).then(([data]) => {
+      setGames(data.games);
     });
   }, []);
 

@@ -15,7 +15,7 @@ export default function Layout({ user, logOut }) {
       <Outlet />
       {isLoggedIn && (
         <footer>
-          <p>Laget av GameHub</p>
+          <p>Credit to rawg.io</p>
         </footer>
       )}
     </div>
