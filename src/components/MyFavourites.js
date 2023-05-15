@@ -17,7 +17,7 @@ function MyFavourites() {
       .then(response => {
         if (Array.isArray(response.games) && response !== null) {
           setGames(response.games);
-          setCounter(response.counter);
+          setCounter(response.count);
         } else {
           setGames([]);
           setCounter(0);
@@ -29,7 +29,7 @@ function MyFavourites() {
   }, []);
   return (
     <aside>
-      <h2>My Favourites - {counter}</h2>
+      <h2>My Favourites ({counter} games)</h2>
       <section className="my-favourites">
         {games.length === 0 ? (
           <p>Ingen spill å vise</p>
