@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getUserFavourites } from '../lib/services/userService';
+import { getUserFavourites, addUserFavourites } from '../lib/services/userService';
 import GameCard from './GameCard2';
 
 function MyFavourites() {
@@ -11,12 +11,12 @@ function MyFavourites() {
     const arrayValue = JSON.parse(storageValue);
     const name = arrayValue[0];
     const email = arrayValue[1];
-  
+
     getUserFavourites(name, email)
       .then(response => {
         if (Array.isArray(response.games) && response !== null) {
           setGames(response.games);
-          setCounter(response.counter);
+          setCounter(response.count);
         } else {
           setGames([]);
           setCounter(0);
@@ -26,23 +26,36 @@ function MyFavourites() {
         console.error('Kan ikke hente favorittspill:', error);
       });
   }, []);
+
+  const addToFavourites = (gameApiId) => {
+    const storageValue = localStorage.getItem('GamehubUser');
+    const arrayValue = JSON.parse(storageValue);
+    const email = arrayValue[1];
+
+    addUserFavourites(email, gameApiId)
+      .then(updatedUser => {
+        console.log('Film lagt til favoritter:', updatedUser);
+        // Oppdater lokal tilstand eller gjør andre nødvendige endringer
+      })
+      .catch(error => {
+        console.error('Feil under legging av film til favoritter:', error);
+      });
+  };
+
   return (
     <aside>
       <h2>My Favourites - {counter}</h2>
       <div className="my-favourites">
-        {games.length === 0 ? (
-          <p>Ingen spill å vise</p>
-        ) : (
-          games.map((item) => (
-            <GameCard
-              key={item.apiid}
-              id={item.apiid}
-              title={item.title}
-              img={item.bilde}
-              genres={item.sjangere.map(sjanger => sjanger.navn).join(', ')}
-            />
-          ))
-        )}
+        {games.map((item) => (
+          <GameCard
+            key={item.apiid}
+            id={item.apiid}
+            title={item.title}
+            img={item.bilde}
+            genres={item.sjangere.map(sjanger => sjanger.navn).join(', ')}
+            addToFavourites={() => addToFavourites(item.apiid)}
+          />
+        ))}
       </div>
     </aside>
   );

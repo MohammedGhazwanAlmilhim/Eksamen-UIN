@@ -46,6 +46,8 @@ function App() {
 }
 
 export default App;
+
+
 // Det som Abdullah har endreet i app js er:
 // Flytt importen av Layout til toppen av filen for bedre organisering.
 //Endre <Route>-komponenten som er ansvarlig for /dashboard for å inkludere user og logOut som props til Dashboard-komponenten.

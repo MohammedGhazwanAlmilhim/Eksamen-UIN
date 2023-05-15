@@ -9,7 +9,7 @@ export default function Signin({ user, setUser }) {
   });
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const [invalidEmail, setInvalidEmail] = useState(false); // Ny tilstand for å håndtere ugyldig e-postadresse
+  const [invalidEmail, setInvalidEmail] = useState(false);
 
   const handleFormData = (event) => {
     const { name, value } = event.currentTarget;
@@ -31,7 +31,7 @@ export default function Signin({ user, setUser }) {
     }
 
     if (!email.endsWith('@gamehub.com')) {
-      setInvalidEmail(true); // Sett tilstanden til true ved ugyldig e-postadresse
+      setInvalidEmail(true); 
       return;
     }
 
@@ -71,7 +71,7 @@ export default function Signin({ user, setUser }) {
             handleFormData={handleFormData}
             formData={formData}
           />
-          {invalidEmail && ( // Vis feilmeldingen hvis invalidEmail er true
+          {invalidEmail && (
             <p>Ugyldig e-postadresse. Vennligst bruk en "@gamehub.com" adresse.</p>
           )}
         </section>

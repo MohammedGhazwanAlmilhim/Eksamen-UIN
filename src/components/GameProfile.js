@@ -76,3 +76,7 @@ function GameProfile({ game }) {
 }
 
 export default GameProfile;
+
+// addfavorite virker som den skal, men når man lager en ny bruker så klarer man ikke å legge til spil i favorit listen sin.
+// løsningen på det er å loge ut og logein igjen med samme gmail adresse så vil brukeren kunne legge til i favorit listen sin.
+// dette må fikses 

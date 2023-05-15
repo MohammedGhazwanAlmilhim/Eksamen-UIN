@@ -84,24 +84,33 @@ export async function getUserFavourites(name, email) {
 
 //Denne funksjonen brukes til å legge spill på favoritt listen til brukeren
 //brukes i GameProfile Komponenten
+
+
+// addfavorite virker som den skal, men når man lager en ny bruker så klarer man ikke å legge til spil i favorit listen sin.
+// løsningen på det er å loge ut og logein igjen med samme gmail adresse så vil brukeren kunne legge til i favorit listen sin.
+// dette må fikses 
 export const addUserFavourites = async (email, gameApiId) => {
-    try {
-      const game = await client.fetch(`*[_type == "game" && apiid == ${gameApiId}][0]`);
-      const user = await client.fetch(`*[_type == "user" && email == "${email}"][0]`);
-  
-      const favoriteGames = user.favoriteGames || [];
-      const gameRef = {_type: 'reference', _ref: game._id, _key: game._id};
-  
-      const updatedUser = await client
-        .patch(user._id)
-        .set({favoriteGames: [...favoriteGames, gameRef]})
-        .commit();
-      console.log(updatedUser);
-      return updatedUser;
-    } catch (error) {
-      console.error('Error adding favorite game:', error.message);
-    }
-  };
+  try {
+    const game = await client.fetch(`*[_type == "game" && apiid == ${gameApiId}][0]`);
+    const user = await client.fetch(`*[_type == "user" && email == "${email}"][0]`);
+
+    const favoriteGames = user.favoriteGames || [];
+    const gameRef = {_type: 'reference', _ref: game._id, _key: game._id};
+
+    const updatedFavoriteGames = [...favoriteGames, gameRef];
+
+    const updatedUser = await client
+      .patch(user._id)
+      .set({favoriteGames: updatedFavoriteGames})
+      .commit();
+    console.log(updatedUser);
+    return updatedUser;
+  } catch (error) {
+    console.error('Error adding favorite game:', error.message);
+    return null;
+  }
+};
+
   
   
   
