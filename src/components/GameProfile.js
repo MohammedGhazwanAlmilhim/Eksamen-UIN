@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { addUserFavourites, getUserWithGame } from '../lib/services/userService';
-import ReactWordcloud from 'react-wordcloud';
+import { TagCloud } from 'react-tagcloud';
 
 function GameProfile({ game }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -27,7 +27,7 @@ function GameProfile({ game }) {
   
 
   return (
-    <div>
+    <main>
       {game ? (
         <section id="game-text">
           <h2>{game.name}</h2>
@@ -37,15 +37,16 @@ function GameProfile({ game }) {
           <p>Summary: {game.description_raw}</p>
           <br></br>
           <p>
-            Tags:{' '}
-            {game.tags.map((tag) => (
-              <span key={tag.id}>{tag.name} </span>
-            ))}
+            TagCloud:{' '}
           </p>
+          <TagCloud
+  tags={game.tags.map((tag) => ({ value: tag.name, count: tag.games_count }))}
+  minSize={12}
+  maxSize={35}
+/>
           <br></br>
-          <ReactWordcloud
-            words={game.tags.map((tag) => ({ text: tag.name, value: tag.games_count }))}
-          />
+
+
           <p>Developers: {game.developers.map((dev) => dev.name).join(', ')}</p>
           <p>Publisher: {game.publishers.map((pub) => pub.name).join(', ')}</p>
           <p>Release Year: {game.released.substring(0, 4)}</p>
@@ -70,7 +71,7 @@ function GameProfile({ game }) {
       ) : (
         <p>Game not found!</p>
       )}
-    </div>
+    </main>
   );
 }
 

@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { getTenLatestGames } from '../lib/services/gameService';
 import GameCard from '../components/GameCard';
 
-import styles from '../sass/gs.module.scss';
-
 //Hent ut de 10 nyeste for visning på /gameshop (når du klikker linken "Visit Shop")
 
 function GameShop() {

@@ -17,6 +17,14 @@ body {
   min-height: 100vh;
 }
 
+#container-full {
+  display: grid;
+  grid-template-areas: "nav" "header" "main" "footer";
+  grid-template-rows: 76px auto auto 76px;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+}
+
 nav {
   display: flex;
   align-items: center;
@@ -102,16 +110,21 @@ header .latest-games .card {
   height: 300px;
   width: 33%;
   box-shadow: 0 8px 32px 0 rgba(2, 2, 2, 0.37);
+  border-radius: 20px;
 }
 header .latest-games .card figure {
   width: 50%;
   height: 100%;
   margin: 0;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 header .latest-games .card figure img {
   object-fit: cover;
   width: 100%;
   height: 100%;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 header .latest-games .card .card-content {
   display: flex;
@@ -202,16 +215,21 @@ aside .card {
   min-height: 300px;
   width: 100%;
   box-shadow: 0 8px 32px 0 rgba(2, 2, 2, 0.37);
+  border-radius: 20px;
 }
 aside .card figure {
   width: 100%;
   height: 100%;
   margin: 0;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
 }
 aside .card figure img {
   object-fit: cover;
   width: 100%;
   height: 100%;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
 }
 aside .card .card-content {
   display: flex;
@@ -257,6 +275,7 @@ main .card {
   width: calc(32% + 1px);
   text-decoration: none;
   color: #ffffff;
+  border-radius: 20px;
 }
 main .card article {
   width: 100%;
@@ -267,11 +286,15 @@ main .card figure {
   width: 100%;
   height: 200px;
   margin: 0;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
 }
 main .card figure img {
   object-fit: cover;
   width: 100%;
   height: 100%;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
 }
 main .card .card-content {
   display: flex;
