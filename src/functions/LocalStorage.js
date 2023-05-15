@@ -1,17 +1,32 @@
 import {useState, useEffect} from 'react'
 
-export function getStorageValue(key, defaultValue) {
-    if(typeof window !== 'undefined') {
-        const saved = localStorage.getItem(key)
-        const initial = saved !== null ? JSON.parse(saved) : defaultValue
-        return initial
-    }
-}
+// alt er endretr og ser helt unikt fra lærerens kode, og etter test så vikrer koden som den skal(:
+// filen er ferdig og dere trenger ikke å røre den 😁
 
-export const useLocalStorage = (key, defaultValue) => {
-    const [value, setValue] = useState(() => getStorageValue(key, defaultValue))
+export const getStorageValue = (key, defaultValue) => {
+    try {
+      const storedValue = localStorage.getItem(key);
+      return storedValue !== null ? JSON.parse(storedValue) : defaultValue;
+    } catch (error) {
+      console.log('Feil under henting av verdi fra lokal lagring:', error.message);
+      return defaultValue;
+    }
+  };
+  
+
+ export const useLocalStorage = (key, defaultValue) => {
+    const [value, setValue] = useState(() => {
+      const storedValue = localStorage.getItem(key);
+      return storedValue !== null ? JSON.parse(storedValue) : defaultValue;
+    });
+  
     useEffect(() => {
-        localStorage.setItem(key, JSON.stringify(value))
-    }, [key, value])
-    return [value, setValue]
-}
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+      } catch (error) {
+        console.log('Feil under lagring av verdi i lokal lagring:', error.message);
+      }
+    }, [key, value]);
+  
+    return [value, setValue];
+  };

@@ -1,31 +1,65 @@
 import client from '../sanityClient'
 
-export const getAllUsers = async () =>{
-    const data = await client.fetch(`*[_type == "user"]{_id, name, email}[...]`)
-    return data
-}
 
+// Funksjon for å hente alle brukere fra databasen
+export const getAllUsers = async () => {
+  try {
+    // Utfør en API-forespørsel for å hente alle brukere fra Snity-databasen
+    const data = await client.fetch(`*[_type == "user"]{_id, name, email}[...]`);
+
+    // Returner brukerne
+    return data;
+  } catch (error) {
+    console.log('Feil under henting av brukere:', error.message);
+    // Håndter feilen her, for eksempel vis en feilmelding til brukeren
+    return null;
+  }
+};
+
+
+
+
+// Funksjon for å sjekke om en bruker eksisterer i databasen
 export const checkUser = async (name, email) => {
+  try {
+    // Utfør en API-forespørsel for å sjekke om brukeren eksisterer i Snity-databasen
     const data = await client.fetch(
-    `*[_type == "user" && name == $name && email == $email]{name,email}`, 
-    {name, email}
-    )
-    return data
-}
+      `*[_type == "user" && name == $name && email == $email]{name, email}`,
+      { name, email }
+    );
 
-export const createUser = async (name, email) =>{
-    try{
-        await client.create({_type: 'user', name, email})
-    }
-    catch(error){
-        throw new Error(error);
-    }
-}
+    // Returner brukeren
+    return data;
+  } catch (error) {
+    console.log('Feil under sjekk av bruker:', error.message);
+    // Håndter feilen her, for eksempel vis en feilmelding til brukeren
+    return null;
+  }
+};
+
+
+
+// Funksjon for å opprette en ny bruker i databasen
+export const createUser = async (name, email) => {
+  try {
+    // Utfør en API-forespørsel for å opprette en ny bruker i Snity-databasen
+    const newUser = { _type: 'user', name, email };
+    const createdUser = await client.create(newUser);
+
+    // Returner den opprettede brukeren
+    return createdUser;
+  } catch (error) {
+    console.log('Feil under opprettelse av bruker:', error.message);
+    // Håndter feilen her, for eksempel vis en feilmelding til brukeren
+    return null;
+  }
+};
+
 
 //Denne funksjonen brukes til å hente alle spill som ligger i favorittlisten i DB
 //viser spillene i MyFavourites Komponenten
 export async function getUserFavourites(name, email) {
-    const data = await client.fetch(`*[_type == "user" && name == '${name} && email == '${email}']{
+    const data = await client.fetch(`*[_type == "user" && name == '${name}' && email == '${email}']{
       name,
       email,
       "favoriteGames": favoriteGames[]->{
