@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { getUserFavourites } from '../lib/services/userService';
 import GameCard from './GameCard2';
 
@@ -29,7 +30,7 @@ function MyFavourites() {
   return (
     <aside>
       <h2>My Favourites - {counter}</h2>
-      <div className="my-favourites">
+      <section className="my-favourites">
         {games.length === 0 ? (
           <p>Ingen spill å vise</p>
         ) : (
@@ -43,7 +44,10 @@ function MyFavourites() {
             />
           ))
         )}
-      </div>
+      </section>
+      <section className="indicator">
+        <Link to="/favourites">Go to favourites</Link>
+      </section>
     </aside>
   );
 }

@@ -25,7 +25,7 @@ export const createUser = async (name, email) =>{
 //Denne funksjonen brukes til å hente alle spill som ligger i favorittlisten i DB
 //viser spillene i MyFavourites Komponenten
 export async function getUserFavourites(name, email) {
-    const data = await client.fetch(`*[_type == "user" && name == '${name} && email == '${email}']{
+    const data = await client.fetch(`*[_type == "user" && name == '${name}' && email == '${email}']{
       name,
       email,
       "favoriteGames": favoriteGames[]->{

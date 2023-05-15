@@ -1,9 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 export default function Nav({ user, logOut }) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <nav>
       {user.length > 0 ? (
@@ -17,7 +27,7 @@ export default function Nav({ user, logOut }) {
       )}
 
       {user.length > 0 && (
-        <ul>
+        <ul className={isMobileMenuOpen ? "active" : ""}>
           <li>
             <Link to="/gameshop">Shop</Link>
           </li>
@@ -30,20 +40,26 @@ export default function Nav({ user, logOut }) {
         </ul>
       )}
 
-      <section>
-        {user.length > 0 && (
-          <li>
-            {user[0]}{' '}
-            <FontAwesomeIcon
-              className="logout"
-              type="button"
-              onClick={logOut}
-              icon={faRightFromBracket}
-              size="2x"
-            />
-          </li>
-        )}
-      </section>
+      {user.length > 0 && (
+        <section className={isMobileMenuOpen ? "active" : ""}>
+          <p>Signed in as: {user[0]}</p>
+          <FontAwesomeIcon
+            className="logout"
+            type="button"
+            onClick={logOut}
+            icon={faRightFromBracket}
+            size="2x"
+          />
+        </section>
+      )}
+
+      {user.length > 0 && (
+        <div className={`hamburger ${isMobileMenuOpen ? "active" : ""}`} onClick={toggleMobileMenu}>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </div>
+      )}
     </nav>
   );
 }

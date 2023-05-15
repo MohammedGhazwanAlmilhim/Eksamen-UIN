@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { getFourActionGames } from '../lib/services/gameService';
 import GameCard from './GameCard2';
 
@@ -27,6 +28,9 @@ function MyGames() {
             />
         ))}
         </section>
+        <section className="indicator">
+        <Link to="/mygames">Go to libary</Link>
+      </section>
     </main>
   );
 }

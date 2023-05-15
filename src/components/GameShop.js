@@ -16,7 +16,7 @@ function GameShop() {
 
   return (
     <header>
-      <section id="indicator">
+      <section className="indicator">
         <h1>Gameshop</h1>
         <Link to="/gameshop">Visit Gameshop</Link>
       </section>
