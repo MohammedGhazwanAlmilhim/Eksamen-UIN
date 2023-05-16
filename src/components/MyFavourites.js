@@ -19,9 +19,6 @@ function MyFavourites() {
   };
 
   useEffect(() => {
-<<<<<<< Updated upstream
-    fetchUserFavouriteGames();
-=======
     const storageValue = localStorage.getItem('GamehubUser');
     const arrayValue = JSON.parse(storageValue);
     let name
@@ -38,13 +35,12 @@ function MyFavourites() {
       .then(response => {
         if (response && Array.isArray(response.games) && response.games.length > 0) {
           setGames(response.games);
-          setCounter(response.count);
+          setCount(response.count);
         } else {
           setGames([]);
-          setCounter(0);
+          setCount(0);
         }
       })
->>>>>>> Stashed changes
   }, []);  
   
   return (
