@@ -26,6 +26,19 @@ export default function Nav({ user, logOut }) {
         </Link>
       )}
 
+{user.length > 0 ? (
+          null
+      ) : (
+        
+         <ul  className={isMobileMenuOpen ? "active" : ""}>
+          <li>
+          <Link to="/">Sign in</Link>
+          </li>
+         </ul>
+       
+      )}
+
+
       {user.length > 0 && (
         <ul className={isMobileMenuOpen ? "active" : ""}>
           <li>
