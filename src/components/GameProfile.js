@@ -42,8 +42,7 @@ function GameProfile({ game }) {
       const storageValue = localStorage.getItem("GamehubUser");
       const arrayValue = JSON.parse(storageValue);
       const email = arrayValue[1];
-
-      await addUserFavourites(email, game.apiid);
+      await addUserFavourites(email, game.id); //feil id, skal være id ikke apiid
 
       setIsFavorite(true);
     } catch (error) {

@@ -57,6 +57,7 @@ export async function getUserFavourites(name, email) {
 export const addUserFavourites = async (email, gameApiId) => {
   try {
     // Fetch the game and user from the database based on the provided parameters
+    console.log(email + "   egwegweg--   " + gameApiId)
     const game = await client.fetch(`*[_type == "game" && apiid == ${gameApiId}][0]`);
     const user = await getUserByEmail(email);
 
