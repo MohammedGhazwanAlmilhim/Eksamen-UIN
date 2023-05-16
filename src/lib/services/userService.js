@@ -29,7 +29,7 @@ export async function fetchGamesFromFavorite(user, favoriteGamesArray) {
     const gameObjects = await Promise.all(
       user.favoriteGames.map(favoriteGamesArray => client.fetch(`*[_id == "${favoriteGamesArray._ref}"][0]`))
     );
-    console.log(gameObjects)
+    //console.log(gameObjects)
     return gameObjects;
   } catch (error) {
     console.error("Error fetching game objects:", error.message);
@@ -106,7 +106,7 @@ export const addUserFavourites = async (email, gameApiId, state) => {
     if (isFavorite === true) {
       // Remove the game from the user's favorite games
       let updatedFavoriteGames = await fetchGamesFromFavorite(user, favoriteGames);
-      console.log(updatedFavoriteGames);
+      //console.log(updatedFavoriteGames);
     
       updatedFavoriteGames = updatedFavoriteGames
         .filter((game) => game.apiid !== gameApiId)
@@ -116,14 +116,14 @@ export const addUserFavourites = async (email, gameApiId, state) => {
           _key: game._id,
         }));
     
-      console.log(updatedFavoriteGames);
+      //console.log(updatedFavoriteGames);
     
       let updatedUser = await client
         .patch(user._id)
         .set({ favoriteGames: updatedFavoriteGames })
         .commit();
     
-      console.log(updatedUser);
+      //console.log(updatedUser);
       updateResult = updatedUser;
     } else {
       // Add the game to the user's favorite games
@@ -132,7 +132,7 @@ export const addUserFavourites = async (email, gameApiId, state) => {
         .set({ favoriteGames: [...favoriteGames, gameRef] })
         .commit();
 
-      console.log(updatedUser);
+      //console.log(updatedUser);
       updateResult = updatedUser;
     }
     return updateResult;

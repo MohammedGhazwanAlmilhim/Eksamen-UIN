@@ -12,11 +12,13 @@ function GameProfile({ game }) {
   useEffect(() => {
     const storageValue = localStorage.getItem("GamehubUser");
     const arrayValue = JSON.parse(storageValue);
-    const email = arrayValue[1];
+    const email = arrayValue[0]; //GamehubUser: [0] = email, [1] = username
 
     const fetchUserAndCheckFavorites = async () => {
       try {
         const user = await getUserByEmail(email);
+        //console.log(email)
+        //console.log(user)
         if (game) {
           const isGameInFavorites = await checkIfGameInFavorites(user, game);
           //console.log(isGameInFavorites);
@@ -44,6 +46,7 @@ function GameProfile({ game }) {
   };
 
   const checkIfGameInFavorites = async (user, game) => {    
+    //console.log(user + "   " + game)
     if (user && user.favoriteGames && game) {
       try {
         const favoriteGames = await fetchGamesFromFavorite(user, user.favoriteGames);
@@ -74,6 +77,7 @@ function GameProfile({ game }) {
   
     try {
       const isGameInFavorites = await checkIfGameInFavorites(user, game);
+      //console.log(isGameInFavorites)
       const updatedUser = await addUserFavourites(email, game.id, isGameInFavorites);
       setIsFavorite(!isGameInFavorites);
       //console.log(updatedUser);
