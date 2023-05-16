@@ -4,8 +4,8 @@ import { createUser, checkUser } from "../lib/services/userService";
 
 export default function Signin({ user, setUser }) {
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
+    name: '',
   });
 
   const [loggedIn, setLoggedIn] = useState(false);
@@ -39,16 +39,18 @@ export default function Signin({ user, setUser }) {
       const userCount = await checkUser(name, email);
 
       if (userCount.length > 0) {
-        const userArray = Object.values(userCount[0]);
+        const email = userCount[0].email;
+        const name = userCount[0].name;
         console.log('Brukeren finnes');
-        setUser(userArray);
+        setUser([email, name]);
         setLoggedIn(true);
-      } else {
+    } else {
         console.log('Brukeren finnes ikke');
         await createUser(name, email);
         setUser([email, name]);
         setLoggedIn(true);
-      }
+    }
+    
     } catch (error) {
       console.log(error.message);
     }
