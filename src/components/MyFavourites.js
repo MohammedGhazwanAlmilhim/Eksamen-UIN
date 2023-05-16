@@ -5,31 +5,29 @@ import GameCard from './GameCard';
 
 function MyFavourites() {
   const [games, setGames] = useState([]);
-  const [counter, setCounter] = useState(0);
+  const [count, setCount] = useState(0);
+
+  const storageValue = localStorage.getItem('GamehubUser');
+  const arrayValue = JSON.parse(storageValue);
+  const name = arrayValue[1];
+  const email = arrayValue[0];
+
+  const fetchUserFavouriteGames = async () => {
+    const data = await  getUserFavourites(name, email);
+    setGames(data.games);
+    setCount(data.count);
+  };
 
   useEffect(() => {
-    const storageValue = localStorage.getItem('GamehubUser');
-    const arrayValue = JSON.parse(storageValue);
-    const name = arrayValue[1];
-    const email = arrayValue[0];
-  
-    getUserFavourites(name, email)
-      .then(response => {
-        if (response && Array.isArray(response.games) && response.games.length > 0) {
-          setGames(response.games);
-          setCounter(response.count);
-        } else {
-          setGames([]);
-          setCounter(0);
-        }
-      })
+    fetchUserFavouriteGames();
   }, []);  
+  
   return (
     <aside>
-      <h2>My Favourites  ({counter} games)</h2>
+      <h2>My Favourites  ({count} games)</h2>
       <section className="my-favourites">
         {games.length === 0 ? (
-          <p>Ingen spill å vise</p>
+          <p>No games to show</p>
         ) : (
           games.map((item) => (
             <GameCard

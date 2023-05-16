@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getNewestGames } from "../lib/services/gameService";
-import GameCard from "./GameCard";
-
-//For GameShop seksjonen, hent ut de tre nyeste spillene for visning i dashboard.
+import { getNewestGames } from '../lib/services/gameService';
+import GameCard from './GameCard';
 
 function GameShop() {
   const [games, setGames] = useState([]);
 
-  useEffect(() => {
-    Promise.all([getNewestGames()]).then(([data]) => {
-      setGames(data.games);
+  const fetchNewestGames = async () => {
+    const data = await getNewestGames();
+    setGames(data.games);
+  };
 
-    });
+  useEffect(() => {
+    fetchNewestGames();
   }, []);
 
   return (
@@ -22,16 +22,20 @@ function GameShop() {
         <Link to="/gameshop">Visit Gameshop</Link>
       </section>
       <div className="latest-games">
-        {games.map((item) => (
-          <GameCard
-            key={item._id}
-            slug={item.slug}
-            id={item.apiid}
-            title={item.title}
-            img={item.bilde}
-            genres={item.sjangere.map((sjanger) => sjanger.navn).join(", ")}
-          />
-        ))}
+        {games.length === 0 ? (
+          <p>No games to show</p>
+        ) : (
+          games.map((item) => (
+            <GameCard
+              key={item._id}
+              slug={item.slug}
+              id={item.apiid}
+              title={item.title}
+              img={item.bilde}
+              genres={item.sjangere.map((sjanger) => sjanger.navn).join(', ')}
+            />
+          ))
+        )}
       </div>
     </header>
   );

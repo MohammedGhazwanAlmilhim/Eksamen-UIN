@@ -11,32 +11,27 @@ import GameCard from '../components/GameCard';
 
 function MyFavourites() {
   const [games, setGames] = useState([]);
-  const [counter, setCounter] = useState(0);
+  const [count, setCount] = useState(0);
+
+  const storageValue = localStorage.getItem('GamehubUser');
+  const arrayValue = JSON.parse(storageValue);
+  const name = arrayValue[1];
+  const email = arrayValue[0];
+
+  const fetchUserFavouriteGames = async () => {
+    const data = await  getUserFavourites(name, email);
+    setGames(data.games);
+    setCount(data.count);
+  };
 
   useEffect(() => {
-    const storageValue = localStorage.getItem('GamehubUser');
-    const arrayValue = JSON.parse(storageValue);
-    const name = arrayValue[0];
-    const email = arrayValue[1];
-  
-    getUserFavourites(name, email)
-      .then(response => {
-        if (Array.isArray(response.games) && response !== null) {
-          setGames(response.games);
-          setCounter(response.count);
-        } else {
-          setGames([]);
-          setCounter(0);
-        }
-      })
-      .catch(error => {
-        console.error('Kan ikke hente favorittspill:', error);
-      });
-  }, []);
+    fetchUserFavouriteGames();
+  }, []);  
+
   return (
     <main>
-      <h1>My Favourites ({counter} games)</h1>
-      <section className="game-libary">
+      <h1>My Favourites ({count} games)</h1>
+      <section className="game-library">
         {games.length === 0 ? (
           <p>There is no games added to favourites!</p>
         ) : (
