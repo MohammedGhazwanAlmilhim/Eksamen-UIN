@@ -23,7 +23,7 @@ function GameShop() {
       <div className="latest-games">
         {games.map((item) => (
           <GameCard
-            key={item.apiid}
+            key={item._id}
             id={item.apiid}
             title={item.title}
             img={item.bilde}
