@@ -22,6 +22,22 @@ export const createUser = async (name, email) =>{
     }
 }
 
+//SLETTE????
+
+export async function fetchGamesFromFavorite(user, favoriteGamesArray) {
+  try {
+    const gameObjects = await Promise.all(
+      user.favoriteGames.map(favoriteGamesArray => client.fetch(`*[_id == "${favoriteGamesArray._ref}"][0]`))
+    );
+    console.log(gameObjects)
+    return gameObjects;
+  } catch (error) {
+    console.error("Error fetching game objects:", error.message);
+    return null
+  }
+  return null
+};
+
 //Denne funksjonen brukes til å hente alle spill som ligger i favorittlisten i DB
 //viser spillene i MyFavourites Komponenten
 export async function getUserFavourites(name, email) {
@@ -54,29 +70,59 @@ export async function getUserFavourites(name, email) {
 
 // Import the necessary dependencies
 
-export const addUserFavourites = async (email, gameApiId) => {
+export const addUserFavourites = async (email, gameApiId, state) => {
   try {
     // Fetch the game and user from the database based on the provided parameters
-    console.log(email + "   egwegweg--   " + gameApiId)
     const game = await client.fetch(`*[_type == "game" && apiid == ${gameApiId}][0]`);
     const user = await getUserByEmail(email);
-
-
-    // Add the game to the user's favorite games
+    let updateResult;
     const favoriteGames = user.favoriteGames || [];
     const gameRef = { _type: "reference", _ref: game._id, _key: game._id };
-    const updatedUser = await client
-      .patch(user._id)
-      .set({ favoriteGames: [...favoriteGames, gameRef] })
-      .commit();
+    //console.log(state);
+    
+    const isFavorite = await state; // Await the promise to get the actual boolean value
+    //console.log(isFavorite);
 
-    console.log(updatedUser);
-    return updatedUser;
+    if (isFavorite === true) {
+      console.log("kukk");
+      // Remove the game from the user's favorite games
+      let updatedFavoriteGames = await fetchGamesFromFavorite(user, favoriteGames);
+      console.log(updatedFavoriteGames);
+    
+      updatedFavoriteGames = updatedFavoriteGames
+        .filter((game) => game.apiid !== gameApiId)
+        .map((game) => ({
+          _type: "reference",
+          _ref: game._id,
+          _key: game._id,
+        }));
+    
+      console.log(updatedFavoriteGames);
+    
+      let updatedUser = await client
+        .patch(user._id)
+        .set({ favoriteGames: updatedFavoriteGames })
+        .commit();
+    
+      console.log(updatedUser);
+      updateResult = updatedUser;
+    } else {
+      // Add the game to the user's favorite games
+      let updatedUser = await client
+        .patch(user._id)
+        .set({ favoriteGames: [...favoriteGames, gameRef] })
+        .commit();
+
+      console.log(updatedUser);
+      updateResult = updatedUser;
+    }
+    return updateResult;
   } catch (error) {
     console.error("Error adding favorite game:", error.message);
     throw error;
   }
 };
+
 
 export const getUserByEmail = async (email) => {
   try {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { addUserFavourites, getUserByEmail} from "../lib/services/userService";
+import { addUserFavourites, getUserByEmail, fetchGamesFromFavorite} from "../lib/services/userService";
 import { TagCloud } from "react-tagcloud";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
@@ -15,40 +15,58 @@ function GameProfile({ game }) {
     const fetchUserAndCheckFavorites = async () => {
       try {
         const user = await getUserByEmail(email);
-        const isGameInFavorites = checkIfGameInFavorites(user, game);
-        console.log(isGameInFavorites);
-        setIsFavorite(isGameInFavorites);
+        if (game) {
+          const isGameInFavorites = await checkIfGameInFavorites(user, game);
+          //console.log(isGameInFavorites);
+          setIsFavorite(isGameInFavorites);
+        }
       } catch (error) {
         console.error("Error fetching user:", error.message);
       }
     };
 
     fetchUserAndCheckFavorites();
-  }, [game]);
+  }, [game]);  
 
-
-  const checkIfGameInFavorites = (user, game) => {
-    console.log(user);
-    if (user && user.favoriteGames) {
-      const favoriteGameIds = user.favoriteGames.map((game) => game._ref._id);
-      console.log(favoriteGameIds.includes(game._id));
-      return favoriteGameIds.includes(game._id);
+  const checkIfGameInFavorites = async (user, game) => {    
+    if (user && user.favoriteGames && game) {
+      try {
+        const favoriteGames = await fetchGamesFromFavorite(user, user.favoriteGames);
+        //console.log(favoriteGames);
+        var containsFavoriteGame = false;
+        Array.from(favoriteGames).forEach((g) => {
+          if (game.slug === g.slug.current) {
+            containsFavoriteGame = true;
+          }
+        })
+        //console.log(containsFavoriteGame);
+        return containsFavoriteGame
+      } catch (error) {
+        console.error("Error fetching game objects:", error.message);
+        return false;
+      }
     }
+    
     return false;
   };
+  
 
   const handleAddFavorite = async () => {
+    const storageValue = localStorage.getItem("GamehubUser");
+    const arrayValue = JSON.parse(storageValue);
+    const email = arrayValue[1];
+    const user = await getUserByEmail(email);
+  
     try {
-      const storageValue = localStorage.getItem("GamehubUser");
-      const arrayValue = JSON.parse(storageValue);
-      const email = arrayValue[1];
-      await addUserFavourites(email, game.id); //feil id, skal være id ikke apiid
-
-      setIsFavorite(true);
+      const isGameInFavorites = await checkIfGameInFavorites(user, game);
+      const updatedUser = await addUserFavourites(email, game.id, isGameInFavorites);
+      setIsFavorite(!isGameInFavorites);
+      //console.log(updatedUser);
     } catch (error) {
       console.error("Error adding favorite game:", error.message);
     }
   };
+  
   return (
     <main>
       {game ? (
