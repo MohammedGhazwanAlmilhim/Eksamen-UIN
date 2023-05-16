@@ -17,12 +17,6 @@ export default function Layout({ user, logOut }) {
     return <Navigate to="/" />;
   }
 
-  const isAllowedPage = ['/dashboard', '/game/:slug', '/gameshop', '/mygames', '/favourites'].includes(location.pathname);
-
-  if (isLoggedIn && !isAllowedPage) {
-    return <Navigate to="/dashboard" />;
-  }
-
   return (
     <div id={containerId}>
       <Nav user={user} logOut={logOut} />
