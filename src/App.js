@@ -9,17 +9,6 @@ import GamePage from './pages/GamePage';
 import Signin from './components/Signin';
 import { useLocalStorage } from './functions/LocalStorage';
 
-
-//Disse komponentene skal linkes til ved hjelp av Routing fra menyen i toppen av applikasjonen, 
-//samt fra de respektive knappene på dashboardet
-
-//"/dashboard"
-//Vi anbefaler å bruke ruten /game:slug for ett enkelt spill
-//"/gameshop"
-//"/mygames"
-//"/favourites"
-
-
 function App() {
   const [user, setUser] = useLocalStorage('GamehubUser', []);
   
@@ -29,7 +18,6 @@ function App() {
       window.location.href = '/';
     }, 500);
   };
-
   return (
     <>
       <Routes>

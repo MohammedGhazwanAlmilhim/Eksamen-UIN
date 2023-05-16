@@ -46,5 +46,10 @@ export default {
       title: 'Released date',
       type: 'date',
     },
+    {
+      name: 'steamlink',
+      title: 'Steam Link',
+      type: 'url',
+    },
   ],
 }
