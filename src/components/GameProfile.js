@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {addUserFavourites, getUserWithGame} from "../lib/services/userService";
+import { addUserFavourites, getUserWithGame } from "../lib/services/userService";
 import { TagCloud } from "react-tagcloud";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
@@ -16,10 +16,10 @@ function GameProfile({ game }) {
       // Get the user from the database
       const user = await getUserWithGame(email);
 
-      // Check if the user has any favorite games
+      // Check if the game exists in the user's favorite games
       const favoriteStatus =
         user.favoriteGames &&
-        user.favoriteGames.some((favGame) => favGame._ref === game.id);
+        user.favoriteGames.some((favGame) => favGame._id === game.id);
 
       setIsFavorite(favoriteStatus);
     };
@@ -32,13 +32,12 @@ function GameProfile({ game }) {
     const arrayValue = JSON.parse(storageValue);
     const email = arrayValue[1];
 
-    // Add the game to the user's favorites list if it's not already there
+    // Add or remove the game from the user's favorites list
     if (!isFavorite) {
       await addUserFavourites(email, game.id);
-      setIsFavorite(true);
-    } else {
-      setIsFavorite(false);
     }
+
+    setIsFavorite(!isFavorite);
   };
 
   return (
@@ -56,18 +55,18 @@ function GameProfile({ game }) {
                   <span>
                     <p>Rating: {game.rating}</p>
                   </span>
-                    <FontAwesomeIcon
+                  <FontAwesomeIcon
                     onClick={handleAddFavorite}
-                      icon={faHeart}
-                      color={isFavorite ? "red" : "gray"}
-                      size="2x"
-                    />
+                    icon={faHeart}
+                    color={isFavorite ? "red" : "gray"}
+                    size="2x"
+                  />
                 </section>
               </section>
 
-              <br></br>
+              <br />
               <p>Summary: {game.description_raw}</p>
-              <br></br>
+              <br />
               <p>TagCloud: </p>
               <TagCloud
                 tags={game.tags.map((tag) => ({
@@ -77,7 +76,7 @@ function GameProfile({ game }) {
                 minSize={12}
                 maxSize={35}
               />
-              <br></br>
+              <br />
 
               <p>Developers: {game.developers.map((dev) => dev.name).join(", ")}</p>
               <p>Publisher: {game.publishers.map((pub) => pub.name).join(", ")}</p>
@@ -85,9 +84,7 @@ function GameProfile({ game }) {
               <p>
                 Platforms:{" "}
                 {game.platforms.map((platform) => (
-                  <span key={platform.platform.id}>
-                    {platform.platform.name}{" "}
-                  </span>
+                  <span key={platform.platform.id}>{platform.platform.name} </span>
                 ))}
               </p>
               <p>
