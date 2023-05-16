@@ -46,7 +46,7 @@ export async function getUserFavourites(name, email) {
     email,
     "favoriteGames": favoriteGames[]->{
       title,
-      slug,
+      "slug": slug.current, 
       apiid,
       timerspilt,
       sjangere[]->{

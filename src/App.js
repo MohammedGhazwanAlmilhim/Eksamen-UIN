@@ -36,7 +36,7 @@ function App() {
         <Route element={<Layout user={user} logOut={logOut} />}>
           <Route path="/" element={<Signin user={user} setUser={setUser} />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/game/:id" element={<GamePage />} />
+          <Route path="/game/:slug" element={<GamePage />} />
           <Route path="/gameshop" element={<GameShop />} />
           <Route path="/mygames" element={<MyGames />} />
           <Route path="/favourites" element={<MyFavorites />} />

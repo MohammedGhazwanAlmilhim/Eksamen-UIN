@@ -17,7 +17,7 @@ body {
   color: $tertiary-color;
 }
 
-#container {
+#container-dashboard {
   display: grid;
   grid-template-areas: "nav nav nav"
     "header header header"
@@ -28,7 +28,7 @@ body {
   min-height: 100vh;
 }
 
-#container-full {
+#container-singlepage {
   display: grid;
   grid-template-areas: "nav"
     "main"
@@ -37,6 +37,17 @@ body {
   grid-template-columns: 1fr;
   min-height: 100vh;
 }
+
+#container-signin {
+  display: grid;
+  grid-template-areas: "nav"
+    "main";
+  grid-template-rows: 76px auto;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+}
+
+
 
 main {
   grid-area: main;

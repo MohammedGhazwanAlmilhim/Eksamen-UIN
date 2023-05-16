@@ -7,10 +7,14 @@ export default function Layout({ user, logOut }) {
   const location = useLocation();
   
   const isDashboard = location.pathname === '/dashboard';
-  const containerClass = isDashboard ? 'container' : 'container-full';
+  let containerId = isDashboard ? 'container-dashboard' : 'container-singlepage' ;
+
+  if (location.pathname === '/') {
+    containerId = 'container-signin';
+  }
 
   return (
-    <div id={containerClass}>
+    <div id={containerId}>
       <Nav user={user} logOut={logOut} />
       <Outlet />
       {isLoggedIn && (

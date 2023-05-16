@@ -11,6 +11,7 @@ function GameShop() {
   useEffect(() => {
     Promise.all([getNewestGames()]).then(([data]) => {
       setGames(data.games);
+
     });
   }, []);
 
@@ -24,6 +25,7 @@ function GameShop() {
         {games.map((item) => (
           <GameCard
             key={item._id}
+            slug={item.slug}
             id={item.apiid}
             title={item.title}
             img={item.bilde}

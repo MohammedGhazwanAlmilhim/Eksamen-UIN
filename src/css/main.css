@@ -9,7 +9,7 @@ body {
   color: #fff;
 }
 
-#container {
+#container-dashboard {
   display: grid;
   grid-template-areas: "nav nav nav" "header header header" "main main aside" "footer footer footer";
   grid-template-rows: 76px auto auto 76px;
@@ -17,10 +17,18 @@ body {
   min-height: 100vh;
 }
 
-#container-full {
+#container-singlepage {
   display: grid;
   grid-template-areas: "nav" "main" "footer";
   grid-template-rows: 76px auto 76px;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+}
+
+#container-signin {
+  display: grid;
+  grid-template-areas: "nav" "main";
+  grid-template-rows: 76px auto;
   grid-template-columns: 1fr;
   min-height: 100vh;
 }
