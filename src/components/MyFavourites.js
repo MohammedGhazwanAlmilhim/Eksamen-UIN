@@ -10,8 +10,8 @@ function MyFavourites() {
   useEffect(() => {
     const storageValue = localStorage.getItem('GamehubUser');
     const arrayValue = JSON.parse(storageValue);
-    const name = arrayValue[0];
-    const email = arrayValue[1];
+    const name = arrayValue[1];
+    const email = arrayValue[0];
   
     getUserFavourites(name, email)
       .then(response => {
