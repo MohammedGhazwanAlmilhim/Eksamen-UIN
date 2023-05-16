@@ -95,7 +95,7 @@ export const addUserFavourites = async (email, gameApiId, state) => {
     // Fetch the game and user from the database based on the provided parameters
     const game = await client.fetch(`*[_type == "game" && apiid == ${gameApiId}][0]`);
     const user = await getUserByEmail(email);
-    console.log(user);
+    console.log("Brukeren er tom - dette er jeg har funnet 'Mohammed - den kommer som '" + user);
     let updateResult;
     const favoriteGames = user.favoriteGames || [];
     const gameRef = { _type: "reference", _ref: game._id, _key: game._id };
