@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SigninForm from './SigninForm';
 import { createUser, checkUser } from "../lib/services/userService";
 
-export default function Signin({ user, setUser }) {
+export default function Signin({ user, setUser}) {
   const [formData, setFormData] = useState({
     email: '',
     name: '',

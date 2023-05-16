@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 export default function Nav({ user, logOut }) {
+  console.log(user)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -16,17 +17,25 @@ export default function Nav({ user, logOut }) {
 
   return (
     <nav>
-      {user.length > 0 ? (
-        <Link to="/dashboard">
-          <img src="../assets/logo.png" alt="Logo" />
-        </Link>
-      ) : (
-        <Link to="/">
-          <img src="../assets/logo.png" alt="Logo" />
-        </Link>
-      )}
+    {Array.isArray(user) && user && user.length > 0 ? (
+      <Link to="/dashboard">
+        <img src="../assets/logo.png" alt="Logo" />
+      </Link>
+    ) : (
+      <Link to="/">
+        <img src="../assets/logo.png" alt="Logo" />
+        <p>Vennligst Logg Inn</p>
+      </Link>
+    )}
+    {Array.isArray(user) && user && user.length > 0 ? (
+      null
+    ) : (
+      <Link to="/">
+        <p>Vennligst Logg Inn</p>
+      </Link>
+    )}
 
-      {user.length > 0 && (
+      {Array.isArray(user) && user && user.length > 0 && (
         <ul className={isMobileMenuOpen ? "active" : ""}>
           <li>
             <Link to="/gameshop">Shop</Link>
@@ -40,7 +49,7 @@ export default function Nav({ user, logOut }) {
         </ul>
       )}
 
-      {user.length > 0 && (
+      {Array.isArray(user) && user && user.length > 0 && (
         <section className={isMobileMenuOpen ? "active" : ""}>
           <p>Signed in as: {user[1]}</p>
           <FontAwesomeIcon
@@ -53,7 +62,7 @@ export default function Nav({ user, logOut }) {
         </section>
       )}
 
-      {user.length > 0 && (
+      {Array.isArray(user) && user && user.length > 0 && (
         <div className={`hamburger ${isMobileMenuOpen ? "active" : ""}`} onClick={toggleMobileMenu}>
           <span className="bar"></span>
           <span className="bar"></span>

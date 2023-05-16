@@ -19,7 +19,32 @@ function MyFavourites() {
   };
 
   useEffect(() => {
+<<<<<<< Updated upstream
     fetchUserFavouriteGames();
+=======
+    const storageValue = localStorage.getItem('GamehubUser');
+    const arrayValue = JSON.parse(storageValue);
+    let name
+    let email
+    try {
+      name = arrayValue[1];
+      email = arrayValue[0];
+    } catch (error) {
+      console.log("error:" + error)
+      return
+    }
+  
+    getUserFavourites(name, email)
+      .then(response => {
+        if (response && Array.isArray(response.games) && response.games.length > 0) {
+          setGames(response.games);
+          setCounter(response.count);
+        } else {
+          setGames([]);
+          setCounter(0);
+        }
+      })
+>>>>>>> Stashed changes
   }, []);  
   
   return (

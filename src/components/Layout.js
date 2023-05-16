@@ -3,7 +3,8 @@ import { Outlet, useLocation, Link } from 'react-router-dom';
 import Nav from './Nav';
 
 export default function Layout({ user, logOut }) {
-  const isLoggedIn = user.length > 0;
+  console.log(user)
+  const isLoggedIn = user !== null || user !== undefined;
   const location = useLocation();
   
   const isDashboard = location.pathname === '/dashboard';
@@ -14,8 +15,12 @@ export default function Layout({ user, logOut }) {
   }
 
   return (
+<<<<<<< Updated upstream
     <div id={containerId}>
       <Nav user={user} logOut={logOut} />
+=======
+    <div id={containerClass}>
+>>>>>>> Stashed changes
       <Outlet />
       {isLoggedIn && (
         <footer>
