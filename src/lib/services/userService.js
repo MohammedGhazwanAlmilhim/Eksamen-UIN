@@ -105,7 +105,6 @@ export const addUserFavourites = async (email, gameApiId, state) => {
     //console.log(isFavorite);
 
     if (isFavorite === true) {
-      console.log("kukk");
       // Remove the game from the user's favorite games
       let updatedFavoriteGames = await fetchGamesFromFavorite(user, favoriteGames);
       console.log(updatedFavoriteGames);
