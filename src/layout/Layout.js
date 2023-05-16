@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet, useLocation, Link } from 'react-router-dom';
+import { Outlet, useLocation, Navigate, Link } from 'react-router-dom';
 import Nav from './Nav';
 
 export default function Layout({ user, logOut }) {
@@ -11,6 +11,10 @@ export default function Layout({ user, logOut }) {
 
   if (location.pathname === '/') {
     containerId = 'container-signin';
+  }
+
+  if (!isLoggedIn && location.pathname !== '/') {
+    return <Navigate to="/" />;
   }
 
   return (

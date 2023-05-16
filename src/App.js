@@ -1,12 +1,12 @@
 import './css/main.css';
 import { Route, Routes } from 'react-router-dom';
-import Layout from './components/Layout';
+import Layout from './layout/Layout';
 import Dashboard from './pages/Dashboard';
 import GameShop from './pages/GameShop';
 import MyGames from './pages/MyGames';
 import MyFavorites from './pages/MyFavourites';
 import GamePage from './pages/GamePage';
-import Signin from './components/Signin';
+import Signin from './pages/Signin';
 import { useLocalStorage } from './functions/LocalStorage';
 
 function App() {
