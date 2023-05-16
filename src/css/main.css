@@ -558,5 +558,16 @@ nav .hamburger.active .bar:nth-child(3) {
     border-radius: 20px;
   }
 }
+.btn {
+  display: inline-block;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 7px 10px;
+  width: 70px;
+  text-align: center;
+  color: #141618;
+  text-decoration: none;
+  margin-top: auto;
+}
 
 /*# sourceMappingURL=main.css.map */

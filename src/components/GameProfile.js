@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { addUserFavourites, getUserByEmail, fetchGamesFromFavorite} from "../lib/services/userService";
 import { TagCloud } from "react-tagcloud";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,6 +7,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 function GameProfile({ game }) {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [showFullDescription, setShowFullDescription] = useState(false);
 
   useEffect(() => {
     const storageValue = localStorage.getItem("GamehubUser");
@@ -27,6 +29,19 @@ function GameProfile({ game }) {
 
     fetchUserAndCheckFavorites();
   }, [game]);  
+
+
+  const toggleDescription = () => {
+    setShowFullDescription(!showFullDescription);
+  };
+
+  const renderDescription = () => {
+    if (showFullDescription) {
+      return game.description_raw;
+    } else {
+      return game.description_raw.split('').slice(0, 300).join('') + '...';
+    }
+  };
 
   const checkIfGameInFavorites = async (user, game) => {    
     if (user && user.favoriteGames && game) {
@@ -92,7 +107,12 @@ function GameProfile({ game }) {
               </section>
 
               <br />
-              <p>Summary: {game.description_raw}</p>
+
+
+              <p>Summary: {renderDescription()}</p>
+            <button onClick={toggleDescription}>
+              {showFullDescription ? 'Vis mindre' : 'Les mer'}
+            </button>
               <br />
               <p>TagCloud: </p>
               <TagCloud
@@ -120,6 +140,8 @@ function GameProfile({ game }) {
                   <span key={store.store.id}>{store.store.name} </span>
                 ))}
               </p>
+
+              <Link className="btn" to={`https://store.steampowered.com/`}>Buy</Link>
             </section>
           </section>
         </section>
