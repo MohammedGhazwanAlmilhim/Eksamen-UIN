@@ -42,7 +42,7 @@ export default function Nav({ user, logOut }) {
 
       {user.length > 0 && (
         <section className={isMobileMenuOpen ? "active" : ""}>
-          <p>Signed in as: {user[0]}</p>
+          <p>Signed in as: {user[1]}</p>
           <FontAwesomeIcon
             className="logout"
             type="button"

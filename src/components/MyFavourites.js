@@ -15,7 +15,7 @@ function MyFavourites() {
   
     getUserFavourites(name, email)
       .then(response => {
-        if (Array.isArray(response.games) && response !== null) {
+        if (response && Array.isArray(response.games) && response.games.length > 0) {
           setGames(response.games);
           setCounter(response.count);
         } else {
@@ -23,10 +23,7 @@ function MyFavourites() {
           setCounter(0);
         }
       })
-      .catch(error => {
-        console.error('Kan ikke hente favorittspill:', error);
-      });
-  }, []);
+  }, []);  
   return (
     <aside>
       <h2>My Favourites  ({counter} games)</h2>
