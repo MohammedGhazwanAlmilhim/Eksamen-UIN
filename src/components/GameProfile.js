@@ -54,7 +54,7 @@ function GameProfile({ game }) {
   const handleAddFavorite = async () => {
     const storageValue = localStorage.getItem("GamehubUser");
     const arrayValue = JSON.parse(storageValue);
-    const email = arrayValue[1];
+    const email = arrayValue[0];
     const user = await getUserByEmail(email);
   
     try {
