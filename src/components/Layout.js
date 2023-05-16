@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, Link } from 'react-router-dom';
 import Nav from './Nav';
 
 export default function Layout({ user, logOut }) {
@@ -15,7 +15,7 @@ export default function Layout({ user, logOut }) {
       <Outlet />
       {isLoggedIn && (
         <footer>
-          <p>Credit to rawg.io</p>
+          <p>Credit to <Link to='https://rawg.io/'>rawg.io</Link></p>
         </footer>
       )}
     </div>

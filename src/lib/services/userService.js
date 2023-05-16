@@ -50,34 +50,45 @@ export async function getUserFavourites(name, email) {
 
 //Denne funksjonen brukes til å legge spill på favoritt listen til brukeren
 //brukes i GameProfile Komponenten
+// UserService.js
+
+// Import the necessary dependencies
+
 export const addUserFavourites = async (email, gameApiId) => {
-    try {
-      const game = await client.fetch(`*[_type == "game" && apiid == ${gameApiId}][0]`);
-      const user = await client.fetch(`*[_type == "user" && email == "${email}"][0]`);
+  try {
+    // Fetch the game and user from the database based on the provided parameters
+    const game = await client.fetch(`*[_type == "game" && apiid == ${gameApiId}][0]`);
+    const user = await getUserByEmail(email);
+
+
+    // Add the game to the user's favorite games
+    const favoriteGames = user.favoriteGames || [];
+    const gameRef = { _type: "reference", _ref: game._id, _key: game._id };
+    const updatedUser = await client
+      .patch(user._id)
+      .set({ favoriteGames: [...favoriteGames, gameRef] })
+      .commit();
+
+    console.log(updatedUser);
+    return updatedUser;
+  } catch (error) {
+    console.error("Error adding favorite game:", error.message);
+    throw error;
+  }
+};
+
+export const getUserByEmail = async (email) => {
+  try {
+    // Fetch the user from the database based on the provided email
+    const user = await client.fetch(`*[_type == "user" && email == "${email}"][0]`);
+    return user;
+  } catch (error) {
+    console.error("Error fetching user:", error.message);
+    throw error;
+  }
+};
+
+
+
   
-      const favoriteGames = user.favoriteGames || [];
-      const gameRef = {_type: 'reference', _ref: game._id, _key: game._id};
-  
-      const updatedUser = await client
-        .patch(user._id)
-        .set({favoriteGames: [...favoriteGames, gameRef]})
-        .commit();
-      console.log(updatedUser);
-      return updatedUser;
-    } catch (error) {
-      console.error('Error adding favorite game:', error.message);
-    }
-  };
-  
-  
-  
-  //?
-  export const getUserWithGame = async (email) => {
-    const query = `*[ _type == "user" && email == "${email}" ][0]{
-      ...,
-      favoriteGames[]->{ _id, _ref }
-    }`;
-    const result = await client.fetch(query);
-    return result;
-  };
   
