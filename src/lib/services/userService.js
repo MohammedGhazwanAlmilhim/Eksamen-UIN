@@ -23,6 +23,7 @@ export const createUser = async (name, email) =>{
 }
 
 //SLETTE????
+
 export async function fetchGamesFromFavorite(user, favoriteGamesArray) {
   try {
     const gameObjects = await Promise.all(
@@ -34,11 +35,11 @@ export async function fetchGamesFromFavorite(user, favoriteGamesArray) {
     console.error("Error fetching game objects:", error.message);
     return null
   }
+  return null
 };
 
 //Denne funksjonen brukes til å hente alle spill som ligger i favorittlisten i DB
 //viser spillene i MyFavourites Komponenten
-
 export async function getUserFavourites(name, email) {
   const data = await client.fetch(`*[_type == "user" && name == '${name}' && email == '${email}']{
     name,
@@ -57,8 +58,8 @@ export async function getUserFavourites(name, email) {
     "count": count(favoriteGames)
   }`);
 
-  // Check if data[0] is defined before accessing properties
-  if (data[0]) {
+  // Check if data array has at least one element
+  if (data && data.length > 0) {
     const games = data[0].favoriteGames;
     const count = data[0].count;
     return { games, count };
@@ -69,10 +70,38 @@ export async function getUserFavourites(name, email) {
 }
 
 
-//endre rentur user til return data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const getUserByEmail = async (email) => {
+  try {
+    // Fetch the user from the database based on the provided email
     const user = await client.fetch(`*[_type == "user" && email == "${email}"][0]`);
     return user;
+  } catch (error) {
+    console.error("Error fetching user:", error.message);
+    throw error;
+  }
 };
 
 

@@ -113,7 +113,7 @@ function GameProfile({ game }) {
               <br />
 
 
-              <p>Summary: {renderDescription()}</p>
+            <p className="summary">Summary: {renderDescription()}</p>
             <button onClick={toggleDescription}>
               {showFullDescription ? 'Vis mindre' : 'Les mer'}
             </button>
@@ -124,28 +124,55 @@ function GameProfile({ game }) {
                   value: tag.name,
                   count: tag.games_count,
                 }))}
-                minSize={12}
-                maxSize={35}
+                minSize={13}
+                maxSize={13}
               />
               <br />
 
-              <p>Developers: {game.developers.map((dev) => dev.name).join(", ")}</p>
-              <p>Publisher: {game.publishers.map((pub) => pub.name).join(", ")}</p>
-              <p>Release Year: {game.released.substring(0, 4)}</p>
-              <p>
-                Platforms:{" "}
-                {game.platforms.map((platform) => (
-                  <span key={platform.platform.id}>{platform.platform.name} </span>
-                ))}
-              </p>
-              <p>
-                Stores:{" "}
-                {game.stores.map((store) => (
-                  <span key={store.store.id}>{store.store.name} </span>
-                ))}
-              </p>
+              <section className="gameprofile-content">
 
-              <Link className="btn" to={`https://store.steampowered.com/`}>Buy</Link>
+                <div className="info">
+                    <h5>Developers:</h5>
+                    <p>{game.developers.map((dev) => dev.name).join(", ")}</p>
+                </div>
+
+                <div className="info">
+                    <h5>Publisher:</h5>
+                    <p>{game.publishers.map((pub) => pub.name).join(", ")}</p>
+                </div>
+
+                <div className="info">
+                    <h5>Release Year:</h5>
+                    <p>{game.released.substring(0, 4)}</p>
+                </div>
+
+
+                <div className="info">
+                    <h5>Platforms:</h5>
+                    <p>
+                      {" "}
+                      {game.platforms.map((platform) => (
+                        <span key={platform.platform.id}>{platform.platform.name} </span>
+                      ))}
+                    </p>
+                </div>
+
+                <div className="info">
+                <h5>Stores:</h5>
+                <p>
+                  Stores:{" "}
+                  {game.stores.map((store) => (
+                    <span key={store.store.id}>{store.store.name} </span>
+                  ))}
+                </p>
+                </div>
+
+
+
+                <Link className="btn" to={`https://store.steampowered.com/`}>Buy</Link>
+
+              </section>
+
             </section>
           </section>
         </section>
