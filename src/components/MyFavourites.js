@@ -37,7 +37,7 @@ function MyFavorites() {
         ) : (
           games.map((item) => (
             <GameCard
-              key={item._id}
+              key={item.apiid}
               slug={item.slug}
               id={item.apiid}
               title={item.title}
