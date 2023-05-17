@@ -6,6 +6,9 @@ import GameCard from './GameCard';
 function MyFavorites() {
   const [games, setGames] = useState([]);
   const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [empty, setEmpty] = useState(false);
 
   const storageValue = localStorage.getItem('GamehubUser');
   const arrayValue = JSON.parse(storageValue);
@@ -13,14 +16,24 @@ function MyFavorites() {
   const email = arrayValue[0];
 
   const fetchUserFavoriteGames = async () => {
-    const data = await getUserFavourites(name, email);
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 700));
 
-    if (data.games[0].favoriteGames == null && data.games[0].count == null) {
-      setGames([]);
-      setCount(0);
-    } else if (data) {
-      setGames(data.games[0].favoriteGames);
-      setCount(data.games[0].count);
+      const data = await getUserFavourites(name, email);
+      
+      if (data.games[0].favoriteGames.length === 0 && data.games[0].count === 0) {
+        setGames([]);
+        setCount(0);
+        setEmpty(true);
+      } else if (data) {
+        setGames(data.games[0].favoriteGames);
+        setCount(data.games[0].count);
+      }
+
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -30,28 +43,36 @@ function MyFavorites() {
 
   return (
     <aside>
-      <h2>My Favorites ({count} games)</h2>
-      <section className="my-favourites">
-        {games.length === 0 ? (
-          <p>There are no games added to favorites!</p>
-        ) : (
-          games.map((item) => (
-            <GameCard
-              key={item.apiid}
-              slug={item.slug}
-              id={item.apiid}
-              title={item.title}
-              img={item.bilde}
-              playtime={item.timerspilt}
-              cardLink={true}
-            />
-          ))
-        )}
-      </section>
-      {games.length > 0 && (
-        <section className="indicator">
-          <Link to="/favorites">Go to favorites</Link>
-        </section>
+      {error ? (
+        <p>Error: Unable to fetch favorite games.</p>
+      ) : loading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <h2>My Favorites ({count} games)</h2>
+          {empty ? (
+            <p>There are no games added to favorites!</p>
+          ) : (
+            <section className="my-favourites">
+              {games.map((item) => (
+                <GameCard
+                  key={item.apiid}
+                  slug={item.slug}
+                  id={item.apiid}
+                  title={item.title}
+                  img={item.bilde}
+                  playtime={item.timerspilt}
+                  cardLink={true}
+                />
+              ))}
+            </section>
+          )}
+          {!!games.length && (
+            <section className="indicator">
+              <Link to="/favorites">Go to favorites</Link>
+            </section>
+          )}
+        </>
       )}
     </aside>
   );

@@ -1,63 +1,75 @@
-//MyFavorites som lister opp alle spill fra mygames-array inne i games.js filen hvor "fav:true"
-
-//For MyFavourites, lag funksjonalitet som gjør følgende:
-//På visning av ett spill (, ha en knapp "Legg til favoritter".
-//Klikk på knappen "Legg til favoritter" skal lagre spillet i en array i en state kalt favourites.
-//MyFavourites skal hente/vise spill fra favourites-staten.
-
 import React, { useState, useEffect } from 'react';
 import { getUserFavourites } from '../lib/services/userService';
 import GameCard from '../components/GameCard';
 
-function MyFavourites() {
+function MyFavorites() {
   const [games, setGames] = useState([]);
   const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [empty, setEmpty] = useState(false);
 
   const storageValue = localStorage.getItem('GamehubUser');
   const arrayValue = JSON.parse(storageValue);
   const name = arrayValue[1];
   const email = arrayValue[0];
 
-  const fetchUserFavouriteGames = async () => {
-    const data = await getUserFavourites(name, email);
+  const fetchUserFavoriteGames = async () => {
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 700));
 
-    if (data.games[0].favoriteGames == null && data.games[0].count == null) {
-      setGames([]);
-      setCount(0);
-    } 
-    
-    else if(data){
-      setGames(data.games[0].favoriteGames);
-      setCount(data.games[0].count);
+      const data = await getUserFavourites(name, email);
+      
+      if (data.games[0].favoriteGames.length === 0 && data.games[0].count === 0) {
+        setGames([]);
+        setCount(0);
+        setEmpty(true);
+      } else if (data) {
+        setGames(data.games[0].favoriteGames);
+        setCount(data.games[0].count);
+      }
+
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchUserFavouriteGames();
-  }, []);  
+    fetchUserFavoriteGames();
+  }, []);
 
   return (
     <main>
-      <h1>My Favourites ({count} games)</h1>
-      <section className="game-library">
-        {games.length == 0 ? (
-          <p>There is no games added to favourites!</p>
-        ) : (
-          games.map((item) => (
-            <GameCard
-              key={item._id}
-              slug={item.slug}
-              id={item.apiid}
-              title={item.title}
-              img={item.bilde}
-              playtime={item.timerspilt}
-              cardLink={true}
-            />
-          ))
-        )}
-      </section>
+      {error ? (
+        <p>Error: Unable to fetch favorite games.</p>
+      ) : loading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <h2>My Favorites ({count} games)</h2>
+          {empty ? (
+            <p>There are no games added to favorites!</p>
+          ) : (
+            <section className="game-library">
+              {games.map((item) => (
+                <GameCard
+                  key={item.apiid}
+                  slug={item.slug}
+                  id={item.apiid}
+                  title={item.title}
+                  img={item.bilde}
+                  playtime={item.timerspilt}
+                  cardLink={true}
+                />
+              ))}
+            </section>
+          )}
+        </>
+      )}
     </main>
   );
 }
 
-export default MyFavourites;
+export default MyFavorites;

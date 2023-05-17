@@ -5,36 +5,65 @@ import GameCard from '../components/GameCard';
 function GameShop() {
   const [games, setGames] = useState([]);
   const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [empty, setEmpty] = useState(false);
+
 
   const fetchTenLatestGames = async () => {
-    const data = await getTenLatestGames();
-    setGames(data.games);
-    setCount(data.count);
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 700));
+      
+      const data = await getTenLatestGames();
+      
+      if (data.games.length === 0 && data.count === 0) {
+        setGames([]);
+        setCount(0);
+        setEmpty(true);
+      } else if (data) {
+        setGames(data.games);
+        setCount(data.count);
+      }
+
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     fetchTenLatestGames();
   }, []);
 
+
   return (
     <main>
-      <h1>Gameshop ({count} games)</h1>
-      <section className="gameshop-page">
-        {games.length === 0 ? (
-          <p>No games to show</p>
-        ) : (
-          games.map((item) => (
-            <GameCard
-              key={item._id}
-              slug={item.slug}
-              id={item.apiid}
-              title={item.title}
-              img={item.bilde}
-              genres={item.sjangere.map((sjanger) => sjanger.navn).join(', ')}
-            />
-          ))
-        )}
-      </section>
+      {error ? (
+        <p>Error: Unable to fetch games.</p>
+      ) : loading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <h1>Gameshop ({count} games)</h1>
+          {empty ? (
+            <p>Gameshop is empty!</p>
+          ) : (
+            <section className="gameshop-page">
+              {games.map((item) => (
+                <GameCard
+                  key={item.apiid}
+                  slug={item.slug}
+                  id={item.apiid}
+                  title={item.title}
+                  img={item.bilde}
+                  playtime={item.timerspilt}
+                />
+              ))}
+            </section>
+          )}
+        </>
+      )}
     </main>
   );
 }
