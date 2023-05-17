@@ -24,6 +24,7 @@ function MyGames() {
       } else if (data) {
         setGames(data.games);
         setCount(data.count);
+        console.log(data);
       }
 
     } catch (error) {

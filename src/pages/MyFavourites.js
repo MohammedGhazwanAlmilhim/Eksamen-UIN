@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getUserFavourites } from '../lib/services/userService';
 import GameCard from '../components/GameCard';
+import Loading from '../layout/Loading';
 
 function MyFavorites() {
   const [games, setGames] = useState([]);
@@ -42,11 +43,11 @@ function MyFavorites() {
 
   return (
     <main>
+      <Loading show={loading} />
+
       {error ? (
         <p>Error: Unable to fetch favorite games.</p>
-      ) : loading ? (
-        <p>Loading...</p>
-      ) : (
+      ) : !loading ? (
         <>
           <h2>My Favorites ({count} games)</h2>
           {empty ? (
@@ -67,7 +68,7 @@ function MyFavorites() {
             </section>
           )}
         </>
-      )}
+      ) : null}
     </main>
   );
 }

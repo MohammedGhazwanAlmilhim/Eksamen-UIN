@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getTweentyActionGames } from '../lib/services/gameService';
 import GameCard from '../components/GameCard';
+import Loading from '../layout/Loading';
 
 function MyGames() {
   const [games, setGames] = useState([]);
@@ -9,13 +10,12 @@ function MyGames() {
   const [error, setError] = useState(false);
   const [empty, setEmpty] = useState(false);
 
-
   const fetchTweentyActionGames = async () => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 700));
-      
+
       const data = await getTweentyActionGames();
-      
+
       if (data.games.length === 0 && data.count === 0) {
         setGames([]);
         setCount(0);
@@ -24,7 +24,6 @@ function MyGames() {
         setGames(data.games);
         setCount(data.count);
       }
-
     } catch (error) {
       setError(true);
     } finally {
@@ -38,11 +37,11 @@ function MyGames() {
 
   return (
     <main>
+      <Loading show={loading} />
+
       {error ? (
         <p>Error: Unable to fetch games.</p>
-      ) : loading ? (
-        <p>Loading...</p>
-      ) : (
+      ) : !loading ? (
         <>
           <h1>My Games-Library ({count} games)</h1>
           {empty ? (
@@ -63,7 +62,7 @@ function MyGames() {
             </section>
           )}
         </>
-      )}
+      ) : null}
     </main>
   );
 }

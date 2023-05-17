@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getTenLatestGames } from '../lib/services/gameService';
 import GameCard from '../components/GameCard';
+import Loading from '../layout/Loading';
 
 function GameShop() {
   const [games, setGames] = useState([]);
@@ -9,13 +10,12 @@ function GameShop() {
   const [error, setError] = useState(false);
   const [empty, setEmpty] = useState(false);
 
-
   const fetchTenLatestGames = async () => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 700));
-      
+
       const data = await getTenLatestGames();
-      
+
       if (data.games.length === 0 && data.count === 0) {
         setGames([]);
         setCount(0);
@@ -24,7 +24,6 @@ function GameShop() {
         setGames(data.games);
         setCount(data.count);
       }
-
     } catch (error) {
       setError(true);
     } finally {
@@ -36,14 +35,13 @@ function GameShop() {
     fetchTenLatestGames();
   }, []);
 
-
   return (
     <main>
+      <Loading show={loading} />
+
       {error ? (
         <p>Error: Unable to fetch games.</p>
-      ) : loading ? (
-        <p>Loading...</p>
-      ) : (
+      ) : !loading ? (
         <>
           <h1>Gameshop ({count} games)</h1>
           {empty ? (
@@ -63,7 +61,7 @@ function GameShop() {
             </section>
           )}
         </>
-      )}
+      ) : null}
     </main>
   );
 }

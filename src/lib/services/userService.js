@@ -49,7 +49,7 @@ export const getUserFavourites = async (name, email) => {
         "slug": slug.current, 
         apiid,
         timerspilt,
-        bilde,
+        "bilde": bilde.asset->url,
         released,
         sjangere[]->{
           navn

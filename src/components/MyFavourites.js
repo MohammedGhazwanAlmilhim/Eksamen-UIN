@@ -17,8 +17,6 @@ function MyFavorites() {
 
   const fetchUserFavoriteGames = async () => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 700));
-
       const data = await getUserFavourites(name, email);
       
       if (data.games[0].favoriteGames.length === 0 && data.games[0].count === 0) {

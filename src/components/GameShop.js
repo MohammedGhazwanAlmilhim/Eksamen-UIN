@@ -12,8 +12,6 @@ function GameShop() {
 
   const fetchNewestGames = async () => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 700));
-      
       const data = await getNewestGames();
       
       if (data.games.length === 0) {

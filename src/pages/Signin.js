@@ -7,7 +7,6 @@ export default function Signin({ user, setUser }) {
   const [signedIn, setSignedIn] = useState(false);
   const [invalidEmail, setInvalidEmail] = useState(false);
 
-  //se på setFormData
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,15 +43,15 @@ export default function Signin({ user, setUser }) {
     <main>
       <section id="signin">
         <h2>Sign In</h2>
+        {invalidEmail && (
+            <p>Ugyldig e-postadresse. Vennligst bruk en "@gamehub.com" adresse.</p>
+          )}
         <section>
           <SigninForm
             handleSubmit={handleSubmit}
             handleChange={handleChange}
             formData={formData}
           />
-          {invalidEmail && (
-            <p>Ugyldig e-postadresse. Vennligst bruk en "@gamehub.com" adresse.</p>
-          )}
         </section>
       </section>
     </main>

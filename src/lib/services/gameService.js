@@ -6,7 +6,7 @@ export const getSteamLink = async (id) => {
     "slug": slug.current, 
     apiid,
     title,
-    bilde,
+    "bilde": bilde.asset->url,
     steamlink,
     timerspilt,
     sjangere[]->{
@@ -29,7 +29,7 @@ export const getNewestGames = async () => {
     "slug": slug.current, 
     apiid,
     title,
-    bilde,
+    "bilde": bilde.asset->url,
     timerspilt,
     sjangere[]->{
       _id,
@@ -49,7 +49,7 @@ export const getTenLatestGames = async () => {
     "slug": slug.current, 
     apiid,
     title,
-    bilde,
+    "bilde": bilde.asset->url,
     timerspilt,
     sjangere[]->{
       _id,
@@ -71,7 +71,7 @@ export const getFourActionGames = async () => {
       "slug": slug.current, 
       apiid,
       title,
-      bilde ,
+      "bilde": bilde.asset->url,
       timerspilt,
       sjangere[]->{
         _id,
@@ -91,7 +91,7 @@ export const getTweentyActionGames = async () => {
     "slug": slug.current, 
     apiid,
     title,
-    bilde,
+    "bilde": bilde.asset->url,
     timerspilt,
     sjangere[]->{
       _id,
