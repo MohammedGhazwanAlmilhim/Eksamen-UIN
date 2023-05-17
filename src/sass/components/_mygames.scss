@@ -1,3 +1,15 @@
+#container-dashboard{
+    display: grid;
+    grid-template-areas: "nav nav nav"
+      "header header header"
+      "main main aside"
+      "footer footer footer";
+    grid-template-rows: 76px auto auto auto 76px;
+    grid-template-columns: 1fr 1fr 450px;
+    min-height: 100vh;
+  }
+
+
 .game-library {
     margin-top: 25px;
     gap: 25px;
@@ -5,17 +17,22 @@
     flex-direction: row;
     flex-wrap: wrap;
 
+
+
     .card-link {
         display: flex;
         flex-direction: column;
         min-height: 400px;
-        width: calc(32% + 1px);
+        width: 32%;
         text-decoration: none;
         color: $accent-color;
         border-radius: 20px;
         box-shadow: 0 8px 32px 0 rgba(2, 2, 2, 0.37);
 
         article {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
             width: 100%;
             height: 100%;
             border-radius: 20px;
@@ -43,6 +60,7 @@
             justify-content: space-between;
             width: 50%;
             padding: 60px 30px;
+            
 
             h1 {
                 font-size: 24px;
@@ -67,3 +85,71 @@
         }
     }
 }
+
+
+    
+@media only screen and (max-width: 768px){
+
+    .card-link{
+        min-width: 100% !important;
+    }
+    
+    
+    #container-dashboard{
+        display: grid;
+        grid-template-areas: "nav"
+          "header"
+          "main"
+          "aside"
+          "footer";
+        grid-template-rows: 76px auto auto auto 76px;
+        grid-template-columns: 1fr;
+        min-height: 100vh;
+      }
+    
+    }
+    
+    
+    @media (min-width: 769px) and (max-width: 1024px) {
+    
+        #container-dashboard{
+            display: grid;
+            grid-template-areas: "nav"
+              "header"
+              "main"
+              "aside"
+              "footer";
+            grid-template-rows: 76px auto auto auto 76px;
+            grid-template-columns: 1fr;
+            min-height: 100vh;
+          }
+    
+          .card-link{
+            width: 48% !important;
+            flex-wrap: wrap;
+           
+        }
+      
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

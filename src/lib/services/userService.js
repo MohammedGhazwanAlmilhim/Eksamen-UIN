@@ -38,9 +38,24 @@ export async function fetchGamesFromFavorite(user, favoriteGamesArray) {
 
 //Denne funksjonen brukes til å hente alle spill som ligger i favorittlisten i DB
 //viser spillene i MyFavourites Komponenten
+
 export async function getUserFavourites(name, email) {
   const data = await client.fetch(`*[_type == "user" && name == '${name}' && email == '${email}']{
-    name, email, "favoriteGames": favoriteGames[]->{title, "slug": slug.current, apiid, timerspilt, sjangere[]->{navn}, bilde, released},"count": count(favoriteGames)`);
+    name,
+    email,
+    "favoriteGames": favoriteGames[]->{
+      title,
+      "slug": slug.current, 
+      apiid,
+      timerspilt,
+      sjangere[]->{
+        navn
+      },
+      bilde,
+      released
+    },
+    "count": count(favoriteGames)
+  }`);
 
   // Check if data[0] is defined before accessing properties
   if (data[0]) {
