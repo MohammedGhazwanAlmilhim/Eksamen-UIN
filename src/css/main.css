@@ -460,10 +460,6 @@ footer a {
 .game-profile-container .game-profile section .summary {
   color: #999999;
 }
-.game-profile-container .game-profile section .gameprofile-content {
-  display: flex;
-  flex-direction: column;
-}
 .game-profile-container .game-profile section .gameprofile-content p {
   padding: 6px;
   border-bottom: solid 1px white;
@@ -474,9 +470,41 @@ footer a {
 }
 .game-profile-container .game-profile section .gameprofile-content p .title-color {
   color: rgb(255, 255, 255);
+  font-size: 15px;
 }
-.game-profile-container .game-profile section .gameprofile-content h5 {
-  width: 24%;
+@media only screen and (max-width: 768px) {
+  .game-profile-container .game-profile {
+    flex-direction: column;
+  }
+  .game-profile-container .game-profile figure {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 40px;
+  }
+  .game-profile-container .game-profile section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+  .game-profile-container .game-profile section button {
+    padding: 14px;
+  }
+  .game-profile-container .game-profile section .summary {
+    color: #999999;
+  }
+  .game-profile-container .game-profile section .gameprofile-content p {
+    padding: 6px;
+    border-bottom: solid 1px white;
+    margin-bottom: 5px;
+    width: 80%;
+    font-size: 13px;
+    color: #999999;
+  }
+  .game-profile-container .game-profile section .gameprofile-content p .title-color {
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+  }
 }
 
 #signin {
