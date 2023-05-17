@@ -1,155 +1,69 @@
-#container-dashboard{
-    display: grid;
-    grid-template-areas: "nav nav nav"
-      "header header header"
-      "main main aside"
-      "footer footer footer";
-    grid-template-rows: 76px auto auto auto 76px;
-    grid-template-columns: 1fr 1fr 450px;
-    min-height: 100vh;
-  }
-
-
 .game-library {
-    margin-top: 25px;
-    gap: 25px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  margin-top: 25px;
+  gap: 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 
+  .card-link {
+      display: flex;
+      flex-direction: column;
+      min-height: 400px;
+      width: calc(32% + 1px);
+      text-decoration: none;
+      color: $accent-color;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px 0 rgba(2, 2, 2, 0.37);
 
-
-    .card-link {
-        display: flex;
-        flex-direction: column;
-        min-height: 400px;
-        width: 32%;
-        text-decoration: none;
-        color: $accent-color;
-        border-radius: 20px;
-        box-shadow: 0 8px 32px 0 rgba(2, 2, 2, 0.37);
-
-        article {
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
-        }
-
-        figure {
-            width: 100%;
-            height: 200px;
-            margin: 0;
-            border-top-right-radius: 20px;
-            border-top-left-radius: 20px;
-
-            img {
-                object-fit: cover;
-                width: 100%;
-                height: 100%;
-                border-top-right-radius: 20px;
-                border-top-left-radius: 20px;
-            }
-        }
-
-        .card-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 50%;
-            padding: 60px 30px;
-            
-
-            h1 {
-                font-size: 24px;
-            }
-
-            h3 {
-                font-size: 18px;
-                font-weight: 400;
-            }
-
-            a {
-                display: inline-block;
-                background-color: $accent-color;
-                border-radius: 10px;
-                padding: 7px 10px;
-                width: 70px;
-                text-align: center;
-                color: $secondary-color;
-                text-decoration: none;
-                margin-top: auto;
-            }
-        }
-    }
-}
-
-
-    
-@media only screen and (max-width: 768px){
-
-    .card-link{
-        min-width: 100% !important;
-    }
-    
-    
-    #container-dashboard{
-        display: grid;
-        grid-template-areas: "nav"
-          "header"
-          "main"
-          "aside"
-          "footer";
-        grid-template-rows: 76px auto auto auto 76px;
-        grid-template-columns: 1fr;
-        min-height: 100vh;
+      article {
+          width: 100%;
+          height: 100%;
+          border-radius: 20px;
       }
-    
-    }
-    
-    
-    @media (min-width: 769px) and (max-width: 1024px) {
-    
-        #container-dashboard{
-            display: grid;
-            grid-template-areas: "nav"
-              "header"
-              "main"
-              "aside"
-              "footer";
-            grid-template-rows: 76px auto auto auto 76px;
-            grid-template-columns: 1fr;
-            min-height: 100vh;
+
+      figure {
+          width: 100%;
+          height: 200px;
+          margin: 0;
+          border-top-right-radius: 20px;
+          border-top-left-radius: 20px;
+
+          img {
+              object-fit: cover;
+              width: 100%;
+              height: 100%;
+              border-top-right-radius: 20px;
+              border-top-left-radius: 20px;
           }
-    
-          .card-link{
-            width: 48% !important;
-            flex-wrap: wrap;
-           
-        }
-      
       }
 
+      .card-content {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 50%;
+          padding: 60px 30px;
 
+          h1 {
+              font-size: 24px;
+          }
 
+          h3 {
+              font-size: 18px;
+              font-weight: 400;
+          }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          a {
+              display: inline-block;
+              background-color: $accent-color;
+              border-radius: 10px;
+              padding: 7px 10px;
+              width: 70px;
+              text-align: center;
+              color: $secondary-color;
+              text-decoration: none;
+              margin-top: auto;
+          }
+      }
+  }
+}

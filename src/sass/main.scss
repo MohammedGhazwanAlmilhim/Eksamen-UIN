@@ -176,14 +176,73 @@ footer {
 
 
   .my-favourites {
-    flex-direction: column;
-
     .card {
       width: 100%;
     }
   }
 
 }
+
+
+
+@media (min-width: 769px) and (max-width: 900px){
+  
+
+}
+
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    
+  #container-dashboard{
+      display: grid;
+      grid-template-areas: "nav"
+        "header"
+        "main"
+        "aside"
+        "footer";
+      grid-template-rows: 76px auto auto auto 76px;
+      grid-template-columns: 1fr;
+      min-height: 100vh;
+
+      .latest-games {
+        flex-direction: row !important;
+      
+    
+        .card:nth-child(1), .card:nth-child(2){
+          width: 100% !important;
+        }
+
+        .card:nth-child(3){
+          width: 100% !important;
+        }
+      }
+
+
+      .game-library{
+        .card-link{
+          width: 48% !important;
+          flex-wrap: wrap;
+         
+      }
+      }
+
+      .my-favourites {
+        flex-direction: row !important;
+        flex-wrap: wrap;
+    
+        .card-link {
+          width: 48% !important;
+        }
+    }
+}
+}
+
+
+
+
+
+
+
 
 //Components
 @import '../sass/components/myfavourites';
