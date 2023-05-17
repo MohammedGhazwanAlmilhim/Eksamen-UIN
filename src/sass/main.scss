@@ -136,7 +136,6 @@ footer {
 }
 
 
-
 @media only screen and (max-width: 768px) {
 
   #container-dashboard{
@@ -150,8 +149,6 @@ footer {
     grid-template-columns: 1fr;
     min-height: 100vh;
   }
-
-
 
   .latest-games {
     flex-direction: column !important;
@@ -183,14 +180,6 @@ footer {
 
 
 }
-
-
-
-@media (min-width: 769px) and (max-width: 900px){
-  
-
-}
-
 
 @media (min-width: 769px) and (max-width: 1024px) {
     
@@ -237,13 +226,6 @@ footer {
     }
 }
 }
-
-
-
-
-
-
-
 
 //Components
 @import '../sass/components/myfavourites';
