@@ -112,11 +112,11 @@ footer a {
 }
 
 @media only screen and (max-width: 768px) {
-  #container {
+  #container-dashboard {
     display: grid;
-    grid-template-areas: "nav nav" "header header" "main main" "aside aside" "footer footer";
+    grid-template-areas: "nav" "header" "main" "aside" "footer";
     grid-template-rows: 76px auto auto auto 76px;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     min-height: 100vh;
   }
   .latest-games {
@@ -125,17 +125,46 @@ footer a {
   .latest-games .card {
     width: 100% !important;
   }
-  .game-libary {
+  .game-library {
     flex-direction: column;
   }
-  .game-libary .card {
-    width: 100%;
+  .game-library .card {
+    width: 100% !important;
   }
-  .my-favourites {
-    flex-direction: column;
+  .game-library .card-link {
+    width: 100% !important;
   }
   .my-favourites .card {
     width: 100%;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  #container-dashboard {
+    display: grid;
+    grid-template-areas: "nav" "header" "main" "aside" "footer";
+    grid-template-rows: 76px auto auto auto 76px;
+    grid-template-columns: 1fr;
+    min-height: 100vh;
+  }
+  #container-dashboard .latest-games {
+    flex-direction: row !important;
+  }
+  #container-dashboard .latest-games .card:nth-child(1), #container-dashboard .latest-games .card:nth-child(2) {
+    width: 48% !important;
+  }
+  #container-dashboard .latest-games .card:nth-child(3) {
+    width: 100% !important;
+  }
+  #container-dashboard .game-library .card-link {
+    width: 48% !important;
+    flex-wrap: wrap;
+  }
+  #container-dashboard .my-favourites {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+  }
+  #container-dashboard .my-favourites .card-link {
+    width: 48% !important;
   }
 }
 .my-favourites {
@@ -265,6 +294,7 @@ footer a {
   gap: 25px;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 .latest-games .card {
   display: flex;
