@@ -464,23 +464,18 @@ footer a {
   display: flex;
   flex-direction: column;
 }
-.game-profile-container .game-profile section .gameprofile-content .info {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-.game-profile-container .game-profile section .gameprofile-content .info p {
-  border: solid rgb(31, 130, 243) 1px;
-  border-radius: 5px;
+.game-profile-container .game-profile section .gameprofile-content p {
   padding: 6px;
+  border-bottom: solid 1px white;
   margin-bottom: 5px;
-  width: 50%;
-  font-size: 11px;
+  width: 80%;
+  font-size: 13px;
+  color: #999999;
 }
-.game-profile-container .game-profile section .gameprofile-content .info p:hover {
-  background-color: rgba(37, 109, 218, 0.363);
+.game-profile-container .game-profile section .gameprofile-content p .title-color {
+  color: rgb(255, 255, 255);
 }
-.game-profile-container .game-profile section .gameprofile-content .info h5 {
+.game-profile-container .game-profile section .gameprofile-content h5 {
   width: 24%;
 }
 

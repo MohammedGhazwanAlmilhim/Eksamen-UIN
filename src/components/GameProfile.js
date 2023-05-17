@@ -131,42 +131,21 @@ function GameProfile({ game }) {
 
               <section className="gameprofile-content">
 
-                <div className="info">
-                    <h5>Developers:</h5>
-                    <p>{game.developers.map((dev) => dev.name).join(", ")}</p>
-                </div>
-
-                <div className="info">
-                    <h5>Publisher:</h5>
-                    <p>{game.publishers.map((pub) => pub.name).join(", ")}</p>
-                </div>
-
-                <div className="info">
-                    <h5>Release Year:</h5>
-                    <p>{game.released.substring(0, 4)}</p>
-                </div>
-
-
-                <div className="info">
-                    <h5>Platforms:</h5>
-                    <p>
-                      {" "}
-                      {game.platforms.map((platform) => (
-                        <span key={platform.platform.id}>{platform.platform.name} </span>
-                      ))}
-                    </p>
-                </div>
-
-                <div className="info">
-                <h5>Stores:</h5>
-                <p>
-                  Stores:{" "}
-                  {game.stores.map((store) => (
-                    <span key={store.store.id}>{store.store.name} </span>
-                  ))}
-                </p>
-                </div>
-
+              <p> <span className="title-color">Developers:</span> {game.developers.map((dev) => dev.name).join(", ")}</p>
+              <p><span className="title-color">Publisher:</span> {game.publishers.map((pub) => pub.name).join(", ")}</p>
+              <p><span className="title-color">Release Year:</span> {game.released.substring(0, 4)}</p>
+              <p>
+               <span className="title-color">Platforms:</span> {" "}
+                {game.platforms.map((platform) => (
+                  <span key={platform.platform.id}>{platform.platform.name} </span>
+                ))}
+              </p>
+              <p><span className="title-color">Stores:</span>
+                 {" "}
+                {game.stores.map((store) => (
+                  <span key={store.store.id}>{store.store.name} </span>
+                ))}
+              </p>
 
 
                 <Link className="btn" to={`https://store.steampowered.com/`}>Buy</Link>

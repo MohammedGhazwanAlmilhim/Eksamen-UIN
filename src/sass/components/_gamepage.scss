@@ -79,34 +79,22 @@
                 display: flex;
                 flex-direction: column;
 
-                .info{
-                    display: flex;
-                    flex-direction: row;
-                    width: 100%;
-
-
                     p{
-                        border: solid rgb(31, 130, 243) 1px;
-                        border-radius: 5px;
                         padding: 6px;
+                        border-bottom:solid 1px white ;
                         margin-bottom: 5px;
-                        width: 50%;
-                        font-size: 11px;
-                    }
-                    p:hover{
-                        background-color: rgba(37, 109, 218, 0.363);
-                        
+                        width: 80%;
+                        font-size: 13px;
+                        color: #999999;
+
+                        .title-color{
+                            color: rgb(255, 255, 255);
+                        }
                     }
 
                     h5{
                         width: 24%;
                     }
-    
-
-
-                    
-                }
-
 
               }
 
