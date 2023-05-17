@@ -472,7 +472,7 @@ footer a {
   color: rgb(255, 255, 255);
   font-size: 15px;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1000px) {
   .game-profile-container .game-profile {
     flex-direction: column;
   }
@@ -488,22 +488,7 @@ footer a {
     height: 100%;
   }
   .game-profile-container .game-profile section button {
-    padding: 14px;
-  }
-  .game-profile-container .game-profile section .summary {
-    color: #999999;
-  }
-  .game-profile-container .game-profile section .gameprofile-content p {
-    padding: 6px;
-    border-bottom: solid 1px white;
-    margin-bottom: 5px;
-    width: 80%;
-    font-size: 13px;
-    color: #999999;
-  }
-  .game-profile-container .game-profile section .gameprofile-content p .title-color {
-    color: rgb(255, 255, 255);
-    font-size: 15px;
+    padding: 12px;
   }
 }
 
@@ -609,7 +594,7 @@ nav .hamburger.active .bar:nth-child(3) {
   transform: translateY(-10px) rotate(-45deg);
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1000px) {
   nav ul,
   nav section {
     display: none;
