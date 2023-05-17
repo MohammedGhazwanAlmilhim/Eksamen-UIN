@@ -43,7 +43,7 @@ function GameShop() {
           {!!games.length && (
             <section className="indicator">
               <h1>Gameshop</h1>
-              <Link to="/mygames">Go to favorites</Link>
+              <Link to="/mygames">Visit shop</Link>
             </section>
           )}
           {empty ? (

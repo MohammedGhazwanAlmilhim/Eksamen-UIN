@@ -67,7 +67,7 @@ function MyGames() {
           )}
           {!!games.length && (
             <section className="indicator">
-              <Link to="/mygames">Go to favorites</Link>
+              <Link to="/mygames">Go to library</Link>
             </section>
           )}
         </>
