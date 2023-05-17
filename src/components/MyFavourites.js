@@ -5,6 +5,8 @@ import GameCard from './GameCard';
 
 function MyFavourites() {
   const [games, setGames] = useState([]);
+
+  
   const [count, setCount] = useState(0);
 
   const storageValue = localStorage.getItem('GamehubUser');
@@ -23,29 +25,30 @@ function MyFavourites() {
   }, []);  
   
   return (
-    <aside>
-      <h2>My Favourites  ({count} games)</h2>
-      <section className="my-favourites">
-        {games.length === 0 ? (
-          <p>No games to show</p>
-        ) : (
-          games.map((item) => (
-            <GameCard
-              key={item.apiid}
-              slug={item.slug}
-              id={item.apiid}
-              title={item.title}
-              img={item.bilde}
-              playtime={item.timerspilt}
-              cardLink={true}
-            />
-          ))
-        )}
-      </section>
-      <section className="indicator">
-        <Link to="/favourites">Go to favourites</Link>
-      </section>
-    </aside>
+<aside>
+  <h2>My Favourites ({count ? count : 0} games)</h2>
+  <section className="my-favourites">
+    {games && games.length === 0 ? (
+      <p>No games to show</p>
+    ) : games ? (
+      games.map((item) => (
+        <GameCard
+          key={item.apiid}
+          slug={item.slug}
+          id={item.apiid}
+          title={item.title}
+          img={item.bilde}
+          playtime={item.timerspilt}
+          cardLink={true}
+        />
+      ))
+    ) : null}
+  </section>
+  <section className="indicator">
+    <Link to="/favourites">Go to favourites</Link>
+  </section>
+</aside>
+
   );
 }
 

@@ -58,8 +58,8 @@ export async function getUserFavourites(name, email) {
     "count": count(favoriteGames)
   }`);
 
-  // Check if data[0] is defined before accessing properties
-  if (data[0]) {
+  // Check if data array has at least one element
+  if (data && data.length > 0) {
     const games = data[0].favoriteGames;
     const count = data[0].count;
     return { games, count };
@@ -68,6 +68,28 @@ export async function getUserFavourites(name, email) {
     return { games: [], count: 0 };
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -17,6 +17,8 @@ export default function Layout({ user, logOut }) {
     return <Navigate to="/" />;
   }
 
+
+
   return (
     <div id={containerId}>
       <Nav user={user} logOut={logOut} />
