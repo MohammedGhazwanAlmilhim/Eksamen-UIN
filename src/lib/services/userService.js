@@ -22,23 +22,6 @@ export const createUser = async (name, email) =>{
     }
 }
 
-//SLETTE????
-
-export async function fetchGamesFromFavorite(user, favoriteGamesArray) {
-  try {
-    const gameObjects = await Promise.all(
-      user.favoriteGames.map(favoriteGamesArray => client.fetch(`*[_id == "${favoriteGamesArray._ref}"][0]`))
-    );
-    //console.log(gameObjects)
-    return gameObjects;
-  } catch (error) {
-    console.error("Error fetching game objects:", error.message);
-    return null
-  }
-};
-
-//Denne funksjonen brukes til å hente alle spill som ligger i favorittlisten i DB
-//viser spillene i MyFavourites Komponenten
 export const getUserFavourites = async (name, email) => {
   const query = `{
     "games": *[ _type == "user" && name == '${name}' && email == '${email}' ] {
@@ -61,7 +44,6 @@ export const getUserFavourites = async (name, email) => {
   }`;
 
   const data = await client.fetch(query);
-
   return data;
 };
 
@@ -79,6 +61,20 @@ export const getUserByEmail = async (email) => {
 };
 
 
+//SLETTE????
+
+export async function fetchGamesFromFavorite(user, favoriteGamesArray) {
+  try {
+    const gameObjects = await Promise.all(
+      user.favoriteGames.map(favoriteGamesArray => client.fetch(`*[_id == "${favoriteGamesArray._ref}"][0]`))
+    );
+    //console.log(gameObjects)
+    return gameObjects;
+  } catch (error) {
+    console.error("Error fetching game objects:", error.message);
+    return null
+  }
+};
 
 //Denne funksjonen brukes til å legge spill på favoritt listen til brukeren
 //brukes i GameProfile Komponenten

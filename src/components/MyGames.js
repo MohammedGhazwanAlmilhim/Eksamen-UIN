@@ -10,11 +10,9 @@ function MyGames() {
   const [error, setError] = useState(false);
   const [empty, setEmpty] = useState(false);
 
-
   const fetchFourActionGames = async () => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 700));
-      
       const data = await getFourActionGames();
       
       if (data.games.length === 0 && data.count === 0) {
@@ -24,9 +22,7 @@ function MyGames() {
       } else if (data) {
         setGames(data.games);
         setCount(data.count);
-        console.log(data);
       }
-
     } catch (error) {
       setError(true);
     } finally {
@@ -38,7 +34,6 @@ function MyGames() {
     fetchFourActionGames();
   }, []);
 
-
   return (
     <main>
       {error ? (
@@ -49,7 +44,7 @@ function MyGames() {
         <>
           <h1>My Games-Library ({count} games)</h1>
           {empty ? (
-              <p>My Games-Library is empty!</p>
+            <p>My Games-Library is empty!</p>
           ) : (
             <section className="game-library">
               {games.map((item) => (
@@ -75,6 +70,5 @@ function MyGames() {
     </main>
   );
 }
-
 
 export default MyGames;

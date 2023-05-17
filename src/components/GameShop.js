@@ -9,7 +9,6 @@ function GameShop() {
   const [error, setError] = useState(false);
   const [empty, setEmpty] = useState(false);
 
-
   const fetchNewestGames = async () => {
     try {
       const data = await getNewestGames();
@@ -20,7 +19,6 @@ function GameShop() {
       } else if (data) {
         setGames(data.games);
       }
-
     } catch (error) {
       setError(true);
     } finally {
@@ -66,7 +64,6 @@ function GameShop() {
       )}
     </header>
   );
-
 }
 
 export default GameShop;

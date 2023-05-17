@@ -14,10 +14,8 @@ export const getSteamLink = async (id) => {
       navn
     }
   }`;
-  
-  const data = await client.fetch(query);
 
-  console.log(data);
+  const data = await client.fetch(query);
   return data;
 };
 
@@ -37,6 +35,7 @@ export const getNewestGames = async () => {
     }
   }
   }`;
+
   const data = await client.fetch(query);
   return data;
 };
@@ -58,6 +57,7 @@ export const getTenLatestGames = async () => {
     },
     "count": count(*[_type == "game" && references(*[_type == "genre"]._id)] | order(released desc) [0..9])
   }`;
+
   const data = await client.fetch(query);
   return data;
 };
@@ -80,6 +80,7 @@ export const getFourActionGames = async () => {
     },
     "count": count(*[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released desc) [0..19])
   }`;
+
   const data = await client.fetch(query);
   return data;
 };
@@ -100,6 +101,7 @@ export const getTweentyActionGames = async () => {
     },
     "count": count(*[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released desc) [0..19])
   }`;
+  
   const data = await client.fetch(query);
   return data;
 };

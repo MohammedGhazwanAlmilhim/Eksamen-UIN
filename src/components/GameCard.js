@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function GameCard({slug, title, img, genres, playtime, cardLink = false }) {
+function GameCard({ slug, title, img, genres, playtime, cardLink = false }) {
   const imgUrl = img !== 'N/A' ? img : 'https://picsum.photos/200/300';
   const altText = `Image of the ${title} game.`;
 

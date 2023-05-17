@@ -5,9 +5,9 @@ import Nav from '../layout/Nav';
 export default function Layout({ user, logOut }) {
   const isLoggedIn = user.length > 0;
   const location = useLocation();
-  
+
   const isDashboard = location.pathname === '/dashboard';
-  let containerId = isDashboard ? 'container-dashboard' : 'container-singlepage' ;
+  let containerId = isDashboard ? 'container-dashboard' : 'container-singlepage';
 
   if (location.pathname === '/') {
     containerId = 'container-signin';

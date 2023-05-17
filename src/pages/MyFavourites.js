@@ -29,7 +29,6 @@ function MyFavorites() {
         setGames(data.games[0].favoriteGames);
         setCount(data.games[0].count);
       }
-
     } catch (error) {
       setError(true);
     } finally {
