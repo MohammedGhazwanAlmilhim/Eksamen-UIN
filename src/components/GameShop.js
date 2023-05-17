@@ -5,24 +5,14 @@ import GameCard from './GameCard';
 
 function GameShop() {
   const [games, setGames] = useState([]);
-  const [isLoadingData, setIsLoadingData] = useState(true);
+
+  const fetchNewestGames = async () => {
+    const data = await getNewestGames();
+    setGames(data.games);
+  };
 
   useEffect(() => {
-    let isMounted = true; // Add a flag to track if the component is mounted
-
-    const fetchNewestGames = async () => {
-      const data = await getNewestGames();
-      if (isMounted) {
-        setGames(data.games);
-        setIsLoadingData(false);
-      }
-    };
-
     fetchNewestGames();
-
-    return () => {
-      isMounted = false; // Set the flag to false when the component is unmounted
-    };
   }, []);
 
   return (
@@ -32,18 +22,8 @@ function GameShop() {
         <Link to="/gameshop">Visit Gameshop</Link>
       </section>
       <div className="latest-games">
-        {isLoadingData || games.length === 0 ? (
-          Array.from({ length: 4 }, (_, index) => (
-            <GameCard
-              key={index}
-              slug=""
-              title=""
-              img=""
-              genres=""
-              playtime=""
-              cardLink={false}
-            />
-          ))
+      {games.length === 0 ? (
+          <p>No games to show</p>
         ) : (
           games.map((item) => (
             <GameCard

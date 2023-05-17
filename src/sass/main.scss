@@ -198,7 +198,7 @@ footer {
       min-height: 100vh;
 
       .latest-games {
-        flex-direction: row !important;
+        flex-direction: column !important;
     
         .card:nth-child(1), .card:nth-child(2){
           width: 48% !important;

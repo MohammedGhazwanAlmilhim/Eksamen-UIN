@@ -19,9 +19,17 @@ function MyFavourites() {
   const email = arrayValue[0];
 
   const fetchUserFavouriteGames = async () => {
-    const data = await  getUserFavourites(name, email);
-    setGames(data.games);
-    setCount(data.count);
+    const data = await getUserFavourites(name, email);
+
+    if (data.games[0].favoriteGames == null && data.games[0].count == null) {
+      setGames([]);
+      setCount(0);
+    } 
+    
+    else if(data){
+      setGames(data.games[0].favoriteGames);
+      setCount(data.games[0].count);
+    }
   };
 
   useEffect(() => {
@@ -32,7 +40,7 @@ function MyFavourites() {
     <main>
       <h1>My Favourites ({count} games)</h1>
       <section className="game-library">
-        {games.length === 0 ? (
+        {games.length == 0 ? (
           <p>There is no games added to favourites!</p>
         ) : (
           games.map((item) => (
