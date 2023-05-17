@@ -23,6 +23,7 @@ export const createUser = async (name, email) =>{
 }
 
 //SLETTE????
+
 export async function fetchGamesFromFavorite(user, favoriteGamesArray) {
   try {
     const gameObjects = await Promise.all(
@@ -40,7 +41,21 @@ export async function fetchGamesFromFavorite(user, favoriteGamesArray) {
 //viser spillene i MyFavourites Komponenten
 export async function getUserFavourites(name, email) {
   const data = await client.fetch(`*[_type == "user" && name == '${name}' && email == '${email}']{
-    name, email, "favoriteGames": favoriteGames[]->{title, "slug": slug.current, apiid, timerspilt, sjangere[]->{navn}, bilde, released},"count": count(favoriteGames)`);
+    name,
+    email,
+    "favoriteGames": favoriteGames[]->{
+      title,
+      "slug": slug.current, 
+      apiid,
+      timerspilt,
+      sjangere[]->{
+        navn
+      },
+      bilde,
+      released
+    },
+    "count": count(favoriteGames)
+  }`);
 
   // Check if data[0] is defined before accessing properties
   if (data[0]) {
@@ -54,10 +69,16 @@ export async function getUserFavourites(name, email) {
 }
 
 
-//endre rentur user til return data
+
 export const getUserByEmail = async (email) => {
+  try {
+    // Fetch the user from the database based on the provided email
     const user = await client.fetch(`*[_type == "user" && email == "${email}"][0]`);
     return user;
+  } catch (error) {
+    console.error("Error fetching user:", error.message);
+    throw error;
+  }
 };
 
 

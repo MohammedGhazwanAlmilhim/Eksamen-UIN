@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, useLocation, Navigate, Link } from 'react-router-dom';
-import Nav from './Nav';
+import Nav from '../layout/Nav';
 
 export default function Layout({ user, logOut }) {
   const isLoggedIn = user.length > 0;

@@ -1,6 +1,27 @@
 import client from "../sanityClient";
 
-//This is for GameShop Section
+export const getSteamLink = async (id) => {
+  const query = `*[_type == "game" && apiid == ${id} && references(*[_type == "genre"]._id)]{
+    _id,
+    "slug": slug.current, 
+    apiid,
+    title,
+    bilde,
+    steamlink,
+    timerspilt,
+    sjangere[]->{
+      _id,
+      navn
+    }
+  }`;
+  
+  const data = await client.fetch(query);
+
+  console.log(data);
+  return data;
+};
+
+
 export const getNewestGames = async () => {
   const query = `{
     "games": *[_type == "game" && references(*[_type == "genre"]._id)] | order(released desc) [0..2]{
@@ -20,7 +41,7 @@ export const getNewestGames = async () => {
   return data;
 };
 
-//Hent ut de 20 nyeste spillene for visning på gameshop siden 
+
 export const getTenLatestGames = async () => {
   const query = `{
     "games": *[_type == "game" && references(*[_type == "genre"]._id)] | order(released desc) [0..9]{
@@ -43,8 +64,6 @@ export const getTenLatestGames = async () => {
 
 
 
-
-//This is for MyGames Section
 export const getFourActionGames = async () => {
   const query = `{
     "games": *[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released desc) [0..3]{
@@ -65,7 +84,6 @@ export const getFourActionGames = async () => {
   return data;
 };
 
-//teller alle action spillene som er 16
 export const getTweentyActionGames = async () => {
   const query = `{
     "games": *[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released desc) [0..19]{

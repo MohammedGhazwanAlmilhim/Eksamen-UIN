@@ -5,9 +5,10 @@ import { TagCloud } from "react-tagcloud";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-function GameProfile({ game }) {
+function GameProfile({ game, steamLink }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [showFullDescription, setShowFullDescription] = useState(false);
+
 
   useEffect(() => {
     const storageValue = localStorage.getItem("GamehubUser");
@@ -85,7 +86,7 @@ function GameProfile({ game }) {
       console.error("Error adding favorite game:", error.message);
     }
   };
-  
+
   return (
     <main>
       {game ? (
@@ -145,7 +146,8 @@ function GameProfile({ game }) {
                 ))}
               </p>
 
-              <Link className="btn" to={`https://store.steampowered.com/`}>Buy</Link>
+              <a className="btn" href={steamLink}>Buy</a>
+              
             </section>
           </section>
         </section>
