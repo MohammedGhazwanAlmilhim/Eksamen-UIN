@@ -3,10 +3,12 @@ import { addUserFavourites, getUserByEmail, fetchGamesFromFavourite } from "../l
 import { TagCloud } from "react-tagcloud";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import Loading from "../layout/Loading"; 
 
 function GameProfile({ game, steamLink }) {
   const [isFavourite, setIsFavourite] = useState(false);
   const [showFullDescription, setShowFullDescription] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const storageValue = localStorage.getItem("GamehubUser");
@@ -20,8 +22,10 @@ function GameProfile({ game, steamLink }) {
           const isGameInFavourites = await checkIfGameInFavourites(user, game);
           setIsFavourite(isGameInFavourites);
         }
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching user:", error.message);
+        setLoading(false);
       }
     };
 
@@ -74,6 +78,10 @@ function GameProfile({ game, steamLink }) {
       console.error("Error adding favourite game:", error.message);
     }
   };
+
+  if (loading) {
+    return <Loading />; 
+  }
 
   return (
     <main>
