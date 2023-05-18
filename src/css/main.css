@@ -495,9 +495,8 @@ footer a {
 }
 .game-profile-container .game-profile figure {
   width: 48%;
-  height: 60vh;
+  height: 100%;
   border-radius: 20px;
-  margin: 0;
 }
 .game-profile-container .game-profile figure img {
   height: 100%;
