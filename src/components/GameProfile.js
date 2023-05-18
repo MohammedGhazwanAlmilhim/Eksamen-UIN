@@ -123,23 +123,28 @@ function GameProfile({ game, steamLink }) {
               />
               <br />
 
-              <p>Developers: {game.developers.map((dev) => dev.name).join(", ")}</p>
-              <p>Publisher: {game.publishers.map((pub) => pub.name).join(", ")}</p>
-              <p>Release Year: {game.released.substring(0, 4)}</p>
+              <section className="gameprofile-content">
+
+              <p> <span className="title-color">Developers:</span> {game.developers.map((dev) => dev.name).join(", ")}</p>
+              <p><span className="title-color">Publisher:</span> {game.publishers.map((pub) => pub.name).join(", ")}</p>
+              <p><span className="title-color">Release Year:</span> {game.released.substring(0, 4)}</p>
               <p>
-                Platforms:{" "}
+               <span className="title-color">Platforms:</span> {" "}
                 {game.platforms.map((platform) => (
                   <span key={platform.platform.id}>{platform.platform.name} </span>
                 ))}
               </p>
-              <p>
-                Stores:{" "}
+              <p><span className="title-color">Stores:</span>
+                 {" "}
                 {game.stores.map((store) => (
                   <span key={store.store.id}>{store.store.name} </span>
                 ))}
               </p>
 
-              <a className="btn" href={steamLink}>Buy</a>
+
+                <Link className="btn" to={`https://store.steampowered.com/`}>Buy</Link>
+
+              </section>
               
             </section>
           </section>
