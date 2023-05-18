@@ -11,7 +11,7 @@ function GameProfile({ game, steamLink }) {
   useEffect(() => {
     const storageValue = localStorage.getItem("GamehubUser");
     const arrayValue = JSON.parse(storageValue);
-    const email = arrayValue[0]; //GamehubUser: [0] = email, [1] = username
+    const email = arrayValue[0];
 
     const fetchUserAndCheckFavourites = async () => {
       try {
