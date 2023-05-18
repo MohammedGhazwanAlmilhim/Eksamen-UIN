@@ -11,30 +11,6 @@ $accent-color-hover: #f0f0f0;
   margin: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-
-/* Width */
-::-webkit-scrollbar {
-  width: 13px;
-}
-
-/* Scrollbar Track */
-::-webkit-scrollbar-track {
-  background: #27292b;
-}
-
-/* Scrollbar Handle */
-::-webkit-scrollbar-thumb {
-  background-color: #ffffff;
-  border-radius: 3px;
-}
-
-
-
-
 body {
   font-family: 'Poppins', sans-serif;
   background-color: $primary-color;
@@ -72,79 +48,11 @@ body {
 }
 
 
-.loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: $secondary-color;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.spinner {
-  border: 4px solid #fff;
-  border-top-color: #7f5af0;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-
 
 main {
   grid-area: main;
   padding: 50px;
-  height: 100%;
-  width: calc(100% - 100px);
-
-
-  section.loading-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-
-    
-  section.loading{
-    display:flex;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-  
-    .circle {
-      border: 6px solid #f3f3f3;
-      border-top: 6px solid rgb(0, 74, 235);
-      border-radius: 50%;
-      width: 80px;
-      height: 80px;
-      animation: spin 500ms linear infinite;
-    }
-  
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-  }
-  }
-
-
+  height: fit-content;
 
   .indicator {
     display: flex;
@@ -228,9 +136,6 @@ footer {
 }
 
 
-
-
-
 @media only screen and (max-width: 768px) {
 
   #container-dashboard{
@@ -245,8 +150,6 @@ footer {
     min-height: 100vh;
   }
 
-
-
   .latest-games {
     flex-direction: column !important;
 
@@ -255,18 +158,7 @@ footer {
     }
   }
 
-  .game-library {
-    flex-direction: column;
 
-    .card {
-      width: 100% !important;
-      
-    }
-
-    .card-link{
-      width: 100% !important;
-  }
-  }
 
 
   .my-favourites {
@@ -275,8 +167,8 @@ footer {
     }
   }
 
-}
 
+}
 
 @media (min-width: 769px) and (max-width: 1024px) {
     
@@ -292,24 +184,16 @@ footer {
       min-height: 100vh;
 
       .latest-games {
-        flex-direction: column !important;
+        flex-direction: row !important;
+      
     
         .card:nth-child(1), .card:nth-child(2){
-          width: 48% !important;
+          width: 100% !important;
         }
 
         .card:nth-child(3){
           width: 100% !important;
         }
-      }
-
-
-      .game-library{
-        .card-link{
-          width: 48% !important;
-          flex-wrap: wrap;
-         
-      }
       }
 
       .my-favourites {
@@ -322,13 +206,6 @@ footer {
     }
 }
 }
-
-
-
-
-
-
-
 
 //Components
 @import '../sass/components/myfavourites';
