@@ -7,7 +7,7 @@ const GamePage = () => {
   const [game, setGame] = useState('');
   const [games, setGames] = useState([]);
 
-  const API_KEY = '9ef4069dd9d14052ac1ae49bd4da623b';
+  const API_KEY = '9750f7eeafa54e6fbb470588f04e21c8';
 
   useEffect(() => {
     const getGame = async () => {
