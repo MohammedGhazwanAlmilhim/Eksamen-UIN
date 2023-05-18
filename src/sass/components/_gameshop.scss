@@ -10,7 +10,7 @@
         display: flex;
         flex-direction: row;
         height: 300px;
-        width: 30%;
+        width: calc((100% / 3) - 18px) !important;
         box-shadow: 0 8px 32px 0 rgba(2, 2, 2, 0.37);
         border-radius: 20px;
 
@@ -76,7 +76,7 @@
         display: flex;
         flex-direction: column;
         min-height: 400px;
-        width: calc((100% / 3)) !important;
+        width: calc((100% / 3) - 18px) !important;
         text-decoration: none;
         color: $accent-color;
         border-radius: 20px;
@@ -234,25 +234,22 @@
             width: calc(99% + 1px) !important;
         }
     }
-}
 
+    .latest-games {
+
+        .card {
+
+            width: 100% !important;
+
+}
+}
+}
 
 @media (min-width: 769px) and (max-width: 1399px){
     .gameshop-page {
         .card {
             width: calc(50% - 12.5px) !important;
       
-        }
-    }
-}
-
-
-
-  @media (min-width: 1400px)/* and (max-width: 1400px)*/{
-    .gameshop-page {
-  
-        .card {
-            width: calc(29% + 1px);
         }
     }
 }

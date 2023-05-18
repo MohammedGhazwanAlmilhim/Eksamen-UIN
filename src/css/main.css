@@ -275,7 +275,7 @@ footer a {
   display: flex;
   flex-direction: column;
   min-height: 400px;
-  width: calc(32% + 1px);
+  width: calc(33.3333333333% - 18px) !important;
   text-decoration: none;
   color: #ffffff;
   border-radius: 20px;
@@ -328,17 +328,12 @@ footer a {
 
 @media only screen and (max-width: 768px) {
   .game-library .card-link {
-    width: calc(99% + 1px);
+    width: calc(99% + 1px) !important;
   }
 }
 @media (min-width: 769px) and (max-width: 1399px) {
   .game-library .card-link {
-    width: calc(50% - 12.5px);
-  }
-}
-@media (min-width: 1400px) {
-  .game-library .card-link {
-    width: calc(29% + 1px);
+    width: calc(50% - 12.5px) !important;
   }
 }
 .latest-games {
@@ -352,7 +347,7 @@ footer a {
   display: flex;
   flex-direction: row;
   height: 300px;
-  width: 30%;
+  width: calc(33.3333333333% - 18px) !important;
   box-shadow: 0 8px 32px 0 rgba(2, 2, 2, 0.37);
   border-radius: 20px;
 }
@@ -407,7 +402,7 @@ footer a {
   display: flex;
   flex-direction: column;
   min-height: 400px;
-  width: 33.3333333333% !important;
+  width: calc(33.3333333333% - 18px) !important;
   text-decoration: none;
   color: #ffffff;
   border-radius: 20px;
@@ -525,15 +520,13 @@ footer a {
   .gameshop-page .card {
     width: calc(99% + 1px) !important;
   }
+  .latest-games .card {
+    width: 100% !important;
+  }
 }
 @media (min-width: 769px) and (max-width: 1399px) {
   .gameshop-page .card {
     width: calc(50% - 12.5px) !important;
-  }
-}
-@media (min-width: 1400px) {
-  .gameshop-page .card {
-    width: calc(29% + 1px);
   }
 }
 .game-profile-container {
