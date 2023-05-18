@@ -53,17 +53,18 @@ export default function Nav({ user, logOut }) {
 
       {user.length > 0 && (
         <ul className={isMobileMenuOpen ? "active" : ""}>
-          <li>
+          <li onClick={toggleMobileMenu}>
             <Link to="/gameshop">Shop</Link>
           </li>
-          <li>
+          <li onClick={toggleMobileMenu}>
             <Link to="/mygames">My Games</Link>
           </li>
-          <li>
+          <li onClick={toggleMobileMenu}>
             <Link to="/favourites">Favourites</Link>
           </li>
         </ul>
       )}
+
 
       {user.length > 0 && (
         <section className={isMobileMenuOpen ? "active" : ""}>
