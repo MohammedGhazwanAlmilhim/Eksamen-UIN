@@ -141,7 +141,7 @@ function GameProfile({ game, steamLink }) {
                 ))}
               </p>
 
-              <a className="btn" href={steamLink}>Buy</a>
+              <a className="btn" href={steamLink} target="_blank" rel="noreferrer">Buy</a>
             </section>
           </section>
         </section>
