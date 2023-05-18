@@ -1,6 +1,25 @@
 import client from "../sanityClient";
 
-//This is for GameShop Section
+export const getSteamLink = async (id) => {
+  const query = `*[_type == "game" && apiid == ${id} && references(*[_type == "genre"]._id)]{
+    _id,
+    "slug": slug.current, 
+    apiid,
+    title,
+    "bilde": bilde.asset->url,
+    steamlink,
+    timerspilt,
+    sjangere[]->{
+      _id,
+      navn
+    }
+  }`;
+
+  const data = await client.fetch(query);
+  return data;
+};
+
+
 export const getNewestGames = async () => {
   const query = `{
     "games": *[_type == "game" && references(*[_type == "genre"]._id)] | order(released desc) [0..2]{
@@ -8,7 +27,7 @@ export const getNewestGames = async () => {
     "slug": slug.current, 
     apiid,
     title,
-    bilde,
+    "bilde": bilde.asset->url,
     timerspilt,
     sjangere[]->{
       _id,
@@ -16,11 +35,12 @@ export const getNewestGames = async () => {
     }
   }
   }`;
+
   const data = await client.fetch(query);
   return data;
 };
 
-//Hent ut de 20 nyeste spillene for visning på gameshop siden 
+
 export const getTenLatestGames = async () => {
   const query = `{
     "games": *[_type == "game" && references(*[_type == "genre"]._id)] | order(released desc) [0..9]{
@@ -28,7 +48,7 @@ export const getTenLatestGames = async () => {
     "slug": slug.current, 
     apiid,
     title,
-    bilde,
+    "bilde": bilde.asset->url,
     timerspilt,
     sjangere[]->{
       _id,
@@ -37,14 +57,13 @@ export const getTenLatestGames = async () => {
     },
     "count": count(*[_type == "game" && references(*[_type == "genre"]._id)] | order(released desc) [0..9])
   }`;
+
   const data = await client.fetch(query);
   return data;
 };
 
 
 
-
-//This is for MyGames Section
 export const getFourActionGames = async () => {
   const query = `{
     "games": *[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released desc) [0..3]{
@@ -52,7 +71,7 @@ export const getFourActionGames = async () => {
       "slug": slug.current, 
       apiid,
       title,
-      bilde ,
+      "bilde": bilde.asset->url,
       timerspilt,
       sjangere[]->{
         _id,
@@ -61,11 +80,11 @@ export const getFourActionGames = async () => {
     },
     "count": count(*[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released desc) [0..19])
   }`;
+
   const data = await client.fetch(query);
   return data;
 };
 
-//teller alle action spillene som er 16
 export const getTweentyActionGames = async () => {
   const query = `{
     "games": *[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released desc) [0..19]{
@@ -73,7 +92,7 @@ export const getTweentyActionGames = async () => {
     "slug": slug.current, 
     apiid,
     title,
-    bilde,
+    "bilde": bilde.asset->url,
     timerspilt,
     sjangere[]->{
       _id,
@@ -82,10 +101,10 @@ export const getTweentyActionGames = async () => {
     },
     "count": count(*[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released desc) [0..19])
   }`;
+  
   const data = await client.fetch(query);
   return data;
 };
-
 
 
 

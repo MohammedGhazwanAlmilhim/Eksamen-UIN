@@ -39,7 +39,7 @@ export default {
     {
       name: 'bilde',
       title: 'Bilde',
-      type: 'url',
+      type: 'image',
     },
     {
       name: 'released',

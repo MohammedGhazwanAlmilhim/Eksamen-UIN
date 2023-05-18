@@ -22,74 +22,30 @@ export const createUser = async (name, email) =>{
     }
 }
 
-//SLETTE????
-
-export async function fetchGamesFromFavorite(user, favoriteGamesArray) {
-  try {
-    const gameObjects = await Promise.all(
-      user.favoriteGames.map(favoriteGamesArray => client.fetch(`*[_id == "${favoriteGamesArray._ref}"][0]`))
-    );
-    //console.log(gameObjects)
-    return gameObjects;
-  } catch (error) {
-    console.error("Error fetching game objects:", error.message);
-    return null
-  }
-  return null
-};
-
-//Denne funksjonen brukes til å hente alle spill som ligger i favorittlisten i DB
-//viser spillene i MyFavourites Komponenten
-export async function getUserFavourites(name, email) {
-  const data = await client.fetch(`*[_type == "user" && name == '${name}' && email == '${email}']{
-    name,
-    email,
-    "favoriteGames": favoriteGames[]->{
-      title,
-      "slug": slug.current, 
-      apiid,
-      timerspilt,
-      sjangere[]->{
-        navn
+export const getUserFavourites = async (name, email) => {
+  const query = `{
+    "games": *[ _type == "user" && name == '${name}' && email == '${email}' ] {
+      name,
+      email,
+       favoriteGames[]->{
+        title,
+        "slug": slug.current, 
+        apiid,
+        timerspilt,
+        "bilde": bilde.asset->url,
+        released,
+        sjangere[]->{
+          navn
+        }
       },
-      bilde,
-      released
-    },
-    "count": count(favoriteGames)
-  }`);
 
-  // Check if data array has at least one element
-  if (data && data.length > 0) {
-    const games = data[0].favoriteGames;
-    const count = data[0].count;
-    return { games, count };
-  } else {
-    // Return empty array and count 0 if no user was found
-    return { games: [], count: 0 };
-  }
-}
+    "count": count(favoriteGames[])
+    }
+  }`;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  const data = await client.fetch(query);
+  return data;
+};
 
 
 
@@ -105,6 +61,20 @@ export const getUserByEmail = async (email) => {
 };
 
 
+//SLETTE????
+
+export async function fetchGamesFromFavorite(user, favoriteGamesArray) {
+  try {
+    const gameObjects = await Promise.all(
+      user.favoriteGames.map(favoriteGamesArray => client.fetch(`*[_id == "${favoriteGamesArray._ref}"][0]`))
+    );
+    //console.log(gameObjects)
+    return gameObjects;
+  } catch (error) {
+    console.error("Error fetching game objects:", error.message);
+    return null
+  }
+};
 
 //Denne funksjonen brukes til å legge spill på favoritt listen til brukeren
 //brukes i GameProfile Komponenten
