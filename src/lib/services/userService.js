@@ -27,7 +27,7 @@ export const getUserFavourites = async (name, email) => {
     "games": *[ _type == "user" && name == '${name}' && email == '${email}' ] {
       name,
       email,
-       favouriteGames[]->{
+      favouriteGames[]->{
         title,
         "slug": slug.current, 
         apiid,
@@ -35,7 +35,7 @@ export const getUserFavourites = async (name, email) => {
         "img": img.asset->url,
         released,
         genres[]->{
-          navn
+          name
         }
       },
 
@@ -61,14 +61,12 @@ export const getUserByEmail = async (email) => {
 };
 
 
-//SLETTE????
 
-export async function fetchGamesFromFavorite(user, favouriteGamesArray) {
+export async function fetchGamesFromFavourite(user, favouriteGamesArray) {
   try {
     const gameObjects = await Promise.all(
       user.favouriteGames.map(favouriteGamesArray => client.fetch(`*[_id == "${favouriteGamesArray._ref}"][0]`))
     );
-    //console.log(gameObjects)
     return gameObjects;
   } catch (error) {
     console.error("Error fetching game objects:", error.message);
@@ -76,11 +74,7 @@ export async function fetchGamesFromFavorite(user, favouriteGamesArray) {
   }
 };
 
-//Denne funksjonen brukes til å legge spill på favoritt listen til brukeren
-//brukes i GameProfile Komponenten
-// UserService.js
 
-// Import the necessary dependencies
 
 export const addUserFavourites = async (email, gameApiId, state) => {
   try {
@@ -92,12 +86,12 @@ export const addUserFavourites = async (email, gameApiId, state) => {
     const gameRef = { _type: "reference", _ref: game._id, _key: game._id };
     //console.log(state);
     
-    const isFavorite = await state; // Await the promise to get the actual boolean value
+    const isFavourite = await state; // Await the promise to get the actual boolean value
     //console.log(isFavorite);
 
-    if (isFavorite === true) {
+    if (isFavourite === true) {
       // Remove the game from the user's favorite games
-      let updatedfavouriteGames = await fetchGamesFromFavorite(user, favouriteGames);
+      let updatedfavouriteGames = await fetchGamesFromFavourite(user, favouriteGames);
       //console.log(updatedfavouriteGames);
     
       updatedfavouriteGames = updatedfavouriteGames
@@ -129,7 +123,7 @@ export const addUserFavourites = async (email, gameApiId, state) => {
     }
     return updateResult;
   } catch (error) {
-    console.error("Error adding favorite game:", error.message);
+    console.error("Error adding favourite game:", error.message);
     throw error;
   }
 };

@@ -1,4 +1,3 @@
-// user.js
 export default {
     name: 'user',
     title: 'User',

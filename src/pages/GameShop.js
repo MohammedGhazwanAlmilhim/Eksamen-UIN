@@ -53,7 +53,7 @@ function GameShop() {
                   id={item.apiid}
                   title={item.title}
                   img={item.img}
-                  hoursplayed={item.housplayed}
+                  genres={item.genres.map((genres) => genres.name).join(', ')}
                 />
               ))}
             </section>

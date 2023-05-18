@@ -19,12 +19,12 @@ function MyFavorites() {
     try {
       const data = await getUserFavourites(name, email);
       
-      if (data.games[0].favoriteGames.length == 0 && data.games[0].count == 0) {
+      if (data.games[0].favouriteGames.length == 0 && data.games[0].count == 0) {
         setGames([]);
         setCount(0);
         setEmpty(true);
       } else if (data) {
-        setGames(data.games[0].favoriteGames);
+        setGames(data.games[0].favouriteGames);
         setCount(data.games[0].count);
       }
     } catch (error) {
@@ -57,8 +57,8 @@ function MyFavorites() {
                   slug={item.slug}
                   id={item.apiid}
                   title={item.title}
-                  img={item.bilde}
-                  playtime={item.timerspilt}
+                  img={item.img}
+                  hoursplayed={item.hoursplayed}
                   cardLink={true}
                 />
               ))}

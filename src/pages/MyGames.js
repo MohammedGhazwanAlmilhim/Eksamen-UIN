@@ -53,6 +53,7 @@ function MyGames() {
                   id={item.apiid}
                   title={item.title}
                   img={item.img}
+                  genres={item.genres.map((genres) => genres.name).join(', ')}
                   hoursplayed={item.hoursplayed}
                   cardLink={true}
                 />

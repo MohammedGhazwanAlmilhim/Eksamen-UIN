@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import { addUserFavourites, getUserByEmail, fetchGamesFromFavorite} from "../lib/services/userService";
+import { addUserFavourites, getUserByEmail, fetchGamesFromFavourite} from "../lib/services/userService";
 import { TagCloud } from "react-tagcloud";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 function GameProfile({ game, steamLink }) {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(false);
   const [showFullDescription, setShowFullDescription] = useState(false);
 
 
@@ -15,22 +15,19 @@ function GameProfile({ game, steamLink }) {
     const arrayValue = JSON.parse(storageValue);
     const email = arrayValue[0]; //GamehubUser: [0] = email, [1] = username
 
-    const fetchUserAndCheckFavorites = async () => {
+    const fetchUserAndCheckFavourites = async () => {
       try {
         const user = await getUserByEmail(email);
-        //console.log(email)
-        //console.log(user)
         if (game) {
-          const isGameInFavorites = await checkIfGameInFavorites(user, game);
-          //console.log(isGameInFavorites);
-          setIsFavorite(isGameInFavorites);
+          const isGameInFavourites = await checkIfGameInFavourites(user, game);
+          setIsFavourite(isGameInFavourites);
         }
       } catch (error) {
         console.error("Error fetching user:", error.message);
       }
     };
 
-    fetchUserAndCheckFavorites();
+    fetchUserAndCheckFavourites();
   }, [game]);  
 
 
@@ -46,20 +43,17 @@ function GameProfile({ game, steamLink }) {
     }
   };
 
-  const checkIfGameInFavorites = async (user, game) => {    
-    //console.log(user + "   " + game)
-    if (user && user.favoriteGames && game) {
+  const checkIfGameInFavourites = async (user, game) => {    
+    if (user && user.favouriteGames && game) {
       try {
-        const favoriteGames = await fetchGamesFromFavorite(user, user.favoriteGames);
-        //console.log(favoriteGames);
-        var containsFavoriteGame = false;
-        Array.from(favoriteGames).forEach((g) => {
+        const favouriteGames = await fetchGamesFromFavourite(user, user.favouriteGames);
+        var containsFavouriteGame = false;
+        Array.from(favouriteGames).forEach((g) => {
           if (game.slug === g.slug.current) {
-            containsFavoriteGame = true;
+            containsFavouriteGame = true;
           }
         })
-        //console.log(containsFavoriteGame);
-        return containsFavoriteGame
+        return containsFavouriteGame
       } catch (error) {
         console.error("Error fetching game objects:", error.message);
         return false;
@@ -70,20 +64,19 @@ function GameProfile({ game, steamLink }) {
   };
   
 
-  const handleAddFavorite = async () => {
+  const handleAddFavourite = async () => {
     const storageValue = localStorage.getItem("GamehubUser");
     const arrayValue = JSON.parse(storageValue);
     const email = arrayValue[0];
     const user = await getUserByEmail(email);
   
     try {
-      const isGameInFavorites = await checkIfGameInFavorites(user, game);
-      //console.log(isGameInFavorites)
-      const updatedUser = await addUserFavourites(email, game.id, isGameInFavorites);
-      setIsFavorite(!isGameInFavorites);
-      //console.log(updatedUser);
+      const isGameInFavourites = await checkIfGameInFavourites(user, game);
+      const updatedUser = await addUserFavourites(email, game.id, isGameInFavourites);
+      setIsFavourite(!isGameInFavourites);
+
     } catch (error) {
-      console.error("Error adding favorite game:", error.message);
+      console.error("Error adding favourite game:", error.message);
     }
   };
 
@@ -103,9 +96,9 @@ function GameProfile({ game, steamLink }) {
                     <p>Rating: {game.rating}</p>
                   </span>
                   <FontAwesomeIcon
-                    onClick={handleAddFavorite}
+                    onClick={handleAddFavourite}
                     icon={faHeart}
-                    color={isFavorite ? "red" : "gray"}
+                    color={isFavourite ? "red" : "gray"}
                     size="2x"
                   />
                 </section>

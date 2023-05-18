@@ -18,6 +18,7 @@ function GameShop() {
         setEmpty(true);
       } else if (data) {
         setGames(data.games);
+        console.log(data.games)
       }
     } catch (error) {
       setError(true);
@@ -55,7 +56,7 @@ function GameShop() {
                   id={item.apiid}
                   title={item.title}
                   img={item.img}
-                  hoursplayed={item.hoursplayed}
+                  genres={item.genres.map((genres) => genres.name).join(', ')}
                 />
               ))}
             </section>
