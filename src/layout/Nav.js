@@ -7,8 +7,20 @@ export default function Nav({ user, logOut }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isNavFixed, setIsNavFixed] = useState(false);
 
+  window.addEventListener("resize", function() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth >= 1000) {
+      document.body.style.overflow = "auto"; // Show the scrollbar
+    }
+  });
+  
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+    if (window.innerWidth >= 1000) {
+      setIsMobileMenuOpen(false);
+      document.body.style.overflow = "";
+    }
   };
 
   useEffect(() => {
