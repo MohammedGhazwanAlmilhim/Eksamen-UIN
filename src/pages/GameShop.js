@@ -12,11 +12,9 @@ function GameShop() {
 
   const fetchTenLatestGames = async () => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 700));
-
       const data = await getTenLatestGames();
 
-      if (data.games.length === 0 && data.count === 0) {
+      if (data.games.length == 0 && data.count == 0) {
         setGames([]);
         setCount(0);
         setEmpty(true);

@@ -13,7 +13,7 @@ function GameShop() {
     try {
       const data = await getNewestGames();
       
-      if (data.games.length === 0) {
+      if (data.games.length == 0) {
         setGames([]);
         setEmpty(true);
       } else if (data) {
