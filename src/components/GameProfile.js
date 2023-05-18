@@ -93,7 +93,7 @@ function GameProfile({ game, steamLink }) {
             </figure>
             <section>
               <section className="indicator">
-                <h2>{game.name}</h2>
+                <h1>{game.name}</h1>
                 <section>
                   <span>
                     <p>Rating: {game.rating}</p>
