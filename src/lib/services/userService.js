@@ -127,10 +127,3 @@ export const addUserFavourites = async (email, gameApiId, state) => {
     throw error;
   }
 };
-
-
-
-
-
-  
-  

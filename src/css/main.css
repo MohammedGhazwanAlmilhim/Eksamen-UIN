@@ -3,6 +3,26 @@
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+/* Width */
+::-webkit-scrollbar {
+  width: 13px;
+}
+
+/* Scrollbar Track */
+::-webkit-scrollbar-track {
+  background: #27292b;
+}
+
+/* Scrollbar Handle */
+::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  border-radius: 3px;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: #101112;
@@ -33,6 +53,36 @@ body {
   min-height: 100vh;
 }
 
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #141618;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.spinner {
+  border: 4px solid #fff;
+  border-top-color: #7f5af0;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 main {
   grid-area: main;
   padding: 50px;
@@ -281,21 +331,28 @@ footer a {
     width: calc(99% + 1px);
   }
 }
-@media (min-width: 769px) and (max-width: 1885px) {
+@media (min-width: 769px) and (max-width: 1399px) {
   .game-library .card-link {
-    width: calc(31% + 1px);
+    width: calc(50% - 12.5px);
   }
 }
-@media (min-width: 1140px) and (max-width: 1400px) {
+@media (min-width: 1400px) {
   .game-library .card-link {
-    width: calc(47% + 1px);
+    width: calc(29% + 1px);
   }
 }
-@media (min-width: 769px) and (max-width: 1140px) {
-  .game-library .card-link {
-    width: calc(99% + 1px);
-  }
-}
+/*
+@media (min-width: 769px) and (max-width: 1140px){
+    .game-library {
+
+    .card-link {
+
+        width: calc(99% + 1px);
+
+
+        }
+    }
+}*/
 .latest-games {
   margin-top: 25px;
   gap: 25px;
@@ -408,72 +465,19 @@ footer a {
   margin-top: auto;
 }
 
-@media (max-width: 1024px) {
-  .latest-games figure {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-  }
-  .latest-games figure img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-  }
-  .latest-games .card-content {
-    width: 80%;
-  }
-  .latest-games .card-content a {
-    margin-top: 10px;
-  }
-  .latest-games .card-content h1 {
-    font-size: 18px;
-    width: 100%;
-  }
-  .latest-games .card-content h3 {
-    font-size: 15px;
-    width: 100%;
+@media only screen and (max-width: 768px) {
+  .gameshop-page .card {
+    width: calc(99% + 1px);
   }
 }
-@media (min-width: 1024px) and (max-width: 1300px) {
-  .latest-games .card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 31%;
-    box-shadow: 0 8px 32px 0 rgba(2, 2, 2, 0.37);
-    border-radius: 20px;
+@media (min-width: 769px) and (max-width: 1399px) {
+  .gameshop-page .card {
+    width: calc(50% - 12.5px);
   }
-  .latest-games .card figure {
-    width: 100%;
-    height: 45%;
-    margin: 0;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-  }
-  .latest-games .card figure img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-  }
-  .latest-games .card .card-content {
-    width: 80%;
-  }
-  .latest-games .card .card-content a {
-    margin-top: 10px;
-  }
-  .latest-games .card .card-content h1 {
-    font-size: 18px;
-    width: 100%;
-  }
-  .latest-games .card .card-content h3 {
-    font-size: 15px;
-    width: 100%;
+}
+@media (min-width: 1400px) {
+  .gameshop-page .card {
+    width: calc(29% + 1px);
   }
 }
 .game-profile-container {

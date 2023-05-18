@@ -125,106 +125,30 @@
     }
 }
 
-
-@media (max-width: 1024px) {
-
-    .latest-games {
-    
-            figure {
-                width: 100%;
-                height: 100%;
-                margin: 0;
-                border-top-left-radius: 20px;
-                border-top-right-radius: 20px;
-    
-                img {
-                    object-fit: cover;
-                    width: 100%;
-                    height: 100%;
-                    border-top-left-radius: 20px;
-                    border-top-right-radius: 20px;
-                }
-            }
-    
-            .card-content {
-                width: 80%;
-
-    
-                a {
-                    margin-top: 10px;
-                    
-                }
-    
-                h1 {
-                    font-size: 18px;
-                    width: 100%;
-                }
-    
-                h3 {
-
-                    font-size: 15px;
-                    width: 100%;
-                    
-                }
-            }
-        
-    }
-
-
-}
-
-@media (min-width: 1024px) and (max-width: 1300px) {
-
-    .latest-games {
-        
-    
-        .card {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            width: 31%;
-            box-shadow: 0 8px 32px 0 rgba(2, 2, 2, 0.37);
-            border-radius: 20px;
-           
-    
-            figure {
-                width: 100%;
-                height: 45%;
-                margin: 0;
-                border-top-left-radius: 20px;
-                border-top-right-radius: 20px;
-    
-                img {
-                    object-fit: cover;
-                    width: 100%;
-                    height: 100%;
-                    border-top-left-radius: 20px;
-                    border-top-right-radius: 20px;
-                }
-            }
-    
-            .card-content {
-                width: 80%;
-
-    
-                a {
-                    margin-top: 10px;
-                }
-    
-                h1 {
-                    font-size: 18px;
-                    width: 100%;
-                }
-    
-                h3 {
-
-                    font-size: 15px;
-                    width: 100%;
-                    
-                }
-            }
+  @media only screen and (max-width: 768px){  
+    .gameshop-page {    
+        .card {        
+            width: calc(99% + 1px);
         }
     }
-    
+}
+
+@media (min-width: 769px) and (max-width: 1399px){
+    .gameshop-page {
+        .card {
+            width: calc(50% - 12.5px);
+      
+        }
+    }
+}
+
+
+
+  @media (min-width: 1400px)/* and (max-width: 1400px)*/{
+    .gameshop-page {
   
-  }
+        .card {
+            width: calc(29% + 1px);
+        }
+    }
+}
