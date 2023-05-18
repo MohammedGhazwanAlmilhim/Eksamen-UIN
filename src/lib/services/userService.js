@@ -27,19 +27,19 @@ export const getUserFavourites = async (name, email) => {
     "games": *[ _type == "user" && name == '${name}' && email == '${email}' ] {
       name,
       email,
-       favoriteGames[]->{
+       favouriteGames[]->{
         title,
         "slug": slug.current, 
         apiid,
-        timerspilt,
-        "bilde": bilde.asset->url,
+        hoursplayed,
+        "img": img.asset->url,
         released,
-        sjangere[]->{
+        genres[]->{
           navn
         }
       },
 
-    "count": count(favoriteGames[])
+    "count": count(favouriteGames[])
     }
   }`;
 
@@ -63,10 +63,10 @@ export const getUserByEmail = async (email) => {
 
 //SLETTE????
 
-export async function fetchGamesFromFavorite(user, favoriteGamesArray) {
+export async function fetchGamesFromFavorite(user, favouriteGamesArray) {
   try {
     const gameObjects = await Promise.all(
-      user.favoriteGames.map(favoriteGamesArray => client.fetch(`*[_id == "${favoriteGamesArray._ref}"][0]`))
+      user.favouriteGames.map(favouriteGamesArray => client.fetch(`*[_id == "${favouriteGamesArray._ref}"][0]`))
     );
     //console.log(gameObjects)
     return gameObjects;
@@ -88,7 +88,7 @@ export const addUserFavourites = async (email, gameApiId, state) => {
     const game = await client.fetch(`*[_type == "game" && apiid == ${gameApiId}][0]`);
     const user = await getUserByEmail(email);
     let updateResult;
-    const favoriteGames = user.favoriteGames || [];
+    const favouriteGames = user.favouriteGames || [];
     const gameRef = { _type: "reference", _ref: game._id, _key: game._id };
     //console.log(state);
     
@@ -97,10 +97,10 @@ export const addUserFavourites = async (email, gameApiId, state) => {
 
     if (isFavorite === true) {
       // Remove the game from the user's favorite games
-      let updatedFavoriteGames = await fetchGamesFromFavorite(user, favoriteGames);
-      //console.log(updatedFavoriteGames);
+      let updatedfavouriteGames = await fetchGamesFromFavorite(user, favouriteGames);
+      //console.log(updatedfavouriteGames);
     
-      updatedFavoriteGames = updatedFavoriteGames
+      updatedfavouriteGames = updatedfavouriteGames
         .filter((game) => game.apiid !== gameApiId)
         .map((game) => ({
           _type: "reference",
@@ -108,11 +108,11 @@ export const addUserFavourites = async (email, gameApiId, state) => {
           _key: game._id,
         }));
     
-      //console.log(updatedFavoriteGames);
+      //console.log(updatedfavouriteGames);
     
       let updatedUser = await client
         .patch(user._id)
-        .set({ favoriteGames: updatedFavoriteGames })
+        .set({ favouriteGames: updatedfavouriteGames })
         .commit();
     
       //console.log(updatedUser);
@@ -121,7 +121,7 @@ export const addUserFavourites = async (email, gameApiId, state) => {
       // Add the game to the user's favorite games
       let updatedUser = await client
         .patch(user._id)
-        .set({ favoriteGames: [...favoriteGames, gameRef] })
+        .set({ favouriteGames: [...favouriteGames, gameRef] })
         .commit();
 
       //console.log(updatedUser);

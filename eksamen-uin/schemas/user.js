@@ -15,8 +15,8 @@ export default {
         type: 'string',
       },
       {
-        name: 'favoriteGames',
-        title: 'Favorite Games',
+        name: 'favouriteGames',
+        title: 'Favourite Games',
         type: 'array',
         of: [{ type: 'reference', to: { type: 'game' } }],
       },

@@ -4,8 +4,8 @@ export default {
     type: 'document',
     fields: [
       {
-        name: 'navn',
-        title: 'Navn',
+        name: 'name',
+        title: 'Name',
         type: 'string',
       },
     ],

@@ -43,12 +43,12 @@ function MyFavorites() {
       <Loading show={loading} />
 
       {error ? (
-        <p>Error: Unable to fetch favorite games.</p>
+        <p>Error: Unable to fetch favourite games.</p>
       ) : !loading ? (
         <>
-          <h2>My Favorites ({count} games)</h2>
+          <h2>My Favourites ({count} games)</h2>
           {empty ? (
-            <p>There are no games added to favorites!</p>
+            <p>There are no games added to favourites!</p>
           ) : (
             <section className="game-library">
               {games.map((item) => (

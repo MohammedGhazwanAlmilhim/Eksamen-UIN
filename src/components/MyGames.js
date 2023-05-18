@@ -52,8 +52,8 @@ function MyGames() {
                   slug={item.slug}
                   id={item.apiid}
                   title={item.title}
-                  img={item.bilde}
-                  playtime={item.timerspilt}
+                  img={item.img}
+                  hoursplayed={item.hoursplayed}
                   cardLink={true}
                 />
               ))}

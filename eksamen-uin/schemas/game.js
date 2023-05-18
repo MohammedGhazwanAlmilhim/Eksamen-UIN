@@ -26,19 +26,19 @@ export default {
       type: 'number',
     },
     {
-      name: 'timerspilt',
-      title: 'Timer spilt',
+      name: 'hoursplayed',
+      title: 'Hours Played',
       type: 'string',
     },
     {
-      name: 'sjangere',
-      title: 'Sjangere',
+      name: 'genres',
+      title: 'Genres',
       type: 'array',
       of: [{ type: 'reference', to: { type: 'genre' } }],
     },
     {
-      name: 'bilde',
-      title: 'Bilde',
+      name: 'img',
+      title: 'Image',
       type: 'image',
     },
     {

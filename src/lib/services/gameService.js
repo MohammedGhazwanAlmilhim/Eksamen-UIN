@@ -6,12 +6,12 @@ export const getSteamLink = async (id) => {
     "slug": slug.current, 
     apiid,
     title,
-    "bilde": bilde.asset->url,
+    "img": img.asset->url,
     steamlink,
-    timerspilt,
-    sjangere[]->{
+    hoursplayed,
+    genres[]->{
       _id,
-      navn
+      name
     }
   }`;
 
@@ -27,11 +27,11 @@ export const getNewestGames = async () => {
     "slug": slug.current, 
     apiid,
     title,
-    "bilde": bilde.asset->url,
-    timerspilt,
-    sjangere[]->{
+    "img": img.asset->url,
+    hoursplayed,
+    genres[]->{
       _id,
-      navn
+      name
     }
   }
   }`;
@@ -48,11 +48,11 @@ export const getTenLatestGames = async () => {
     "slug": slug.current, 
     apiid,
     title,
-    "bilde": bilde.asset->url,
-    timerspilt,
-    sjangere[]->{
+    "img": img.asset->url,
+    hoursplayed,
+    genres[]->{
       _id,
-      navn
+      name
     }
     },
     "count": count(*[_type == "game" && references(*[_type == "genre"]._id)] | order(released desc) [0..9])
@@ -66,19 +66,19 @@ export const getTenLatestGames = async () => {
 
 export const getFourActionGames = async () => {
   const query = `{
-    "games": *[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released desc) [0..3]{
+    "games": *[_type == "game" && references(*[_type == "genre" && name == "Action"]._id)] | order(released desc) [0..3]{
       _id,
       "slug": slug.current, 
       apiid,
       title,
-      "bilde": bilde.asset->url,
-      timerspilt,
-      sjangere[]->{
+      "img": img.asset->url,
+      hoursplayed,
+      genres[]->{
         _id,
-        navn
+        name
       }
     },
-    "count": count(*[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released desc) [0..19])
+    "count": count(*[_type == "game" && references(*[_type == "genre" && name == "Action"]._id)] | order(released desc) [0..19])
   }`;
 
   const data = await client.fetch(query);
@@ -87,19 +87,19 @@ export const getFourActionGames = async () => {
 
 export const getTweentyActionGames = async () => {
   const query = `{
-    "games": *[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released desc) [0..19]{
+    "games": *[_type == "game" && references(*[_type == "genre" && name == "Action"]._id)] | order(released desc) [0..19]{
     _id,
     "slug": slug.current, 
     apiid,
     title,
-    "bilde": bilde.asset->url,
-    timerspilt,
-    sjangere[]->{
+    "img": img.asset->url,
+    hoursplayed,
+    genres[]->{
       _id,
-      navn
+      name
     }
     },
-    "count": count(*[_type == "game" && references(*[_type == "genre" && navn == "Action"]._id)] | order(released desc) [0..19])
+    "count": count(*[_type == "game" && references(*[_type == "genre" && name == "Action"]._id)] | order(released desc) [0..19])
   }`;
   
   const data = await client.fetch(query);

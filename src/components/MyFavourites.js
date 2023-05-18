@@ -42,14 +42,14 @@ function MyFavorites() {
   return (
     <aside>
       {error ? (
-        <p>Error: Unable to fetch favorite games.</p>
+        <p>Error: Unable to fetch favourite games.</p>
       ) : loading ? (
         <p>Loading...</p>
       ) : (
         <>
-          <h2>My Favorites ({count} games)</h2>
+          <h2>My Favourites ({count} games)</h2>
           {empty ? (
-            <p>There are no games added to favorites!</p>
+            <p>There are no games added to favourites!</p>
           ) : (
             <section className="my-favourites">
               {games.map((item) => (
@@ -67,7 +67,7 @@ function MyFavorites() {
           )}
           {!!games.length && (
             <section className="indicator">
-              <Link to="/favorites">Go to favorites</Link>
+              <Link to="/favorites">Go to favourites</Link>
             </section>
           )}
         </>
