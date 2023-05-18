@@ -719,6 +719,7 @@ nav section p {
   font-weight: 500;
 }
 nav section .logout {
+  cursor: pointer;
   margin-left: 25px;
 }
 nav .hamburger {
