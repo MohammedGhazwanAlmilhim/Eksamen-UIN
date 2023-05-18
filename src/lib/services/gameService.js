@@ -105,9 +105,3 @@ export const getTweentyActionGames = async () => {
   const data = await client.fetch(query);
   return data;
 };
-
-
-
-
-
-

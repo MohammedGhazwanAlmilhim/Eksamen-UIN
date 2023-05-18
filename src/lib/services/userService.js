@@ -51,7 +51,6 @@ export const getUserFavourites = async (name, email) => {
 
 export const getUserByEmail = async (email) => {
   try {
-    // Fetch the user from the database based on the provided email
     const user = await client.fetch(`*[_type == "user" && email == "${email}"][0]`);
     return user;
   } catch (error) {
@@ -74,53 +73,33 @@ export async function fetchGamesFromFavourite(user, favouriteGamesArray) {
   }
 };
 
-
-
 export const addUserFavourites = async (email, gameApiId, state) => {
   try {
-    // Fetch the game and user from the database based on the provided parameters
     const game = await client.fetch(`*[_type == "game" && apiid == ${gameApiId}][0]`);
     const user = await getUserByEmail(email);
     let updateResult;
     const favouriteGames = user.favouriteGames || [];
     const gameRef = { _type: "reference", _ref: game._id, _key: game._id };
-    //console.log(state);
     
-    const isFavourite = await state; // Await the promise to get the actual boolean value
-    //console.log(isFavorite);
+    const isFavourite = await state;
 
+    let updatedUser;
     if (isFavourite === true) {
-      // Remove the game from the user's favorite games
-      let updatedfavouriteGames = await fetchGamesFromFavourite(user, favouriteGames);
-      //console.log(updatedfavouriteGames);
-    
-      updatedfavouriteGames = updatedfavouriteGames
-        .filter((game) => game.apiid !== gameApiId)
-        .map((game) => ({
-          _type: "reference",
-          _ref: game._id,
-          _key: game._id,
-        }));
-    
-      //console.log(updatedfavouriteGames);
-    
-      let updatedUser = await client
+      const updatedfavouriteGames = await fetchGamesFromFavourite(user, favouriteGames)
+        .then(games => games.filter(game => game.apiid !== gameApiId))
+        .then(games => games.map(game => ({ _type: "reference", _ref: game._id, _key: game._id })));
+
+      updatedUser = await client
         .patch(user._id)
         .set({ favouriteGames: updatedfavouriteGames })
         .commit();
-    
-      //console.log(updatedUser);
-      updateResult = updatedUser;
     } else {
-      // Add the game to the user's favorite games
-      let updatedUser = await client
+      updatedUser = await client
         .patch(user._id)
         .set({ favouriteGames: [...favouriteGames, gameRef] })
         .commit();
-
-      //console.log(updatedUser);
-      updateResult = updatedUser;
     }
+    updateResult = updatedUser;
     return updateResult;
   } catch (error) {
     console.error("Error adding favourite game:", error.message);

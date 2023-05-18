@@ -69,55 +69,29 @@
             }
         }
     }
-  }
-  
-  @media only screen and (max-width: 768px){
-  
-      .game-library {
-      
-          .card-link {
-          
-              width: calc(99% + 1px);
-             
-          
-              }
-          }
-  }
-  
-  @media (min-width: 769px) and (max-width: 1399px){
-      .game-library {
-  
-        
-          .card-link {
-                width: calc(50% - 12.5px);
-        
-              }
-          }
-        }
-  
-  
-  
-    @media (min-width: 1400px)/* and (max-width: 1400px)*/{
+}
+
+
+@media only screen and (max-width: 768px) {
     .game-library {
-    
-    .card-link {
-    
-        width: calc(29% + 1px);
-        
-    
-        }
-    }
-    }
-    
-    /*
-    @media (min-width: 769px) and (max-width: 1140px){
-        .game-library {
-        
         .card-link {
-        
             width: calc(99% + 1px);
-            
-        
-            }
         }
-    }*/
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1399px) {
+    .game-library {
+        .card-link {
+            width: calc(50% - 12.5px);
+        }
+    }
+}
+
+@media (min-width: 1400px) {
+    .game-library {
+        .card-link {
+            width: calc(29% + 1px);
+        }
+    }
+}
