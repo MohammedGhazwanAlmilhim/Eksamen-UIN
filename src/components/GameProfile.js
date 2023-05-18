@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
-import { addUserFavourites, getUserByEmail, fetchGamesFromFavourite} from "../lib/services/userService";
+import { addUserFavourites, getUserByEmail, fetchGamesFromFavourite } from "../lib/services/userService";
 import { TagCloud } from "react-tagcloud";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +7,6 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 function GameProfile({ game, steamLink }) {
   const [isFavourite, setIsFavourite] = useState(false);
   const [showFullDescription, setShowFullDescription] = useState(false);
-
 
   useEffect(() => {
     const storageValue = localStorage.getItem("GamehubUser");
@@ -28,8 +26,7 @@ function GameProfile({ game, steamLink }) {
     };
 
     fetchUserAndCheckFavourites();
-  }, [game]);  
-
+  }, [game]);
 
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
@@ -43,7 +40,7 @@ function GameProfile({ game, steamLink }) {
     }
   };
 
-  const checkIfGameInFavourites = async (user, game) => {    
+  const checkIfGameInFavourites = async (user, game) => {
     if (user && user.favouriteGames && game) {
       try {
         const favouriteGames = await fetchGamesFromFavourite(user, user.favouriteGames);
@@ -59,22 +56,20 @@ function GameProfile({ game, steamLink }) {
         return false;
       }
     }
-    
+
     return false;
   };
-  
 
   const handleAddFavourite = async () => {
     const storageValue = localStorage.getItem("GamehubUser");
     const arrayValue = JSON.parse(storageValue);
     const email = arrayValue[0];
     const user = await getUserByEmail(email);
-  
+
     try {
       const isGameInFavourites = await checkIfGameInFavourites(user, game);
-      const updatedUser = await addUserFavourites(email, game.id, isGameInFavourites);
+      await addUserFavourites(email, game.id, isGameInFavourites);
       setIsFavourite(!isGameInFavourites);
-
     } catch (error) {
       console.error("Error adding favourite game:", error.message);
     }
@@ -106,11 +101,10 @@ function GameProfile({ game, steamLink }) {
 
               <br />
 
-
               <p>Summary: {renderDescription()}</p>
-            <button onClick={toggleDescription}>
-              {showFullDescription ? 'Vis mindre' : 'Les mer'}
-            </button>
+              <button onClick={toggleDescription}>
+                {showFullDescription ? 'Vis mindre' : 'Les mer'}
+              </button>
               <br />
               <p>TagCloud: </p>
               <TagCloud
@@ -140,7 +134,6 @@ function GameProfile({ game, steamLink }) {
               </p>
 
               <a className="btn" href={steamLink}>Buy</a>
-              
             </section>
           </section>
         </section>
