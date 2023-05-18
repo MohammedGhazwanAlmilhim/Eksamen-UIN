@@ -1,39 +1,93 @@
-#signin {
+
+main{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 80%;
 
-  section {
-    width: 35%;
 
-    form {
-      width: 100%;
+  #signin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 80%;
+    background-color: $secondary-color;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(2, 2, 2, 0.37);
 
-      input[type="email"] {
-        margin-top: 20px;
-        font-size: 18px;
-        padding: 15px;
-        border-radius: 10px;
-        border: none;
+    section {
+      width: 70%;
+      
+  
+      form {
         width: 100%;
-        background-color: $secondary-color;
-        color: $tertiary-color;
+       
+  
+        input[type="email"] {
+          margin-top: 20px;
+          font-size: 18px;
+          padding: 15px;
+          border-radius: 10px;
+          border: solid 1px white;
+          width: 100%;
+          background-color: $secondary-color;
+          color: $tertiary-color;
+        }
+  
+  
+        button {
+          display: inline-block;
+          width: fit-content;
+          background-color: $accent-color;
+          color: $secondary-color;
+          font-weight: 500;
+          padding: 15px;
+          border: none;
+          border-radius: 8px;
+          margin-top: 20px;
+        }
       }
+  
+    }
+  }
+}
 
 
-      button {
-        display: inline-block;
-        width: fit-content;
-        background-color: $accent-color;
-        color: $secondary-color;
-        font-weight: 500;
-        padding: 10px;
-        border: none;
-        border-radius: 8px;
-        margin-top: 20px;
+
+@media only screen and (max-width: 768px) {
+
+  main{
+
+
+    #signin {
+      width: 100%;
+      height: 80%;
+
+      section {
+        width: 70%;
+
       }
     }
+  }
+}
 
+@media (min-width: 769px) and (max-width: 1399px) {
+
+  main{
+
+  
+  
+    #signin {
+
+      width: 60%;
+      height: 80%;
+  
+      section {
+        width: 80%;
+      }
+    }
   }
 }
