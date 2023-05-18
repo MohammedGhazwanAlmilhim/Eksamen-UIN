@@ -9,7 +9,6 @@ function GameProfile({ game, steamLink }) {
   const [isFavourite, setIsFavourite] = useState(false);
   const [showFullDescription, setShowFullDescription] = useState(false);
 
-
   useEffect(() => {
     const storageValue = localStorage.getItem("GamehubUser");
     const arrayValue = JSON.parse(storageValue);
@@ -61,8 +60,7 @@ function GameProfile({ game, steamLink }) {
     }
     
     return false;
-  };
-  
+  };  
 
   const handleAddFavourite = async () => {
     const storageValue = localStorage.getItem("GamehubUser");
