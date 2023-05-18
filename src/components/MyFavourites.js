@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { getUserFavourites } from '../lib/services/userService';
 import GameCard from './GameCard';
@@ -13,10 +13,10 @@ function MyFavorites() {
   const name = arrayValue[1];
   const email = arrayValue[0];
 
-  const fetchUserFavoriteGames = async () => {
+  const fetchUserFavoriteGames = useCallback(async () => {
     try {
       const data = await getUserFavourites(name, email);
-
+  
       if (data.games[0].favouriteGames && data.games[0].favouriteGames.length === 0) {
         setGames([]);
         setEmpty(true);
@@ -28,11 +28,12 @@ function MyFavorites() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [name, email]);
 
   useEffect(() => {
     fetchUserFavoriteGames();
-  }, []);
+  }, [fetchUserFavoriteGames]);
+  
 
   return (
     <aside>
