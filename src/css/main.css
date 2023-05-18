@@ -242,12 +242,12 @@ footer a {
   width: 50%;
   padding: 60px 30px;
 }
-.my-favourites .card-link .card-content h1 {
-  font-size: 24px;
-}
-.my-favourites .card-link .card-content h3 {
+.my-favourites .card-link .card-content h4 {
   font-size: 18px;
   font-weight: 400;
+}
+.my-favourites .card-link .card-content p {
+  font-weight: 300;
 }
 .my-favourites .card-link .card-content a {
   display: inline-block;
@@ -304,12 +304,12 @@ footer a {
   width: 50%;
   padding: 60px 30px;
 }
-.game-library .card-link .card-content h1 {
-  font-size: 24px;
-}
-.game-library .card-link .card-content h3 {
+.game-library .card-link .card-content h4 {
   font-size: 18px;
   font-weight: 400;
+}
+.game-library .card-link .card-content p {
+  font-weight: 300;
 }
 .game-library .card-link .card-content a {
   display: inline-block;
@@ -380,12 +380,12 @@ footer a {
   text-decoration: none;
   margin-top: auto;
 }
-.latest-games .card .card-content h1 {
-  font-size: 24px;
-}
-.latest-games .card .card-content h3 {
+.latest-games .card .card-content h4 {
   font-size: 18px;
   font-weight: 400;
+}
+.latest-games .card .card-content p {
+  font-weight: 300;
 }
 
 .gameshop-page {
@@ -426,12 +426,12 @@ footer a {
   width: 50%;
   padding: 60px 30px;
 }
-.gameshop-page .card .card-content h1 {
-  font-size: 24px;
-}
-.gameshop-page .card .card-content h3 {
+.gameshop-page .card .card-content h4 {
   font-size: 18px;
   font-weight: 400;
+}
+.gameshop-page .card .card-content p {
+  font-weight: 300;
 }
 .gameshop-page .card .card-content a {
   display: inline-block;

@@ -40,7 +40,7 @@ function MyFavorites() {
   return (
     <main>
       <Loading show={loading} />
-      <h2>My Favourites ({games.length} games)</h2>
+      <h1>My Favourites ({games.length} games)</h1>
       {empty || games.length === 0 ? (
         <p>There are no games added to favourites!</p>
       ) : (

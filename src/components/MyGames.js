@@ -41,7 +41,7 @@ function MyGames() {
         <p>Loading...</p>
       ) : (
         <>
-          <h1>My Games-Library ({count} games)</h1>
+          <h2>My Games-Library ({count} games)</h2>
           {empty ? (
             <p>My Games-Library is empty!</p>
           ) : (
