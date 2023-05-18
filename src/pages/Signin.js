@@ -4,7 +4,6 @@ import { createUser, checkUser } from "../lib/services/userService";
 
 export default function Signin({ user, setUser }) {
   const [formData, setFormData] = useState({ email: "", name: "" });
-  const [signedIn, setSignedIn] = useState(false);
   const [invalidEmail, setInvalidEmail] = useState(false);
 
   const handleChange = (e) => {
@@ -28,7 +27,6 @@ export default function Signin({ user, setUser }) {
     try {
       const [user] = await checkUser(name, email);
       await (user ? setUser([user.email, user.name]) : createUser(name, email));
-      setSignedIn(true);
     } catch (error) {
       console.log(error.message);
     }
