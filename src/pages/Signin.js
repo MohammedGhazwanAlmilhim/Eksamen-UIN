@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import SigninForm from '../components/SigninForm';
 import { createUser, checkUser } from "../lib/services/userService";
 
+//Koden vår ble inspirert med referanse til disse kildene 
+//https://lms.webtricks.blog/
+//https://github.com/ackarlse/local
+
 export default function Signin({ user, setUser }) {
   const [formData, setFormData] = useState({ email: "", name: "" });
   const [invalidEmail, setInvalidEmail] = useState(false);

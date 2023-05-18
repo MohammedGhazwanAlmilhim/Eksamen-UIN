@@ -1,5 +1,10 @@
 import client from "../sanityClient";
 
+//Koden vår ble inspirert med referanse til disse kildene 
+//https://lms.webtricks.blog/
+//https://webtricks.blog/start-et-prosjekt-med-react-sanity-og-sass-fra-scratch/
+//https://www.sanity.io/docs/groq-reference
+
 export const getAllUsers = async () => {
   const data = await client.fetch(`*[_type == "user"]{_id, name, email}[...]`);
   return data;
