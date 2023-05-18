@@ -19,7 +19,7 @@ function MyFavorites() {
     try {
       const data = await getUserFavourites(name, email);
       
-      if (data.games[0].favouriteGames.length == 0 && data.games[0].count == 0) {
+      if (data.games[0].favouriteGames.length === 0 && data.games[0].count === 0) {
         setGames([]);
         setCount(0);
         setEmpty(true);

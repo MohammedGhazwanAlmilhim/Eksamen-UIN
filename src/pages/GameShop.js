@@ -14,7 +14,7 @@ function GameShop() {
     try {
       const data = await getTenLatestGames();
 
-      if (data.games.length == 0 && data.count == 0) {
+      if (data.games.length === 0 && data.count === 0) {
         setGames([]);
         setCount(0);
         setEmpty(true);
