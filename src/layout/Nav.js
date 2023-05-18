@@ -10,7 +10,7 @@ export default function Nav({ user, logOut }) {
   window.addEventListener("resize", function() {
     const screenWidth = window.innerWidth;
     if (screenWidth >= 1000) {
-      document.body.style.overflow = "auto"; // Show the scrollbar
+      document.body.style.overflow = "auto";
     }
   });
   
