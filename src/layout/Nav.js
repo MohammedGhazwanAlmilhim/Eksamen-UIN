@@ -11,10 +11,6 @@ export default function Nav({ user, logOut }) {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 100) {
