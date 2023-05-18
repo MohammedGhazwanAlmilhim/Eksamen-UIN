@@ -649,6 +649,20 @@ footer a {
   margin-top: 20px;
 }
 
+@media only screen and (max-width: 768px) {
+  #signin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #signin section {
+    width: 400px;
+  }
+  #signin section form {
+    width: calc(100% - 30px);
+  }
+}
 nav.fixed {
   position: fixed;
   animation: slideDown 0.3s;

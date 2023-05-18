@@ -37,3 +37,24 @@
 
   }
 }
+
+
+@media only screen and (max-width: 768px) {
+
+  #signin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    section {
+      width: 400px;
+  
+      form {
+        width: calc(100% - 30px);
+
+      }
+  
+    }
+  }
+
+}
