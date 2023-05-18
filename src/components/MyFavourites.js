@@ -5,9 +5,7 @@ import GameCard from './GameCard';
 
 function MyFavorites() {
   const [games, setGames] = useState([]);
-  const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
   const [empty, setEmpty] = useState(false);
 
   const storageValue = localStorage.getItem('GamehubUser');
@@ -19,21 +17,18 @@ function MyFavorites() {
     try {
       const data = await getUserFavourites(name, email);
 
-      if (data.games[0].favouriteGames.length === 0 && data.games[0].count === 0) {
+      if (data.games[0].favouriteGames && data.games[0].favouriteGames.length === 0) {
         setGames([]);
-        setCount(0);
         setEmpty(true);
       } else if (data) {
-        setGames(data.games[0].favouriteGames);
-        setCount(data.games[0].count);
+        setGames(data.games[0].favouriteGames || []);
       }
     } catch (error) {
-      setError(true);
+      console.error(error);
     } finally {
       setLoading(false);
     }
   };
-  
 
   useEffect(() => {
     fetchUserFavoriteGames();
@@ -41,14 +36,12 @@ function MyFavorites() {
 
   return (
     <aside>
-      {error ? (
-        <p>Error: Unable to fetch favourite games.</p>
-      ) : loading ? (
+      {loading ? (
         <p>Loading...</p>
       ) : (
         <>
-          <h2>My Favourites ({count} games)</h2>
-          {empty ? (
+          <h2>My Favourites ({games.length} games)</h2>
+          {empty || games.length === 0 ? (
             <p>There are no games added to favourites!</p>
           ) : (
             <section className="my-favourites">
@@ -71,7 +64,7 @@ function MyFavorites() {
             </section>
           )}
         </>
-      ) }
+      )}
     </aside>
   );
 }
