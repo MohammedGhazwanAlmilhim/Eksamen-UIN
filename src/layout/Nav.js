@@ -14,7 +14,6 @@ export default function Nav({ user, logOut }) {
     }
   });
   
-
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
     if (window.innerWidth >= 1000) {
