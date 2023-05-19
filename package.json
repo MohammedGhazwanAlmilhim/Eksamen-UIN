@@ -2,11 +2,18 @@
   "name": "eksamen",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "eksamen-uin",
+    "eksamen"
+  ],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@sanity/client": "^5.4.2",
+    "@sanity/client": "^6.0.1",
+    "@sanity/icons": "^2.1.0",
+    "@sanity/ui": "^1.2.0",
+    "@sanity/vision": "^3.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -17,7 +24,8 @@
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
     "react-tagcloud": "^2.3.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "styled-components": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -28,7 +36,12 @@
     "css:compile": "sass src/sass/main.scss:src/css/main.css",
     "css:prefix": "postcss --use autoprefixer -b \"last 4 versions\" src/css/main.css -o src/css/main.css",
     "css:compress": "css-minify -f src/css/main.css -o src/css",
-    "css:build": "npm-run-all css:compile css:prefix css:compress"
+    "css:build": "npm-run-all css:compile css:prefix css:compress",
+    "dev": "sanity dev",
+    "sanity-start": "sanity start",
+    "sanity-build": "sanity build",
+    "sanity-deploy": "sanity deploy",
+    "sanity-deploy-graphql": "sanity graphql deploy"
   },
   "eslintConfig": {
     "extends": [
@@ -54,6 +67,18 @@
     "css-minify": "^2.0.0",
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^10.1.0",
-    "sass": "^1.62.0"
+    "sass": "^1.62.0",
+    "@sanity/eslint-config-studio": "^2.0.1",
+    "@types/react": "^18.0.25",
+    "@types/styled-components": "^5.1.26",
+    "eslint": "^8.6.0",
+    "prettier": "^2.8.8",
+    "typescript": "^4.0.0"
+  },
+  "prettier": {
+    "semi": false,
+    "printWidth": 100,
+    "bracketSpacing": false,
+    "singleQuote": true
   }
 }
